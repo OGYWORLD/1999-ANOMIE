@@ -13,7 +13,7 @@ PlayGame::~PlayGame()
 
 void PlayGame::PlayGameMode()
 {
-	start->PlayStartScene();
-	//game->PlayInGame();
+	//start->PlayStartScene();
+	game->PlayInGame();
 }
 

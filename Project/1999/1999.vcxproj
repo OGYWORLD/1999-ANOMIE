@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BuildingImage.cpp" />
     <ClCompile Include="ConstructBuilding.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />
+    <ClCompile Include="MenuHandler.cpp" />
     <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="PrintImage.cpp" />
     <ClCompile Include="SetPosition.cpp" />
@@ -151,11 +153,14 @@
     <ClCompile Include="WholeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuildingImage.h" />
     <ClInclude Include="ConstantGroup.h" />
     <ClInclude Include="ConstructBuilding.h" />
+    <ClInclude Include="EImage.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
+    <ClInclude Include="MenuHandler.h" />
     <ClInclude Include="PlayGame.h" />
     <ClInclude Include="PrintImage.h" />
     <ClInclude Include="SetPosition.h" />

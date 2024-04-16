@@ -11,5 +11,6 @@ StartScene::~StartScene()
 
 void StartScene::PlayStartScene()
 {
-	print->ConvertWholeImage();
+	print->ConvertWholeImage(EIMAGE::START_IMAGE);
+	//print->ConvertCitizenEndingImage(ENDING_IMAGE_X, ENDING_IMAGE_Y);
 }
