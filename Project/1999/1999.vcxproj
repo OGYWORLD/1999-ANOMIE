@@ -149,6 +149,7 @@
     <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="PrintImage.cpp" />
     <ClCompile Include="SetPosition.cpp" />
+    <ClCompile Include="StartKeyboard.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="WholeImage.cpp" />
   </ItemGroup>
@@ -156,7 +157,7 @@
     <ClInclude Include="BuildingImage.h" />
     <ClInclude Include="ConstantGroup.h" />
     <ClInclude Include="ConstructBuilding.h" />
-    <ClInclude Include="EImage.h" />
+    <ClInclude Include="EKEYBOARD.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="PlayGame.h" />
     <ClInclude Include="PrintImage.h" />
     <ClInclude Include="SetPosition.h" />
+    <ClInclude Include="StartKeyboard.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="WholeImage.h" />
   </ItemGroup>

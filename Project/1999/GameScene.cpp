@@ -12,10 +12,14 @@ GameScene::~GameScene()
 
 void GameScene::PlayInGame()
 {
-	build->PrintWholeMap();
-	//menu->ConverSmallImage(EIMAGE::HOSPITAM_IMAGE);
-	//menu->ConverLargeImage(EIMAGE::PARK_IMAGE);
-	menu->ConverLargeImage(EIMAGE::ARMY_LARGE_IMAGE);
+	WholeScreen();
 	
+}
+
+void GameScene::WholeScreen()
+{
+	build->PrintWholeMap();
+	menu->ShowDefaultMenu();
+
 }
 

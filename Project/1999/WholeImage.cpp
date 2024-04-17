@@ -2,6 +2,7 @@
 
 WholeImage::WholeImage()
 {
+
 }
 
 WholeImage::~WholeImage()

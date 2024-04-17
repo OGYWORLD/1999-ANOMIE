@@ -11,12 +11,7 @@ int main()
 	PlayGame* p = new PlayGame;
 
 	p->PlayGameMode();
-	
-	while (1)
-	{
 
-	}
-	
 	delete p;
 	
 

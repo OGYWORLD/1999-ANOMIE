@@ -13,5 +13,7 @@ public:
 	~GameScene();
 
 	void PlayInGame();
+
+	void WholeScreen();
 };
 

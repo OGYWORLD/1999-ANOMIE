@@ -49,10 +49,10 @@ void Map::PrintWholeMap()
 			{
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), TotalMap[i][j]->GetColor());
 				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
 			}
 			else
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 				printf(" ");
 			}
 		}
