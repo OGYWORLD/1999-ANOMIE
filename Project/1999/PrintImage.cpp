@@ -6,165 +6,183 @@ PrintImage::PrintImage()
 
 PrintImage::~PrintImage()
 {
+	delete to;
 }
 
-void PrintImage::ConvertWholeImage(int WhichImage)
+void PrintImage::ConvertLogoImage(int y, int Image[][START_LOGO_X])
 {
-	for (int i = 0; i < START_IMAGE_Y; i++)
+	for (int i = 0; i < y; i++)
 	{
-		for (int j = 0; j < START_IMAGE_X; j++)
+		for (int j = 0; j < START_LOGO_X; j++)
 		{
-			if (WhichImage == EIMAGE::START_IMAGE)
+			to->GoToXYPosition(START_LOGO_POSITION_X + j, i);
+			if (Image[i][j] != 0)
 			{
-				if (StartImage[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), StartImage[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+			}
+			else
+			{
+				printf(" ");
 			}
 		}
 		printf("\n");
 	}
 }
 
-void PrintImage::ConverSmallImage(int WhichImage)
+void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X])
 {
-	for (int i = 0; i < SMALL_Y; i++)
+	for (int i = 0; i < y; i++)
+	{
+		for (int j = 0; j < WHOLE_IMAGE_X; j++)
+		{
+			if (Image[i][j] != 0)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+			}
+			else
+			{
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+
+}
+
+void PrintImage::RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index, int HalfX)
+{
+	for (int i = 0 + index; i < y + index; i++)
+	{
+		for (int j = 0; j < WHOLE_IMAGE_X - HalfX; j++)
+		{
+			if (Image[i % WHOLE_IMAGE_Y][j] != 0)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i % WHOLE_IMAGE_Y][j]);
+				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+			}
+			else
+			{
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+}
+
+void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X])
+{
+	for (int i = 0; i < y; i++)
 	{
 		for (int j = 0; j < SMALL_X; j++)
 		{
-			if (WhichImage == EIMAGE::HOSPITAM_IMAGE)
+			if (Image[i][j] != 0)
 			{
-				if (Hospital[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Hospital[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
 			}
-			else if (WhichImage == EIMAGE::ARMY_SAMLL_IMAGE)
+			else
 			{
-				if (ArmySmall[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ArmySmall[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
+				printf(" ");
 			}
 		}
 		printf("\n");
 	}
 }
 
-void PrintImage::ConverMediumImage(int WhichImage)
+void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X])
 {
-	for (int i = 0; i < MEDIUM_Y; i++)
+	for (int i = 0; i < y; i++)
 	{
 		for (int j = 0; j < MEDIUM_X; j++)
 		{
-			if (WhichImage == EIMAGE::APT_IMAGE)
+			if (Image[i][j] != 0)
 			{
-				if (APT[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), APT[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
 			}
-			else if (WhichImage == EIMAGE::ARMY_MEDIUM_IMAGE)
+			else
 			{
-				if (ArmyMedium[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ArmyMedium[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
-			}
-			else if (WhichImage == EIMAGE::CHURCH_IMAGE)
-			{
-				if (Church[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Church[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
-			}
-			else if (WhichImage == EIMAGE::CATHEDRAL)
-			{
-				if (Cathedral[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Cathedral[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
+				printf(" ");
 			}
 		}
 		printf("\n");
 	}
 }
 
-void PrintImage::ConverLargeImage(int WhichImage)
+void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X])
 {
-	for (int i = 0; i < LARGE_Y; i++)
+	for (int i = 0; i < y; i++)
 	{
 		for (int j = 0; j < LARGE_X; j++)
 		{
-			if (WhichImage == EIMAGE::PARK_IMAGE)
+			if (Image[i][j] != 0)
 			{
-				if (Park[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Park[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
 			}
-			else if (WhichImage == EIMAGE::ARMY_LARGE_IMAGE)
+			else
 			{
-				if (ArmyLarge[i][j].first == 1)
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ArmyLarge[i][j].second);
-					printf(" ");
-				}
-				else
-				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-					printf(" ");
-				}
+				printf(" ");
 			}
 		}
 		printf("\n");
 	}
+}
+
+void PrintImage::ConvertMenuImage(int y, int Image[][MENU_IMAGE_X])
+{
+
+	for (int i = 0; i < y; i++)
+	{
+		for (int j = 0; j < MENU_IMAGE_X; j++)
+		{
+			if (MenuImage[i][j] != 0)
+			{
+				to->GoToXYPosition(MENU_IMAGE_POSITION_X + j, MENU_IMAGE_POSITION_Y + i);
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), MenuImage[i][j]);
+				printf(" ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+			}
+			else
+			{
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+
+	PrintMenuText();
+}
+
+void PrintImage::PrintMenuText()
+{
+	char MenuText[4][10] =
+	{
+		{"시민 관련"},
+		{"국방 관련"},
+		{"종교 관련"},
+		{"건물 건설"}
+	};
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	int yCoord = 0;
+	for (int i = 0; i < 4; i++, yCoord += 9)
+	{
+		to->GoToXYPosition(173, 22 + yCoord);
+		printf("%s\n", MenuText[i]);
+	}
+}
+
+void PrintImage::PrintPressText()
+{
+	to->GoToXYPosition(PRESS_BUTTOM_X, PRESS_BUTTOM_Y);
+	printf("PRESS THE ANY KEY");
 }

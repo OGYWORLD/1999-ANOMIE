@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
@@ -13,84 +9,130 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\GameScene">
+      <UniqueIdentifier>{14081eb7-b6a7-45bd-bf83-3b3c2b76cdf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{456d8ce3-e3fe-49d1-82f9-b43240e72055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameScene\Constant">
+      <UniqueIdentifier>{ead1ac1f-8eab-44b4-81a9-b41bf789fdec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameScene\Imgae">
+      <UniqueIdentifier>{bc171c7c-c23a-4b75-9f47-ec6f5d7aa6c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Keyboard">
+      <UniqueIdentifier>{393850f2-804e-4465-a3be-cac4cff0e4c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{0d3ca97b-d8fb-4232-98a5-07bb0d93b8d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Image">
+      <UniqueIdentifier>{e62b1346-14c7-45cd-a633-d76ecdc07737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{fbc60a04-485a-4d1a-94cd-a6b695753f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Keyboard">
+      <UniqueIdentifier>{0ce422c5-7540-488e-a37b-1157322c8105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameScene\Menu">
+      <UniqueIdentifier>{a7fa829a-8def-43cb-9e25-5c41a16d2cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{d1070ba6-5c18-4197-a401-1fd2f453b933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameScene\Map">
+      <UniqueIdentifier>{7a3712ab-2e3f-4f7d-becf-a71fe85865c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingImage.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SetPosition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StartScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MapInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WholeImage.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="ConstructBuilding.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="PrintImage.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Image</Filter>
     </ClCompile>
-    <ClCompile Include="BuildingImage.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="WholeImage.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayGame.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SetPosition.cpp">
+      <Filter>Source Files\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="StartKeyboard.cpp">
+      <Filter>Source Files\Keyboard</Filter>
     </ClCompile>
     <ClCompile Include="MenuHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SetPosition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StartScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapInfo.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameScene\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MapInfo.h">
+      <Filter>Header Files\GameScene\Map</Filter>
     </ClInclude>
     <ClInclude Include="ConstantGroup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WholeImage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstructBuilding.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PrintImage.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameScene\Constant</Filter>
     </ClInclude>
     <ClInclude Include="BuildingImage.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameScene\Imgae</Filter>
     </ClInclude>
-    <ClInclude Include="EImage.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ConstructBuilding.h">
+      <Filter>Header Files\GameScene\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayGame.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintImage.h">
+      <Filter>Header Files\GameScene\Imgae</Filter>
+    </ClInclude>
+    <ClInclude Include="WholeImage.h">
+      <Filter>Header Files\GameScene\Imgae</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPosition.h">
+      <Filter>Header Files\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="EKEYBOARD.h">
+      <Filter>Header Files\GameScene\Constant</Filter>
+    </ClInclude>
+    <ClInclude Include="StartKeyboard.h">
+      <Filter>Header Files\Keyboard</Filter>
     </ClInclude>
     <ClInclude Include="MenuHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameScene\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

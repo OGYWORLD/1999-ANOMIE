@@ -7,10 +7,14 @@ StartScene::StartScene()
 StartScene::~StartScene()
 {
 	delete print;
+	delete input;
 }
 
 void StartScene::PlayStartScene()
 {
-	print->ConvertWholeImage(EIMAGE::START_IMAGE);
-	//print->ConvertCitizenEndingImage(ENDING_IMAGE_X, ENDING_IMAGE_Y);
+	print->PrintPressText();
+	print->ConvertLogoImage(START_LOGO_Y, print->GetLogoImage());
+	input->GetPlayerInput();
+
 }
+
