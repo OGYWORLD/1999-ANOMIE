@@ -16,7 +16,10 @@ public:
 	~SetPosition();
 
 	void GoToXYPosition(int x, int y);
+	void SetColor(int c);
+	
 	void CleanInputBuffer();
 	void SystemClean();
+	void PartClean(int x, int y, int bx, int by);
 };
 

@@ -18,9 +18,9 @@ void PrintImage::ConvertLogoImage(int y, int Image[][START_LOGO_X])
 			to->GoToXYPosition(START_LOGO_POSITION_X + j, i);
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
@@ -33,15 +33,17 @@ void PrintImage::ConvertLogoImage(int y, int Image[][START_LOGO_X])
 
 void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X])
 {
+	to->GoToXYPosition(0, 0);
+
 	for (int i = 0; i < y; i++)
 	{
 		for (int j = 0; j < WHOLE_IMAGE_X; j++)
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
@@ -61,9 +63,9 @@ void PrintImage::RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index,
 		{
 			if (Image[i % WHOLE_IMAGE_Y][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i % WHOLE_IMAGE_Y][j]);
+				to->SetColor(Image[i % WHOLE_IMAGE_Y][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
@@ -74,7 +76,7 @@ void PrintImage::RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index,
 	}
 }
 
-void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X])
+void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X], int OriginX, int OriginY)
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -82,12 +84,14 @@ void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X])
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->GoToXYPosition(OriginX + j, OriginY + i);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
+				to->GoToXYPosition(OriginX + j, OriginY + i);
 				printf(" ");
 			}
 		}
@@ -95,7 +99,7 @@ void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X])
 	}
 }
 
-void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X])
+void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X], int OriginX, int OriginY)
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -103,12 +107,14 @@ void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X])
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->GoToXYPosition(OriginX + j, OriginY + i);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
+				to->GoToXYPosition(OriginX + j, OriginY + i);
 				printf(" ");
 			}
 		}
@@ -116,7 +122,7 @@ void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X])
 	}
 }
 
-void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X])
+void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X], int OriginX, int OriginY)
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -124,12 +130,14 @@ void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X])
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->GoToXYPosition(OriginX + j, OriginY + i);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
+				to->GoToXYPosition(OriginX + j, OriginY + i);
 				printf(" ");
 			}
 		}
@@ -144,16 +152,12 @@ void PrintImage::ConvertMenuImage(int y, int Image[][MENU_IMAGE_X])
 	{
 		for (int j = 0; j < MENU_IMAGE_X; j++)
 		{
-			if (MenuImage[i][j] != 0)
+			if (Image[i][j] != 0)
 			{
 				to->GoToXYPosition(MENU_IMAGE_POSITION_X + j, MENU_IMAGE_POSITION_Y + i);
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), MenuImage[i][j]);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
-			}
-			else
-			{
-				printf(" ");
+				to->SetColor(0);
 			}
 		}
 		printf("\n");
@@ -172,17 +176,152 @@ void PrintImage::PrintMenuText()
 		{"건물 건설"}
 	};
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	to->SetColor(10);
 	int yCoord = 0;
-	for (int i = 0; i < 4; i++, yCoord += 9)
+	for (int i = 0; i < 4; i++, yCoord += 7)
 	{
-		to->GoToXYPosition(173, 22 + yCoord);
+		to->GoToXYPosition(MENU_IMAGE_POSITION_X+18, MENU_IMAGE_POSITION_Y + 8 + yCoord);
 		printf("%s\n", MenuText[i]);
 	}
 }
 
-void PrintImage::PrintPressText()
+void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X])
 {
-	to->GoToXYPosition(PRESS_BUTTOM_X, PRESS_BUTTOM_Y);
-	printf("PRESS THE ANY KEY");
+	for (int i = 0; i < PRESS_BUTTOM_Y; i++)
+	{
+		for (int j = 0; j < PRESS_BUTTOM_X; j++)
+		{
+			if (Image[i][j] != 0)
+			{
+				to->GoToXYPosition(PRESS_BUTTOM_POSITION_X + j, PRESS_BUTTOM_POSITION_Y + i);
+				to->SetColor(Image[i][j]);
+				printf(" ");
+				to->SetColor(0);
+			}
+			else
+			{
+				to->GoToXYPosition(PRESS_BUTTOM_POSITION_X + j, PRESS_BUTTOM_POSITION_Y + i);
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+}
+
+void PrintImage::PrintPre2Text()
+{
+	to->PartClean(0, 0, WHOLE_IMAGE_X, PRIVIEW_Y);
+	char Line1[2][100] =
+	{
+		{"그리고 내일은, 보궐 선거로 당선된 제 15대 대통령의"},
+		{"공식 임기가 시작되는 날입니다."}
+	};
+
+	to->SetColor(10);
+	int CurY = 0;
+	for (int i = 0; i < 2; i++, CurY += 2)
+	{
+		to->GoToXYPosition(PREVIEW_TEXT_POSITION_X, PREVIEW_TEXT_POSITION_Y + i + CurY);
+		printf("%s", Line1[i]);
+	}
+}
+
+void PrintImage::PrintPre3Text()
+{
+	to->PartClean(0, 0, WHOLE_IMAGE_X, WHOLE_IMAGE_Y/2);
+	char Line1[2][100] =
+	{
+		{"1998년 12월 31일 뉴스를 마치겠습니다."},
+		{"고맙습니다."}
+	};
+
+	int CurY = 0;
+	to->SetColor(10);
+	for (int i = 0; i < 2; i++, CurY += 2)
+	{
+		to->GoToXYPosition(PREVIEW_TEXT_POSITION_X, PREVIEW_TEXT_POSITION_Y + i + CurY);
+		printf("%s", Line1[i]);
+	}
+}
+
+void PrintImage::PrintPre1Text()
+{
+	to->PartClean(0, 0, WHOLE_IMAGE_X, PRIVIEW_Y);
+	char Line1[2][50] =
+	{
+		{"리벌 바이러스. 일명, 좀비 바이러스가 발생한지"},
+		{"오늘부로 13년이 지났습니다."}
+	};
+
+	int CurY = 0;
+	to->SetColor(10);
+	for (int i = 0; i < 2; i++, CurY += 2)
+	{
+		to->GoToXYPosition(PREVIEW_TEXT_POSITION_X, PREVIEW_TEXT_POSITION_Y + i + CurY);
+		printf("%s", Line1[i]);
+	}
+}
+
+
+int PrintImage::PrintSelectText()
+{
+	char MenuText[3][10] =
+	{
+		{"게임 시작"},
+		{"튜토리얼"},
+		{"게임 종료"},
+	};
+
+	to->SetColor(10);
+	int yCoord = 0;
+	for (int i = 0; i < 3; i++, yCoord += 7)
+	{
+		to->GoToXYPosition(SELECT_POSITION_X, SELECT_POSITION_Y + yCoord);
+		printf("%s\n", MenuText[i]);
+	}
+
+	int CurY = 0;
+	while (1)
+	{
+		// Blink Point
+		to->SetColor(10);
+		to->GoToXYPosition(SELECT_POSITION_X - 5, SELECT_POSITION_Y + CurY);
+		printf("▶");
+		Sleep(300);
+		to->GoToXYPosition(SELECT_POSITION_X - 5, SELECT_POSITION_Y + CurY);
+		printf("  ");
+		Sleep(300);
+
+		if (_kbhit())
+		{
+			int nKey = _getch();
+			if (nKey == EKEYBOARD::SPACE)
+			{
+				return CurY;
+			}
+			else if (nKey == EKEYBOARD::DIRECTION)
+			{
+				nKey = _getch();
+				if (nKey == EKEYBOARD::KEY_UP)
+				{
+					CurY -= 7;
+					if (CurY < 0)
+					{
+						CurY = 14;
+					}
+
+				}
+				else if (nKey == EKEYBOARD::KEY_DOWN)
+				{
+					CurY += 7;
+					if (CurY > 14)
+					{
+						CurY = 0;
+					}
+				}
+			}
+
+			to->CleanInputBuffer();
+		}
+	}
 }

@@ -7,5 +7,31 @@ enum EKEYBOARD
 	KEY_DOWN = 80,
 	KEY_LEFT = 75,
 	KEY_RIGHT = 77,
-	SPACE = 32
+	SPACE = 32,
+	Z_KEY = 122,
+	V_KEY = 118,
+	M_KEY = 109,
+	NUM1_KEY = 49,
+	NUM2_KEY = 50,
+	NUM3_KEY = 51,
+	NUM4_KEY = 52,
+	NUM5_KEY = 53,
+	NUM6_KEY = 54,
+	NUM7_KEY = 55,
+	NUM8_KEY = 56,
+};
+
+enum EMENU_SELECT
+{
+	CITIZEN = 0,
+	ARMY = 7,
+	REGION = 14,
+	CONSTRUCT = 21
+};
+
+enum ESELECT_SCENE
+{
+	NEW_GAME = 0,
+	TUTORIAL = 7,
+	EXIT = 14
 };

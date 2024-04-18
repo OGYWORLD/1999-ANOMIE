@@ -1,2 +1,15 @@
-﻿  PlayGame.cpp
+﻿  BuildingImage.cpp
+  ConstructBuilding.cpp
+  GameScene.cpp
+  Main.cpp
+  Map.cpp
+  MenuHandler.cpp
+  PlayGame.cpp
+  PreviewScene.cpp
+  PrintImage.cpp
+  SelectScene.cpp
+  StartKeyboard.cpp
+  StartScene.cpp
+  WholeImage.cpp
+  Generating Code...
   1999.vcxproj -> C:\Users\admin\Desktop\KE_1999\Project\x64\Debug\1999.exe

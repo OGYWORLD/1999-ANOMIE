@@ -23,6 +23,15 @@ void StartKeyboard::GetPlayerInput()
 			break;
 		}
 
+		if (index % 8 == 0)
+		{
+			to->PartClean(PRESS_BUTTOM_POSITION_X, PRESS_BUTTOM_POSITION_Y, PRESS_BUTTOM_X, PRESS_BUTTOM_Y);
+		}
+		else
+		{
+			print->ConvertPTAKImage(PRESS_BUTTOM_Y, print->GetPTAKImage());
+		}
+
 		to->GoToXYPosition(0, 0);
 		print->RollingWholeImage(WHOLE_IMAGE_Y / 2, print->GetStartImage(), index, 130);
 
