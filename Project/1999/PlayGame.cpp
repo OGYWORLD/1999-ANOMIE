@@ -15,5 +15,6 @@ void PlayGame::PlayGameMode()
 {
 	//start->PlayStartScene();
 	game->PlayInGame();
+
 }
 

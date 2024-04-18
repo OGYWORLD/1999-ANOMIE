@@ -9,6 +9,28 @@ PrintImage::~PrintImage()
 	delete to;
 }
 
+void PrintImage::ConvertLogoImage(int y, int Image[][START_LOGO_X])
+{
+	for (int i = 0; i < y; i++)
+	{
+		for (int j = 0; j < START_LOGO_X; j++)
+		{
+			to->GoToXYPosition(START_LOGO_POSITION_X + j, i);
+			if (Image[i][j] != 0)
+			{
+				to->SetColor(Image[i][j]);
+				printf(" ");
+				to->SetColor(0);
+			}
+			else
+			{
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+}
+
 void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X])
 {
 	for (int i = 0; i < y; i++)
@@ -17,9 +39,31 @@ void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X])
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
+			}
+			else
+			{
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+
+}
+
+void PrintImage::RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index, int HalfX)
+{
+	for (int i = 0 + index; i < y + index; i++)
+	{
+		for (int j = 0; j < WHOLE_IMAGE_X - HalfX; j++)
+		{
+			if (Image[i % WHOLE_IMAGE_Y][j] != 0)
+			{
+				to->SetColor(Image[i % WHOLE_IMAGE_Y][j]);
+				printf(" ");
+				to->SetColor(0);
 			}
 			else
 			{
@@ -30,7 +74,7 @@ void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X])
 	}
 }
 
-void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X])
+void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X], int OriginX, int OriginY)
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -38,12 +82,14 @@ void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X])
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->GoToXYPosition(OriginX + j, OriginY + i);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
+				to->GoToXYPosition(OriginX + j, OriginY + i);
 				printf(" ");
 			}
 		}
@@ -51,7 +97,7 @@ void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X])
 	}
 }
 
-void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X])
+void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X], int OriginX, int OriginY)
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -59,12 +105,14 @@ void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X])
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->GoToXYPosition(OriginX + j, OriginY + i);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
+				to->GoToXYPosition(OriginX + j, OriginY + i);
 				printf(" ");
 			}
 		}
@@ -72,7 +120,7 @@ void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X])
 	}
 }
 
-void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X])
+void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X], int OriginX, int OriginY)
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -80,12 +128,14 @@ void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X])
 		{
 			if (Image[i][j] != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Image[i][j]);
+				to->GoToXYPosition(OriginX + j, OriginY + i);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{
+				to->GoToXYPosition(OriginX + j, OriginY + i);
 				printf(" ");
 			}
 		}
@@ -100,16 +150,12 @@ void PrintImage::ConvertMenuImage(int y, int Image[][MENU_IMAGE_X])
 	{
 		for (int j = 0; j < MENU_IMAGE_X; j++)
 		{
-			if (MenuImage[i][j] != 0)
+			if (Image[i][j] != 0)
 			{
 				to->GoToXYPosition(MENU_IMAGE_POSITION_X + j, MENU_IMAGE_POSITION_Y + i);
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), MenuImage[i][j]);
+				to->SetColor(Image[i][j]);
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
-			}
-			else
-			{
-				printf(" ");
+				to->SetColor(0);
 			}
 		}
 		printf("\n");
@@ -120,9 +166,6 @@ void PrintImage::ConvertMenuImage(int y, int Image[][MENU_IMAGE_X])
 
 void PrintImage::PrintMenuText()
 {
-	int X = 10;
-	int Y = 4;
-
 	char MenuText[4][10] =
 	{
 		{"시민 관련"},
@@ -131,10 +174,34 @@ void PrintImage::PrintMenuText()
 		{"건물 건설"}
 	};
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-	for (int i = 10; i < Y; i+=10)
+	to->SetColor(10);
+	int yCoord = 0;
+	for (int i = 0; i < 4; i++, yCoord += 7)
 	{
-		to->GoToXYPosition(MENU_IMAGE_POSITION_X + 17, MENU_IMAGE_POSITION_Y + 10);
+		to->GoToXYPosition(MENU_IMAGE_POSITION_X+18, MENU_IMAGE_POSITION_Y + 8 + yCoord);
 		printf("%s\n", MenuText[i]);
+	}
+}
+
+void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X])
+{
+	for (int i = 0; i < PRESS_BUTTOM_Y; i++)
+	{
+		for (int j = 0; j < PRESS_BUTTOM_X; j++)
+		{
+			if (Image[i][j] != 0)
+			{
+				to->GoToXYPosition(PRESS_BUTTOM_POSITION_X + j, PRESS_BUTTOM_POSITION_Y + i);
+				to->SetColor(Image[i][j]);
+				printf(" ");
+				to->SetColor(0);
+			}
+			else
+			{
+				to->GoToXYPosition(PRESS_BUTTOM_POSITION_X + j, PRESS_BUTTOM_POSITION_Y + i);
+				printf(" ");
+			}
+		}
+		printf("\n");
 	}
 }

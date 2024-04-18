@@ -12,8 +12,7 @@ StartScene::~StartScene()
 
 void StartScene::PlayStartScene()
 {
-
-	print->ConvertWholeImage(WHOLE_IMAGE_Y, print->GetStartImage());
+	print->ConvertLogoImage(START_LOGO_Y, print->GetLogoImage());
 	input->GetPlayerInput();
 
 }

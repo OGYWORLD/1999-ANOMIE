@@ -14,6 +14,11 @@ void SetPosition::GoToXYPosition(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+void SetPosition::SetColor(int c)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
+
 void SetPosition::CleanInputBuffer()
 {
 	while (_kbhit())
@@ -31,5 +36,17 @@ void SetPosition::SystemClean()
 			printf(" ");
 		}
 		printf(" ");
+	}
+}
+
+void SetPosition::PartClean(int x, int y, int bx, int by)
+{
+	for (int i = y; i < y + by; i++)
+	{
+		for (int j = x; j < x + bx; j++)
+		{
+			GoToXYPosition(j, i);
+			printf(" ");
+		}
 	}
 }
