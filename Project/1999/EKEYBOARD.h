@@ -11,6 +11,7 @@ enum EKEYBOARD
 	Z_KEY = 122,
 	V_KEY = 118,
 	M_KEY = 109,
+	C_KEY = 99,
 	NUM1_KEY = 49,
 	NUM2_KEY = 50,
 	NUM3_KEY = 51,

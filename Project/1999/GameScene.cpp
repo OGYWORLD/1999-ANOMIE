@@ -14,6 +14,7 @@ GameScene::~GameScene()
 void GameScene::PlayInGame()
 {
 	build->PrintWholeMap();
+
 	int page = 0;
 	int DefaultMenuFlag = 0;
 

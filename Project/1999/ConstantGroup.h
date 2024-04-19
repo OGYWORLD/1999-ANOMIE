@@ -45,6 +45,10 @@
 
 // InGame
 
+// Random Map
+#define RANDOM_POSITION_X	162
+#define RANDOM_POSITION_Y	36
+
 // Menu
 // Commom Menu
 #define MENU_IMAGE_X	44

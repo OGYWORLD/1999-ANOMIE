@@ -1,5 +1,4 @@
 #pragma once
-#include <list>
 #include "WholeImage.h"
 #include "BuildingImage.h"
 #include "SetPosition.h"
@@ -46,6 +45,7 @@ public:
 	MediumImagePtr GetCathedralImage() { return this->Cathedral; }
 	LargeImagePtr GetParkImage() { return this->Park; }
 	LargeImagePtr GetArmyLargeImage() { return this->ArmyLarge; }
+
 
 	// Convert Image
 	// Unique Size Image

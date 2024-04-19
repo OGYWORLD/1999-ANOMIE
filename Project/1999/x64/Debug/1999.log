@@ -1,20 +1,3 @@
-﻿  BuildingImage.cpp
-  ConstructBuilding.cpp
-  GameScene.cpp
-  Main.cpp
-  Map.cpp
-  MapInfo.cpp
-  MenuHandler.cpp
-  PlayGame.cpp
-  PreviewScene.cpp
-  PrintImage.cpp
-  SelectScene.cpp
-  SetPosition.cpp
-C:\Users\VR\Desktop\KE_1999-main\Project\1999\SetPosition.cpp(13,16): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\VR\Desktop\KE_1999-main\Project\1999\SetPosition.cpp(13,19): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-  StartKeyboard.cpp
-  StartScene.cpp
-  WholeImage.cpp
-  Generating Code...
-  LINK : C:\Users\VR\Desktop\KE_1999-main\Project\x64\Debug\1999.exe not found or not built by the last incremental link; performing full link
+﻿  ConstructBuilding.cpp
+C:\Users\VR\Desktop\KE_1999-main\Project\1999\ConstructBuilding.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   1999.vcxproj -> C:\Users\VR\Desktop\KE_1999-main\Project\x64\Debug\1999.exe
