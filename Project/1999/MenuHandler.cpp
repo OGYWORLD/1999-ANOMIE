@@ -77,12 +77,18 @@ void MenuHandler::ShowConstructMenu1()
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 2, CONSTRUCT_MENU_Y + 6);
 	to->SetColor(14);
 	printf("병원: 1");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 2, CONSTRUCT_MENU_Y + 7);
+	to->SetColor(3);
+	printf("10,000원");
 
 	// Print Army(Small)
 	ConvertSmallImage(SMALL_Y, GetArmySmallImage(), CONSTRUCT_MENU_X + 19, CONSTRUCT_MENU_Y + 2);
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 16, CONSTRUCT_MENU_Y + 6);
 	to->SetColor(14);
 	printf("군대(소): 2");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 16, CONSTRUCT_MENU_Y + 7);
+	to->SetColor(3);
+	printf("50,000원");
 
 	// Line 2
 	// Print APT
@@ -90,12 +96,18 @@ void MenuHandler::ShowConstructMenu1()
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 2, CONSTRUCT_MENU_Y + 15);
 	to->SetColor(14);
 	printf("아파트: 3");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 2, CONSTRUCT_MENU_Y + 16);
+	to->SetColor(3);
+	printf("70,000원");
 
 	// Print Army(Medium)
 	ConvertMediumImage(MEDIUM_Y, GetArmyMediumImage(), CONSTRUCT_MENU_X + 17, CONSTRUCT_MENU_Y + 9);
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 16, CONSTRUCT_MENU_Y + 15);
 	to->SetColor(14);
 	printf("군대(중): 4");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 16, CONSTRUCT_MENU_Y + 16);
+	to->SetColor(3);
+	printf("120,000원");
 
 	// Line 3
 	// Print Church
@@ -103,12 +115,18 @@ void MenuHandler::ShowConstructMenu1()
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 3, CONSTRUCT_MENU_Y + 24);
 	to->SetColor(14);
 	printf("교회: 5");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 3, CONSTRUCT_MENU_Y + 25);
+	to->SetColor(3);
+	printf("70,000원");
 
 	// Print Cathedral
 	ConvertMediumImage(MEDIUM_Y, GetCathedralImage(), CONSTRUCT_MENU_X + 17, CONSTRUCT_MENU_Y + 18);
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 18, CONSTRUCT_MENU_Y + 24);
 	to->SetColor(14);
 	printf("성당: 6");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 18, CONSTRUCT_MENU_Y + 25);
+	to->SetColor(3);
+	printf("70,000원");
 
 	to->SetColor(6);
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 12, CONSTRUCT_MENU_Y + 25);
@@ -133,12 +151,18 @@ void MenuHandler::ShowConstructMenu2()
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 11, CONSTRUCT_MENU_Y + 10);
 	to->SetColor(14);
 	printf("공원: 7");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 11, CONSTRUCT_MENU_Y + 11);
+	to->SetColor(3);
+	printf("100,000원");
 
 	// Print Army(Large)
 	ConvertLargeImage(LARGE_Y, GetArmyLargeImage(), CONSTRUCT_MENU_X + 6, CONSTRUCT_MENU_Y + 13);
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 9, CONSTRUCT_MENU_Y + 22);
 	to->SetColor(14);
 	printf("군대(대): 8");
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 9, CONSTRUCT_MENU_Y + 23);
+	to->SetColor(3);
+	printf("200,000원");
 
 	to->SetColor(6);
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 12, CONSTRUCT_MENU_Y + 25);
@@ -150,69 +174,5 @@ void MenuHandler::ShowConstructMenu2()
 
 void MenuHandler::ShowConstructMenu()
 {
-	int page = 0;
-	int DefaultMenuFlag = 0;
-
-	while (1)
-	{
-		if (page == 0)
-		{
-			to->PartClean(MENU_CLEAN_X, MENU_CLEAN_Y, MENU_CLEAN_BX, MENU_CLEAN_BY);
-			ShowConstructMenu1();
-
-			while (1)
-			{
-				if (_kbhit())
-				{
-					int nKey = _getch();
-					if (nKey == EKEYBOARD::Z_KEY)
-					{
-						to->CleanInputBuffer();
-						page = 1;
-						break;
-					}
-					else if (nKey == EKEYBOARD::M_KEY)
-					{
-						to->CleanInputBuffer();
-						page = 0;
-						DefaultMenuFlag = 1;
-						break;
-					}
-					to->CleanInputBuffer();
-				}
-			}
-		}
-		else if (page == 1)
-		{
-			to->PartClean(MENU_CLEAN_X, MENU_CLEAN_Y, MENU_CLEAN_BX, MENU_CLEAN_BY);
-			ShowConstructMenu2();
-
-			while (1)
-			{
-				if (_kbhit())
-				{
-					int nKey = _getch();
-					if (nKey == EKEYBOARD::Z_KEY)
-					{
-						to->CleanInputBuffer();
-						page = 0;
-						break;
-					}
-					else if (nKey == EKEYBOARD::M_KEY)
-					{
-						to->CleanInputBuffer();
-						page = 0;
-						DefaultMenuFlag = 1;
-						break;
-					}
-					to->CleanInputBuffer();
-				}
-			}
-		}
-		if (DefaultMenuFlag == 1)
-		{
-			DefaultMenuFlag = 0;
-			break;
-		}
-	}
+	
 }

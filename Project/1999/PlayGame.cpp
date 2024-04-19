@@ -15,13 +15,13 @@ PlayGame::~PlayGame()
 
 void PlayGame::PlayGameMode()
 {
-	pre->PlayPreviewScene();
-	start->PlayStartScene();
+	pre->PlayPreviewScene(); // Preview Scene
+	start->PlayStartScene(); // Start Scene
 
 	int PlayerInput = select->PlaySelectScene();
 	if (PlayerInput == ESELECT_SCENE::NEW_GAME)
 	{
-		game->PlayInGame();
+		game->PlayInGame(); // InGame Scence
 	}
 	else if (PlayerInput == ESELECT_SCENE::TUTORIAL)
 	{
@@ -29,7 +29,7 @@ void PlayGame::PlayGameMode()
 	}
 	else if (PlayerInput == ESELECT_SCENE::EXIT)
 	{
-		return;
+		return; // Exit Game
 	}
 
 }

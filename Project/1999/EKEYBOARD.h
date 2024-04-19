@@ -11,14 +11,15 @@ enum EKEYBOARD
 	Z_KEY = 122,
 	V_KEY = 118,
 	M_KEY = 109,
-	NUM1_KEY = 49,
-	NUM2_KEY = 50,
-	NUM3_KEY = 51,
-	NUM4_KEY = 52,
-	NUM5_KEY = 53,
-	NUM6_KEY = 54,
-	NUM7_KEY = 55,
-	NUM8_KEY = 56,
+	C_KEY = 99,
+	NUM1_KEY = 49, // Hospital
+	NUM2_KEY = 50, // ArmySmall
+	NUM3_KEY = 51, // APT
+	NUM4_KEY = 52, // ArmyMedium
+	NUM5_KEY = 53, // Church
+	NUM6_KEY = 54, // Cathedral
+	NUM7_KEY = 55, // Park
+	NUM8_KEY = 56, // ArmyLarge
 };
 
 enum EMENU_SELECT
