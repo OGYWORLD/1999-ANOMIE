@@ -90,6 +90,12 @@
     <ClCompile Include="MenuHandler.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="PreviewScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
@@ -133,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="MenuHandler.h">
       <Filter>Header Files\GameScene\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="PreviewScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

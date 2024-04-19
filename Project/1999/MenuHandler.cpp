@@ -147,3 +147,72 @@ void MenuHandler::ShowConstructMenu2()
 	to->GoToXYPosition(CONSTRUCT_MENU_X - 1, CONSTRUCT_MENU_Y + 27);
 	printf("파괴 v | 페이지이동 z | 메뉴 m");
 }
+
+void MenuHandler::ShowConstructMenu()
+{
+	int page = 0;
+	int DefaultMenuFlag = 0;
+
+	while (1)
+	{
+		if (page == 0)
+		{
+			to->PartClean(MENU_CLEAN_X, MENU_CLEAN_Y, MENU_CLEAN_BX, MENU_CLEAN_BY);
+			ShowConstructMenu1();
+
+			while (1)
+			{
+				if (_kbhit())
+				{
+					int nKey = _getch();
+					if (nKey == EKEYBOARD::Z_KEY)
+					{
+						to->CleanInputBuffer();
+						page = 1;
+						break;
+					}
+					else if (nKey == EKEYBOARD::M_KEY)
+					{
+						to->CleanInputBuffer();
+						page = 0;
+						DefaultMenuFlag = 1;
+						break;
+					}
+					to->CleanInputBuffer();
+				}
+			}
+		}
+		else if (page == 1)
+		{
+			to->PartClean(MENU_CLEAN_X, MENU_CLEAN_Y, MENU_CLEAN_BX, MENU_CLEAN_BY);
+			ShowConstructMenu2();
+
+			while (1)
+			{
+				if (_kbhit())
+				{
+					int nKey = _getch();
+					if (nKey == EKEYBOARD::Z_KEY)
+					{
+						to->CleanInputBuffer();
+						page = 0;
+						break;
+					}
+					else if (nKey == EKEYBOARD::M_KEY)
+					{
+						to->CleanInputBuffer();
+						page = 0;
+						DefaultMenuFlag = 1;
+						break;
+					}
+					to->CleanInputBuffer();
+				}
+			}
+		}
+		if (DefaultMenuFlag == 1)
+		{
+			DefaultMenuFlag = 0;
+			break;
+		}
+	}
+}

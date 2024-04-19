@@ -4,6 +4,12 @@
 #define MAP_X		156
 #define MAP_Y		50
 
+// Preview Scene
+#define PRIVIEW_Y	29
+
+#define PREVIEW_TEXT_POSITION_X		79
+#define PREVIEW_TEXT_POSITION_Y		25
+
 // Start Scene
 #define START_LOGO_X	130
 #define START_LOGO_Y	42
@@ -16,6 +22,10 @@
 
 #define PRESS_BUTTOM_POSITION_X		103
 #define PRESS_BUTTOM_POSITION_Y		48
+
+// Select Scene
+#define SELECT_POSITION_X	97
+#define SELECT_POSITION_Y	21
 
 // Image
 #define ENDING_IMAGE_X	200

@@ -28,3 +28,10 @@ enum EMENU_SELECT
 	REGION = 14,
 	CONSTRUCT = 21
 };
+
+enum ESELECT_SCENE
+{
+	NEW_GAME = 0,
+	TUTORIAL = 7,
+	EXIT = 14
+};

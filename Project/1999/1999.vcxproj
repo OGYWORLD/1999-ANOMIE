@@ -147,7 +147,9 @@
     <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MenuHandler.cpp" />
     <ClCompile Include="PlayGame.cpp" />
+    <ClCompile Include="PreviewScene.cpp" />
     <ClCompile Include="PrintImage.cpp" />
+    <ClCompile Include="SelectScene.cpp" />
     <ClCompile Include="SetPosition.cpp" />
     <ClCompile Include="StartKeyboard.cpp" />
     <ClCompile Include="StartScene.cpp" />
@@ -163,7 +165,9 @@
     <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MenuHandler.h" />
     <ClInclude Include="PlayGame.h" />
+    <ClInclude Include="PreviewScene.h" />
     <ClInclude Include="PrintImage.h" />
+    <ClInclude Include="SelectScene.h" />
     <ClInclude Include="SetPosition.h" />
     <ClInclude Include="StartKeyboard.h" />
     <ClInclude Include="StartScene.h" />

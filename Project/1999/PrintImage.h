@@ -1,5 +1,5 @@
 #pragma once
-#include <map>
+#include <list>
 #include "WholeImage.h"
 #include "BuildingImage.h"
 #include "SetPosition.h"
@@ -27,6 +27,11 @@ public:
 
 	// Get Image Array
 	// About Scene Image
+	WholeImagePtr GetPre1Image() { return Pre1Image; }
+	WholeImagePtr GetPre2Image() { return Pre2Image; }
+
+	WholeImagePtr GetSelectImage() { return SelectImage; }
+
 	WholeImagePtr GetStartImage() { return this->StartImage; }
 	MenuImagePtr GetMenuImage() { return this->MenuImage; }
 	LogoImagePtr GetLogoImage() { return this->LogoImage; }
@@ -59,6 +64,17 @@ public:
 	void RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index, int HalfX);
 
 	// PrintText
+	// Preview Scene
+	void PrintPre1Text();
+	void PrintPre2Text();
+	void PrintPre3Text();
+
+	// Select Scene
+	int PrintSelectText();
+	
+	// Game Scene
 	void PrintMenuText();
+
+
 };
 

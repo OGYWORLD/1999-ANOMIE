@@ -18,6 +18,7 @@ public:
 	// Construct Menu
 	void ShowConstructMenu1();
 	void ShowConstructMenu2();
+	void ShowConstructMenu();
 
 };
 
