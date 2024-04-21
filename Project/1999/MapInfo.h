@@ -5,7 +5,7 @@ class MapInfo
 private:
 	int StartX; // Build's Start X position
 	int StartY; // Build's Start Y position
-	int Info; // 0: Build Avaliable, -1: Build Unvaliable
+	int Info; // 0: Build Avaliable, -1: Build Unvaliable, 1: hospital ~ 8: ArmyLarge
 	int Size; // Building Size
 	int Color; // Dot Color
 

@@ -140,8 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BuildingImage.cpp" />
+    <ClCompile Include="BuildingInfo.cpp" />
     <ClCompile Include="ConstructBuilding.cpp" />
+    <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="InfoHandler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />
@@ -157,10 +160,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BuildingImage.h" />
+    <ClInclude Include="BuildingInfo.h" />
     <ClInclude Include="ConstantGroup.h" />
     <ClInclude Include="ConstructBuilding.h" />
     <ClInclude Include="EKEYBOARD.h" />
+    <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="InfoHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MenuHandler.h" />

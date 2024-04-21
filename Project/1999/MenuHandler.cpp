@@ -55,6 +55,10 @@ int MenuHandler::ShowDefaultMenu(int OriginX, int OriginY, int BetweenY)
 					}
 				}
 			}
+			else if (nKey == EKEYBOARD::P_KEY)
+			{
+				return EKEYBOARD::P_KEY;
+			}
 
 			to->CleanInputBuffer();
 		}
@@ -172,7 +176,49 @@ void MenuHandler::ShowConstructMenu2()
 	printf("파괴 v | 페이지이동 z | 메뉴 m");
 }
 
-void MenuHandler::ShowConstructMenu()
+void MenuHandler::ShowCitizenMenu(InfoHandler* info)
 {
-	
+	to->PartClean(MENU_CLEAN_X, MENU_CLEAN_Y, MENU_CLEAN_BX, MENU_CLEAN_BY);
+	to->SetColor(10);
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 5, CONSTRUCT_MENU_Y);
+	printf("▶ 시민 관련 메뉴 ◀");
+
+	to->SetColor(12);
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 3);
+	printf("▶ 강한 세금 추가 징수 (key 1)");
+	to->SetColor(14);
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 5);
+	printf("세금을 추가적으로 징수합니다.");
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 6);
+	printf("인당, 1원씩 징수합니다.");
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 7);
+	printf("부정적인 여론을 발생시킵니다.");
+
+	to->SetColor(12);
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 11);
+	printf("▶ 약한 세금 추가 징수 (key 2)");
+	to->SetColor(14);
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 13);
+	printf("세금을 추가적으로 징수합니다.");
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 14);
+	printf("인당, 0.3원씩 징수합니다.");
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 15);
+	printf("부정적인 여론을 발생시킵니다.");
+
+	to->SetColor(10);
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 2, CONSTRUCT_MENU_Y + 19);
+	printf("▶ 복지 정책 실행 (key 3)");
+	to->SetColor(14);
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 21);
+	printf("복지 정책을 실행합니다.");
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 22);
+	printf("10,000~30,000원이 소요됩니다.");
+	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 23);
+	printf("긍정적인 여론을 발생시킵니다.");
+
+
+
+	to->SetColor(6);
+	to->GoToXYPosition(CONSTRUCT_MENU_X + 11, CONSTRUCT_MENU_Y + 27);
+	printf("메뉴 m");
 }

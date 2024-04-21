@@ -183,6 +183,10 @@ void PrintImage::PrintMenuText()
 		to->GoToXYPosition(MENU_IMAGE_POSITION_X+18, MENU_IMAGE_POSITION_Y + 8 + yCoord);
 		printf("%s\n", MenuText[i]);
 	}
+
+	to->GoToXYPosition(MENU_IMAGE_POSITION_X + 13, MENU_IMAGE_POSITION_Y + 33);
+	to->SetColor(12);
+	printf("새로운 내일은 p버튼");
 }
 
 void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X])

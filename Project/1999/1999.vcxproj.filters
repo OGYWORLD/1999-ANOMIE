@@ -49,6 +49,12 @@
     <Filter Include="Header Files\GameScene\Map">
       <UniqueIdentifier>{7a3712ab-2e3f-4f7d-becf-a71fe85865c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameScene\Info">
+      <UniqueIdentifier>{e080e672-14c3-4ebb-8978-c9f2438b822f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Info">
+      <UniqueIdentifier>{9dce9a55-0e44-4d4e-b357-7f202bca9f03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Map.cpp">
@@ -95,6 +101,15 @@
     </ClCompile>
     <ClCompile Include="SelectScene.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingInfo.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfo.cpp">
+      <Filter>Source Files\Info</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoHandler.cpp">
+      <Filter>Source Files\Info</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +160,15 @@
     </ClInclude>
     <ClInclude Include="SelectScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingInfo.h">
+      <Filter>Header Files\GameScene\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo.h">
+      <Filter>Header Files\GameScene\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoHandler.h">
+      <Filter>Header Files\GameScene\Info</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
