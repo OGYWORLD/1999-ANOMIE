@@ -1,6 +1,7 @@
 #pragma once
 #include "PrintImage.h"
 
+class InfoHandler;
 
 class MenuHandler : public PrintImage
 {
@@ -18,7 +19,18 @@ public:
 	// Construct Menu
 	void ShowConstructMenu1();
 	void ShowConstructMenu2();
-	void ShowConstructMenu();
+
+	// Citizen Menu
+	void ShowCitizenMenu();
+
+	// Army Menu
+	void ShowArmyMenu();
+
+	// Religion Menu
+	void ShowReligionMenu();
+
+	// Zombie Menu
+	
 
 };
 

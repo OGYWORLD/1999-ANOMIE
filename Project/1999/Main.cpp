@@ -13,7 +13,7 @@ int main()
 	p->PlayGameMode();
 
 	delete p;
-	
+
 
 	return 0;
 }

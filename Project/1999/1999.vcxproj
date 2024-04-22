@@ -140,12 +140,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BuildingImage.cpp" />
+    <ClCompile Include="BuildingInfo.cpp" />
     <ClCompile Include="ConstructBuilding.cpp" />
+    <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="InfoHandler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MenuHandler.cpp" />
+    <ClCompile Include="News.cpp" />
+    <ClCompile Include="NewsHandler.cpp" />
     <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="PreviewScene.cpp" />
     <ClCompile Include="PrintImage.cpp" />
@@ -157,13 +162,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BuildingImage.h" />
+    <ClInclude Include="BuildingInfo.h" />
     <ClInclude Include="ConstantGroup.h" />
     <ClInclude Include="ConstructBuilding.h" />
     <ClInclude Include="EKEYBOARD.h" />
+    <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="InfoHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MenuHandler.h" />
+    <ClInclude Include="News.h" />
+    <ClInclude Include="NewsHandler.h" />
     <ClInclude Include="PlayGame.h" />
     <ClInclude Include="PreviewScene.h" />
     <ClInclude Include="PrintImage.h" />

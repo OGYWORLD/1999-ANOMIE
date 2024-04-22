@@ -1,3 +1,4 @@
-﻿  ConstructBuilding.cpp
-C:\Users\VR\Desktop\KE_1999-main\Project\1999\ConstructBuilding.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  1999.vcxproj -> C:\Users\VR\Desktop\KE_1999-main\Project\x64\Debug\1999.exe
+﻿  GameScene.cpp
+C:\Users\VR\Desktop\KE_1999\Project\1999\GameScene.cpp(7,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\VR\Desktop\KE_1999\Project\1999\GameScene.cpp(536): warning C4715: 'GameScene::EndOfTheDay': not all control paths return a value
+  1999.vcxproj -> C:\Users\VR\Desktop\KE_1999\Project\x64\Debug\1999.exe

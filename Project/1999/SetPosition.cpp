@@ -29,18 +29,21 @@ void SetPosition::CleanInputBuffer()
 
 void SetPosition::SystemClean()
 {
+	GoToXYPosition(0, 0);
+
 	for (int i = 0; i < CONSOLE_SIZE_Y; i++)
 	{
 		for (int j = 0; j < CONSOLE_SIZE_X; j++)
 		{
 			printf(" ");
 		}
-		printf(" ");
+		printf("\n");
 	}
 }
 
 void SetPosition::PartClean(int x, int y, int bx, int by)
 {
+	SetColor(256);
 	for (int i = y; i < y + by; i++)
 	{
 		for (int j = x; j < x + bx; j++)

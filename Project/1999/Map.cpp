@@ -45,7 +45,7 @@ void Map::InitMap()
 	{
 		for (int j = 0; j < MAP_X; j++)
 		{
-			if (j == 0 || j == MAP_X-1 || i == 0 || i == MAP_Y - 1)
+			if (j == 0 || j == MAP_X-1 || j == 1 || j == MAP_X - 2 || i == 0 || i == 1 || i == MAP_Y - 2 || i == MAP_Y - 1)
 			{
 				TotalMap[i][j]->SetColor(240);
 				TotalMap[i][j]->SetInfo(-1);

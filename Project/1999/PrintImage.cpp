@@ -183,6 +183,10 @@ void PrintImage::PrintMenuText()
 		to->GoToXYPosition(MENU_IMAGE_POSITION_X+18, MENU_IMAGE_POSITION_Y + 8 + yCoord);
 		printf("%s\n", MenuText[i]);
 	}
+
+	to->GoToXYPosition(MENU_IMAGE_POSITION_X + 13, MENU_IMAGE_POSITION_Y + 33);
+	to->SetColor(12);
+	printf("새로운 내일은 p버튼");
 }
 
 void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X])
@@ -324,4 +328,24 @@ int PrintImage::PrintSelectText()
 			to->CleanInputBuffer();
 		}
 	}
+}
+
+void PrintImage::PrintNewsImage()
+{
+	for (int i = 0; i < NEWS_Y; i++)
+	{
+		for (int j = 0; j < NEWS_X; j++)
+		{
+			if (NewsImage[i][j] != 0)
+			{
+				to->GoToXYPosition(NEWS_POSITION_X + j, NEWS_POSITION_Y + i);
+				to->SetColor(NewsImage[i][j]);
+				printf(" ");
+			}
+		}
+	}
+
+	to->SetColor(96);
+	to->GoToXYPosition(NEWS_POSITION_X + 12, NEWS_POSITION_Y + 2);
+	printf("♣ 오늘의 뉴우스 ♣");
 }

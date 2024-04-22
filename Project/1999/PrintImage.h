@@ -26,25 +26,25 @@ public:
 
 	// Get Image Array
 	// About Scene Image
-	WholeImagePtr GetPre1Image() { return Pre1Image; }
-	WholeImagePtr GetPre2Image() { return Pre2Image; }
+	WholeImagePtr GetPre1Image() { return WholeImage::Pre1Image; }
+	WholeImagePtr GetPre2Image() { return WholeImage::Pre2Image; }
 
-	WholeImagePtr GetSelectImage() { return SelectImage; }
+	WholeImagePtr GetSelectImage() { return WholeImage::SelectImage; }
 
-	WholeImagePtr GetStartImage() { return this->StartImage; }
-	MenuImagePtr GetMenuImage() { return this->MenuImage; }
-	LogoImagePtr GetLogoImage() { return this->LogoImage; }
-	PTAKImagePtr GetPTAKImage() { return this->PTAKImage; }
+	WholeImagePtr GetStartImage() { return WholeImage::StartImage; }
+	MenuImagePtr GetMenuImage() { return WholeImage::MenuImage; }
+	LogoImagePtr GetLogoImage() { return WholeImage::LogoImage; }
+	PTAKImagePtr GetPTAKImage() { return WholeImage::PTAKImage; }
 
 	// About Icon Image
-	SmallImagePtr GetHosPitalImage() { return this->Hospital; }
-	SmallImagePtr GetArmySmallImage() { return this->ArmySmall;  }
-	MediumImagePtr GetAPTImage() { return this->APT; }
-	MediumImagePtr GetArmyMediumImage() { return this->ArmyMedium;  }
-	MediumImagePtr GetChurchImage() { return this->Church; }
-	MediumImagePtr GetCathedralImage() { return this->Cathedral; }
-	LargeImagePtr GetParkImage() { return this->Park; }
-	LargeImagePtr GetArmyLargeImage() { return this->ArmyLarge; }
+	SmallImagePtr GetHosPitalImage() { return BuildingImage::Hospital; }
+	SmallImagePtr GetArmySmallImage() { return BuildingImage::ArmySmall;  }
+	MediumImagePtr GetAPTImage() { return BuildingImage::APT; }
+	MediumImagePtr GetArmyMediumImage() { return BuildingImage::ArmyMedium;  }
+	MediumImagePtr GetChurchImage() { return BuildingImage::Church; }
+	MediumImagePtr GetCathedralImage() { return BuildingImage::Cathedral; }
+	LargeImagePtr GetParkImage() { return BuildingImage::Park; }
+	LargeImagePtr GetArmyLargeImage() { return BuildingImage::ArmyLarge; }
 
 
 	// Convert Image
@@ -74,6 +74,9 @@ public:
 	
 	// Game Scene
 	void PrintMenuText();
+
+	// News
+	void PrintNewsImage();
 
 
 };

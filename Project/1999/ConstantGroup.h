@@ -55,10 +55,10 @@
 #define MENU_IMAGE_Y	40
 
 #define MENU_IMAGE_POSITION_X	156
-#define MENU_IMAGE_POSITION_Y	17
+#define MENU_IMAGE_POSITION_Y	20
 
 #define MENU_POINT_POSITION_X	168
-#define MENU_POINT_POSITION_Y	25
+#define MENU_POINT_POSITION_Y	28
 
 #define MENU_BUTTON_X	28
 #define MENU_BUTTON_Y	26
@@ -68,12 +68,27 @@
 
 // Construct Menu
 #define CONSTRUCT_MENU_X	164
-#define CONSTRUCT_MENU_Y	23
+#define CONSTRUCT_MENU_Y	26
 
 // for Default Menu Clean COORD
 #define MENU_CLEAN_X	162
-#define MENU_CLEAN_Y	22
+#define MENU_CLEAN_Y	25
 
 #define MENU_CLEAN_BX	32
 #define MENU_CLEAN_BY	29
 
+// Info
+#define INFO_POSITION_X		0
+#define INFO_POSITION_Y		50
+
+#define INFO_X	156
+#define INFO_Y	10
+
+// News
+#define NEWS_X		44
+#define NEWS_Y		20
+
+#define NEWS_POSITION_X		156
+#define NEWS_POSITION_Y		0
+
+#define MAX_NEWS		8
