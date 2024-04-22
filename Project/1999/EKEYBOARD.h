@@ -51,3 +51,34 @@ enum ESELECT_SCENE
 	TUTORIAL = 7,
 	EXIT = 14
 };
+
+enum ENEWS_CATEGORY
+{
+	CitizenLittleForceNews,
+	CitizenManyForceNews,
+	CitizenWelfareNews,
+	ArmyForceNews,
+	ArmyPropagandaGoodNews,
+	ArmyPropagandaBadNews,
+	ArmyWelfareNews,
+	ReligionProhibitCitizenNews,
+	ReligionProhibitArmyNews,
+	ParticiateReligionNews,
+	CitizenEndingNews,
+	ArmyEndingNews,
+	ReligionEndingNews,
+	ZeroReligionZombieNews,
+	SmallReligionZombieNews,
+	MediumReligionZombieNews,
+	LargeReligionZombieNews,
+	ZeroHospitalZombieNews,
+	HospitalZombieNews,
+	ZeroAPTZombieNews,
+	APTZombieNews,
+	ParkZombieNews,
+	ZeroArmyZombieNews,
+	SmallArmyZombieNews,
+	MediumArmyZombieNews,
+	LargeArmyZombieNews
+
+};

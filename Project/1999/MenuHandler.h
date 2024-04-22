@@ -21,7 +21,16 @@ public:
 	void ShowConstructMenu2();
 
 	// Citizen Menu
-	void ShowCitizenMenu(InfoHandler* info);
+	void ShowCitizenMenu();
+
+	// Army Menu
+	void ShowArmyMenu();
+
+	// Religion Menu
+	void ShowReligionMenu();
+
+	// Zombie Menu
+	
 
 };
 

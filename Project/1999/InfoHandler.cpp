@@ -217,21 +217,138 @@ void InfoHandler::ForceMoney(int level)
 {
 	if (level == EKEYBOARD::NUM1_KEY)
 	{
-		Money += PeopleNum;
-		CitizenPower -= 30;
+		Money += (int)((double)PeopleNum * 0.5);
+		CitizenPower -= 20;
+		if (CitizenPower < 0) { CitizenPower = 0; }
 	}
 	else if (level == EKEYBOARD::NUM2_KEY)
 	{
 		Money += (int)((double)PeopleNum * 0.3);
 		CitizenPower -= 10;
+		if (CitizenPower < 0) { CitizenPower = 0; }
 	}
 	
 }
 
 void InfoHandler::Welfare()
 {
+	
 	int r = rand() % 20000 + 10000;
-	Money -= r;
-	CitizenPower += (r / 1000);
 
+	if (Money < r)
+	{
+		PrintMoney(64);
+		Sleep(200);
+		PrintMoney(14);
+
+		return;
+	}
+
+	Money -= r;
+	CitizenPower += (r / 10000);
+	if (CitizenPower > 100) { CitizenPower = 100; }
+
+}
+
+void InfoHandler::ForceArmyMoney()
+{
+	Money += PeopleNum;
+	ArmyPower -= 20;
+	if (ArmyPower < 0) { ArmyPower = 0; }
+}
+
+int InfoHandler::Propaganda()
+{
+	int GoodOrBad = rand() % 100;
+	if (GoodOrBad < 10)
+	{
+		ArmyPower -= 20;
+		if (ArmyPower < 0) { ArmyPower = 0; }
+		CitizenPower -= 20;
+		if (CitizenPower < 0) { CitizenPower = 0; }
+
+		return 1;
+	}
+	else
+	{
+		int r = rand() % 20000 + 10000;
+		if (Money < r)
+		{
+			PrintMoney(64);
+			Sleep(200);
+			PrintMoney(14);
+
+			return 2;
+
+		}
+		Money -= r;
+		ArmyPower += (r / 10000);
+		if (ArmyPower > 100) { ArmyPower = 100; }
+
+		return 0;
+	}
+}
+
+void InfoHandler::ArmyWelfare()
+{
+	int r = rand() % 30000 + 60000;
+	if (Money < r)
+	{
+		PrintMoney(64);
+		Sleep(200);
+		PrintMoney(14);
+
+		return;
+	}
+	Money -= r;
+	ArmyPower += (r / 10000);
+	if (ArmyPower > 100) { ArmyPower = 100; }
+}
+
+void InfoHandler::ProhibitReligionForCitizen()
+{
+	int r = rand() % 5 + 1;
+	CitizenPower += r;
+	ReligionPower -= r;
+
+	if (CitizenPower > 100)
+	{
+		CitizenPower = 100;
+	}
+	if (ReligionPower < 0)
+	{
+		CitizenPower = 0;
+	}
+}
+
+void InfoHandler::ProhibitReligionForArmy()
+{
+	int r = rand() % 5 + 1;
+	ArmyPower += r;
+	ReligionPower -= r;
+
+	if (ArmyPower > 100)
+	{
+		ArmyPower = 100;
+	}
+	if (ReligionPower < 0)
+	{
+		ArmyPower = 0;
+	}
+}
+
+void InfoHandler::ParticiateReligion()
+{
+	int r = rand() % 10000 + 10000;
+	if (Money < r)
+	{
+		PrintMoney(64);
+		Sleep(200);
+		PrintMoney(14);
+
+		return;
+	}
+	Money -= r;
+	ReligionPower += (r / 10000);
+	if (ReligionPower > 100) { ReligionPower = 100; }
 }

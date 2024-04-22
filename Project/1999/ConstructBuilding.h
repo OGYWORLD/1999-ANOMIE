@@ -5,6 +5,7 @@
 #include "BuildingImage.h"
 #include "BuildingInfo.h"
 #include "InfoHandler.h"
+#include "NewsHandler.h"
 #include <time.h>
 #include <set>
 #include <map>
@@ -42,5 +43,14 @@ public:
 
 	void PlusCntBuilding(int building, InfoHandler* info);
 	void MinusCntBuilding(int building, InfoHandler* info);
+
+	// Zombie About Building
+	int ReligionCntSave(InfoHandler* info, NewsHandler* news);
+	int CitizenCntSave(InfoHandler* info, NewsHandler* news);
+	int ArmyCntSave(InfoHandler* info, NewsHandler* news);
+
+	// Zombie About Distance
+	int DistanceBetweenAPTReligion();
+	int DistanceBetweenAPTExit();
 };
 

@@ -12,6 +12,10 @@ GameInfo::GameInfo()
 	CitizenPower = 50;
 	ReligionPower = 50;
 	ArmyPower = 50;
+
+	CitizenEnding = 0;
+	ArmyEnding = 0;
+	ReligionEnding = 0;
 }
 
 GameInfo::~GameInfo()

@@ -75,6 +75,11 @@ public:
 	// Game Scene
 	void PrintMenuText();
 
+	// News
+	void PrintNewsImage();
+
+	// Zombie Day
+	void PrintZombieMenu();
 
 };
 

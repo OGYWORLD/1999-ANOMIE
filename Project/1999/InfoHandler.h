@@ -54,16 +54,62 @@ public:
 	void SetZombieAttackNum(int n) { this->ZombieAttack = n; }
 
 	int GetCitizenPower() { return this->CitizenPower; }
-	void SetCitizenPower(int n) { this->CitizenPower = n; }
+	void SetCitizenPower(int n)
+	{
+		if (n > 100) { this->CitizenPower = 100; }
+		else { this->CitizenPower = n; }
+	}
 
 	int GetReligionPower() { return this->ReligionPower; }
-	void SetReligionPower(int n) { this->ReligionPower = n; }
+	void SetReligionPower(int n)
+	{
+		if (n > 100) { this->ReligionPower = 100; }
+		else { this->ReligionPower = n; }
+	}
 
 	int GetArmyPower() { return this->ArmyPower; }
-	void SetArmyPower(int n) { this->ArmyPower = n; }
+	void SetArmyPower(int n)
+	{
+		if(n > 100) { this->ArmyPower = 100; }
+		else { this->ArmyPower = n; }
+	}
+
+	int GetCitizenEnding() { return this->CitizenEnding; }
+	void SetCitizenEnding(int n)
+	{
+		if (n > 100) { this->CitizenEnding = 100; }
+		else { this->CitizenEnding = n; }
+	}
+
+	int GetArmyEnding() { return this->ArmyEnding; }
+	void SetArmyEnding(int n)
+	{
+		if (n > 100) { this->ArmyEnding = 100; }
+		else { this->ArmyEnding = n; }
+	}
+
+	int GetReligionEnding() { return this->ReligionEnding; }
+	void SetReligionEnding(int n)
+	{
+		if (n > 100) { this->ReligionEnding = 100; }
+		else { this->ReligionEnding = n; }
+	}
+
 
 	// Citizen Menu
 	void ForceMoney(int level);
 	void Welfare();
+
+	// Army Menu
+	void ForceArmyMoney();
+	int Propaganda();
+	void ArmyWelfare();
+
+	// Religion Menu
+	void ProhibitReligionForCitizen();
+	void ProhibitReligionForArmy();
+	void ParticiateReligion();
+
+
 };
 

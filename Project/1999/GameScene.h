@@ -1,8 +1,9 @@
 #pragma once
+#include "SetPosition.h"
 #include "ConstructBuilding.h"
 #include "MenuHandler.h"
-#include "SetPosition.h"
 #include "InfoHandler.h"
+#include "NewsHandler.h"
 
 
 class GameScene
@@ -12,6 +13,7 @@ private:
 	MenuHandler* menu = new MenuHandler;
 	SetPosition* to = new SetPosition;
 	InfoHandler* info = new InfoHandler;
+	NewsHandler* news = new NewsHandler;
 
 public:
 	GameScene();
@@ -25,7 +27,10 @@ public:
 
 	// DayUpdate
 	void DateUpdate();
-	void EndOfTheDay();
+	int EndOfTheDay();
+
+	// Zombie Day
+	void ZombieAttack();
 	
 };
 

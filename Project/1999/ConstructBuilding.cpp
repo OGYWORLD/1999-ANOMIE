@@ -789,3 +789,113 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		info->SetArmyPower(power);
 	}
 }
+
+int ConstructBuilding::ReligionCntSave(InfoHandler* info, NewsHandler* news)
+{
+	if (ReligionNum == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroReligionZombieNews);
+	}
+	else if (ReligionNum > 0 && ReligionNum < 4)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::SmallReligionZombieNews);
+	}
+	else if (ReligionNum > 3 && ReligionNum < 7)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::MediumReligionZombieNews);
+	}
+	else if (ReligionNum > 6)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::LargeReligionZombieNews);
+	}
+
+	return (int)((double)info->GetPeopleNum() * 0.01 * ReligionNum / 2);
+}
+
+int ConstructBuilding::CitizenCntSave(InfoHandler* info, NewsHandler* news)
+{
+	if (HospitalNum == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroHospitalZombieNews);
+	}
+	else if (HospitalNum > 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::HospitalZombieNews);
+	}
+
+	if (APTNum == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroAPTZombieNews);
+	}
+	else if (APTNum > 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::APTZombieNews);
+	}
+
+	if (ParkNum > 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ParkZombieNews);
+	}
+
+	int save = (double)info->GetPeopleNum() * 0.01 * HospitalNum;
+	save += (double)info->GetPeopleNum() * 0.02 * APTNum;
+	save -= (double)info->GetPeopleNum() * 0.03 * ParkNum;
+
+	return save;
+}
+
+int ConstructBuilding::ArmyCntSave(InfoHandler* info, NewsHandler* news)
+{
+	int ArmyGauge = ArmySmallNum + ArmyMediumNum * 2 + ArmyLargeNum * 5;
+
+	if (ArmyGauge == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroArmyZombieNews);
+	}
+	else if (ArmyGauge > 0 && ArmyGauge < 10)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::SmallArmyZombieNews);
+	}
+	else if (ArmyGauge > 9 && ArmyGauge < 20)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::MediumArmyZombieNews);
+	}
+	else if (ArmyGauge > 19)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::LargeArmyZombieNews);
+	}
+
+	return (double)info->GetPeopleNum() * 0.01 * ArmyGauge;
+}
+
+int ConstructBuilding::DistanceBetweenAPTReligion()
+{
+	if (APTNum != 0 && ReligionNum != 0)
+	{
+		return CalCulDistance(CenterCOORDReligion.first, CenterCOORDReligion.second, CenterCOORDAPT.first, CenterCOORDAPT.second);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int ConstructBuilding::DistanceBetweenAPTExit()
+{
+	if (APTNum != 0)
+	{
+		int Sum = 0;
+		for (int i = 0; i < ExitNum; i++)
+		{
+			Sum += CalCulDistance(PerCenterExit[i].first, PerCenterExit[i].second, CenterCOORDAPT.first, CenterCOORDAPT.second);
+		}
+
+		Sum /= ExitNum;
+
+		return Sum;
+	}
+	else
+	{
+		return 0;
+	}
+}
