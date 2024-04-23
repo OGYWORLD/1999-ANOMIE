@@ -10,15 +10,17 @@ class NewsHandler : News
 private:
 	SetPosition* to = new SetPosition;
 
-	std::queue<const char*> NewsQ;
+	std::queue<std::pair <const char*, int>> NewsQ;
 
 public:
 	NewsHandler();
 	~NewsHandler();
 
 	void ShowNewNews();
+	void ShowZombieNews();
 
 	void PushNewsQueue(int category);
+	void MakeQueueEmpty();
 
 };
 

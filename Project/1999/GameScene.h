@@ -27,7 +27,11 @@ public:
 
 	// DayUpdate
 	void DateUpdate();
-	int EndOfTheDay();
+	int EndingCheck();
+	void EndOfTheDay();
+
+	// Zombie Day
+	void ZombieAttack();
 	
 };
 

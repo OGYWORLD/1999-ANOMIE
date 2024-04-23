@@ -161,7 +161,7 @@ void MenuHandler::ShowConstructMenu2()
 	printf("공원: 7");
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 11, CONSTRUCT_MENU_Y + 11);
 	to->SetColor(3);
-	printf("100,000원");
+	printf("50,000원");
 
 	// Print Army(Large)
 	ConvertLargeImage(LARGE_Y, GetArmyLargeImage(), CONSTRUCT_MENU_X + 6, CONSTRUCT_MENU_Y + 13);
@@ -194,7 +194,7 @@ void MenuHandler::ShowCitizenMenu()
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 5);
 	printf("세금을 추가적으로 징수합니다.");
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 6);
-	printf("인당, 0.5원씩 징수합니다.");
+	printf("인당, 0.05원씩 징수합니다.");
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 7);
 	printf("부정적인 여론을 발생시킵니다.");
 
@@ -205,7 +205,7 @@ void MenuHandler::ShowCitizenMenu()
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 13);
 	printf("세금을 추가적으로 징수합니다.");
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 14);
-	printf("인당, 0.3원씩 징수합니다.");
+	printf("인당, 0.03원씩 징수합니다.");
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 15);
 	printf("부정적인 여론을 발생시킵니다.");
 
@@ -241,7 +241,7 @@ void MenuHandler::ShowArmyMenu()
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 5);
 	printf("군인 원급을 감소 시킵니다.");
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 6);
-	printf("인당, 1원씩 징수합니다.");
+	printf("인당, 0.1원씩 징수합니다.");
 	to->GoToXYPosition(CONSTRUCT_MENU_X, CONSTRUCT_MENU_Y + 7);
 	printf("군사력이 약해집니다.");
 

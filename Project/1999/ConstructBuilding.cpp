@@ -23,14 +23,13 @@ ConstructBuilding::ConstructBuilding()
 	BuildingPrice.insert(std::pair<int, int>(52, 120000)); // Army Medium
 	BuildingPrice.insert(std::pair<int, int>(53, 70000)); // Curch
 	BuildingPrice.insert(std::pair<int, int>(54, 70000)); // Cathedral
-	BuildingPrice.insert(std::pair<int, int>(55, 10000)); // Park
+	BuildingPrice.insert(std::pair<int, int>(55, 50000)); // Park
 	BuildingPrice.insert(std::pair<int, int>(56, 200000)); // Army Large
 }
 
 ConstructBuilding::~ConstructBuilding()
 {
 	delete to;
-	delete print;
 }
 
 void ConstructBuilding::PrintWholeMap()
@@ -610,7 +609,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	if (building == EKEYBOARD::NUM1_KEY)
 	{
 		power = info->GetCitizenPower();
-		power+=3;
+		power+=1;
 		if (power > 100)
 		{
 			power = 100;
@@ -634,7 +633,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM3_KEY)
 	{
 		power = info->GetCitizenPower();
-		power += 5;
+		power += 2;
 		if (power > 100)
 		{
 			power = 100;
@@ -658,7 +657,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM5_KEY)
 	{
 		power = info->GetReligionPower();
-		power += 3;
+		power += 1;
 		if (power > 100)
 		{
 			power = 100;
@@ -670,7 +669,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM6_KEY)
 	{
 		power = info->GetReligionPower();
-		power += 3;
+		power += 1;
 		if (power > 100)
 		{
 			power = 100;
@@ -682,7 +681,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM7_KEY)
 	{
 		power = info->GetCitizenPower();
-		power += 8;
+		power += 5;
 		if (power > 100)
 		{
 			power = 100;
@@ -694,7 +693,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM8_KEY)
 	{
 		power = info->GetArmyPower();
-		power += 7;
+		power += 5;
 		if (power > 100)
 		{
 			power = 100;
@@ -711,7 +710,7 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	if (building == EKEYBOARD::NUM1_KEY)
 	{
 		power = info->GetCitizenPower();
-		power -= 3;
+		power -= 1;
 		if (power > 100)
 		{
 			power = 100;
@@ -731,7 +730,7 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM3_KEY)
 	{
 		power = info->GetCitizenPower();
-		power -= 5;
+		power -= 1;
 		if (power > 100)
 		{
 			power = 100;
@@ -751,7 +750,7 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM5_KEY)
 	{
 		power = info->GetReligionPower();
-		power -= 3;
+		power -= 1;
 		if (power > 100)
 		{
 			power = 100;
@@ -761,7 +760,7 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM6_KEY)
 	{
 		power = info->GetReligionPower();
-		power -= 3;
+		power -= 1;
 		if (power > 100)
 		{
 			power = 100;
@@ -771,7 +770,7 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM7_KEY)
 	{
 		power = info->GetCitizenPower();
-		power -= 8;
+		power -= 5;
 		if (power > 100)
 		{
 			power = 100;
@@ -781,11 +780,172 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM8_KEY)
 	{
 		power = info->GetArmyPower();
-		power -= 7;
+		power -= 5;
 		if (power > 100)
 		{
 			power = 100;
 		}
 		info->SetArmyPower(power);
 	}
+}
+
+int ConstructBuilding::ReligionCntSave(InfoHandler* info, NewsHandler* news)
+{
+	if (ReligionNum == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroReligionZombieNews);
+	}
+	else if (ReligionNum > 0 && ReligionNum < 4)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::SmallReligionZombieNews);
+	}
+	else if (ReligionNum > 3 && ReligionNum < 7)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::MediumReligionZombieNews);
+	}
+	else if (ReligionNum > 6)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::LargeReligionZombieNews);
+	}
+
+	return (int)((double)info->GetPeopleNum() * 0.0001 * (double)ReligionNum);
+}
+
+int ConstructBuilding::CitizenCntSave(InfoHandler* info, NewsHandler* news)
+{
+	if (HospitalNum == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroHospitalZombieNews);
+	}
+	else if (HospitalNum > 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::HospitalZombieNews);
+	}
+
+	if (APTNum == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroAPTZombieNews);
+	}
+	else if (APTNum > 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::APTZombieNews);
+	}
+
+	if (ParkNum > 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ParkZombieNews);
+	}
+
+	int save = (int)((double)info->GetPeopleNum() * 0.0001 * (double)HospitalNum);
+	save += (int)((double)info->GetPeopleNum() * 0.0002 * (double)APTNum);
+	save -= (int)((double)info->GetPeopleNum() * 0.0003 * (double)ParkNum);
+
+	return save;
+}
+
+int ConstructBuilding::ArmyCntSave(InfoHandler* info, NewsHandler* news)
+{
+	int ArmyGauge = ArmySmallNum + ArmyMediumNum * 2 + ArmyLargeNum * 5;
+
+	if (ArmyGauge == 0)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ZeroArmyZombieNews);
+	}
+	else if (ArmyGauge > 0 && ArmyGauge < 10)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::SmallArmyZombieNews);
+	}
+	else if (ArmyGauge > 9 && ArmyGauge < 20)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::MediumArmyZombieNews);
+	}
+	else if (ArmyGauge > 19)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::LargeArmyZombieNews);
+	}
+
+	return (int)((double)info->GetPeopleNum() * 0.0007 * (double)ArmyGauge);
+}
+
+int ConstructBuilding::DistanceBetweenAPTReligion()
+{
+	if (APTNum != 0 && ReligionNum != 0)
+	{
+		return CalCulDistance(CenterCOORDReligion.first, CenterCOORDReligion.second, CenterCOORDAPT.first, CenterCOORDAPT.second);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int ConstructBuilding::DistanceBetweenAPTExit()
+{
+	if (APTNum != 0)
+	{
+		int Sum = 0;
+		for (int i = 0; i < ExitNum; i++)
+		{
+			Sum += CalCulDistance(PerCenterExit[i].first, PerCenterExit[i].second, CenterCOORDAPT.first, CenterCOORDAPT.second);
+		}
+
+		return Sum;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* news)
+{
+	// 3 / (종교 건물 개수 + 종교권위/10) 확률로 건물을 뿌실지말지 정함
+	int DecideDisaster = rand() % (ReligionNum + info->GetReligionPower()/10 + 1);
+	if (DecideDisaster < 3)
+	{
+		to->SetColor(14);
+		to->GoToXYPosition(0, 0);
+		printf("Turn");
+
+		// 몇 개 뿌실지 정하기
+		int RandomDestoryCnt = rand() % 2 + 1;
+
+		// 건물 뿌시기
+		// 랜덤 좌표 뽑기
+		int x = rand() % 145 + 3;
+		int y = rand() % 40 + 2;
+
+		// 건물이 존재함
+		if (Map::TotalMap[y][x]->GetInfo() != 0)
+		{
+			// news 삽입
+			news->PushNewsQueue(ENEWS_CATEGORY::PunishmentFromGod);
+
+			to->GoToXYPosition(0, 0);
+			to->SetColor(10);
+			printf("Turn");
+
+			for (int i = 0; i < MEDIUM_Y; i++)
+			{
+				for (int j = 0; j < MEDIUM_X; j++)
+				{
+					if (Fire[i][j] != 0)
+					{
+						to->GoToXYPosition(x + j, y + i);
+						to->SetColor(Fire[i][j]);
+						printf(" ");
+						to->SetColor(0);
+					}
+				}
+				printf("\n");
+			}
+
+			DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info);
+
+			Sleep(2000);
+		}
+	}
+
+	to->GoToXYPosition(0, 0);
+	Map::PrintWholeMap();
 }

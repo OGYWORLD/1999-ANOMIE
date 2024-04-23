@@ -34,18 +34,21 @@ void GameScene::PlayInGame()
 	while (1)
 	{
 		int ZombieDay = rand() % info->GetArmyPower();
-		if ((ZombieDay < 10 || (DayCount % 10 == 0)) && DayCount > 5 && EndingFlag == -1)
+		if ((ZombieDay < 3 || (DayCount % 10 == 0)) && DayCount > 5 && EndingFlag == -1)
 		{
 			// info update
 			to->PartClean(MENU_CLEAN_X, MENU_CLEAN_Y, MENU_CLEAN_BX, MENU_CLEAN_BY);
 			to->PartClean(INFO_POSITION_X + 45, INFO_POSITION_Y + 1, 96, 8);
 			info->PrintInfo();
 
-			to->SetColor(14);
-			to->GoToXYPosition(0, 0);
-			printf("좀비데이입니다. %d %d", DayCount, ZombieDay);
+			news->MakeQueueEmpty();
 
-			Sleep(5000);
+			build->ZombieDayRandomDestory(info, news);
+			ZombieAttack();
+			menu->PrintZombieMenu();
+			news->ShowZombieNews();
+
+			Sleep(1000);
 
 			// Day Update
 			DayCount++;
@@ -53,6 +56,7 @@ void GameScene::PlayInGame()
 			EndOfTheDay();
 
 			to->PartClean(INFO_POSITION_X + 45, INFO_POSITION_Y + 1, 96, 8);
+			to->PartClean(NEWS_POSITION_X + 2, NEWS_POSITION_Y + 4, 40, 15);
 			news->ShowNewNews();
 			info->PrintInfo();
 
@@ -316,7 +320,8 @@ void GameScene::PlayInGame()
 					to->CleanInputBuffer();
 
 					DateUpdate();
-					EndingFlag = EndOfTheDay();
+					EndingFlag = EndingCheck();
+					EndOfTheDay();
 					DayCount++;
 
 					to->PartClean(INFO_POSITION_X + 45, INFO_POSITION_Y + 1, 96, 8);
@@ -451,19 +456,8 @@ void GameScene::DateUpdate()
 	}
 }
 
-int GameScene::EndOfTheDay() // Info Update When The End of the Day
+int GameScene::EndingCheck()
 {
-	// 민심이 절반보다 높을 때 전체 인구수 * 0.1 * 민심률 / 2 만큼 증가
-	// 민심이 절반보다 낮을 때 전체 인구수 * 0.1 * 민심률 / 2 만큼 감소
-	if (info->GetCitizenPower() < 50)
-	{
-		info->SetCitizenPower(info->GetCitizenPower() - (int)((double)info->GetCitizenPower() * 0.1 / 2));
-	}
-	else
-	{
-		info->SetCitizenPower(info->GetCitizenPower() + (int)((double)info->GetCitizenPower() * 0.1 / 2));
-	}
-
 	//Citizen Ending Checking
 	if (info->GetCitizenPower() <= 10)
 	{
@@ -489,7 +483,7 @@ int GameScene::EndOfTheDay() // Info Update When The End of the Day
 	}
 
 	// Army Ending Checking
-	if (info->GetArmyPower() <= 10)
+	if (info->GetArmyPower() >= 90)
 	{
 		if (info->GetArmyEnding() == 0)
 		{
@@ -533,8 +527,99 @@ int GameScene::EndOfTheDay() // Info Update When The End of the Day
 			return -1;
 		}
 	}
+
+	return -1;
 }
 
+void GameScene::EndOfTheDay() // Info Update When The End of the Day
+{
 
+	// 민심이 절반보다 높을 때 전체 인구수 * 0.01 * 민심률 만큼 인구수 증가
+	// 민심이 절반보다 낮을 때 전체 인구수 * 0.01 * 민심률 만큼 인구수 감소
+	if (info->GetCitizenPower() < 50)
+	{
+		info->SetPeopleNum(info->GetPeopleNum() - (int)((double)info->GetPeopleNum() * 0.01));
+	}
+	else
+	{
+		info->SetPeopleNum(info->GetPeopleNum() + (int)((double)info->GetPeopleNum() * 0.01));
+	}
+
+	// 종교 세금 납부
+	if (info->GetReligionPower() >= 50)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ReligionPay);
+		info->SetMoney(info->GetMoney() + info->GetReligionPower() * 500);
+	}
+	else
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::ReligionNotPay);
+	}
+
+}
+
+void GameScene::ZombieAttack()
+{
+	// 사망률 계산
+	int DeathNum = (int)((double)info->GetPeopleNum() * 0.03); // default death
+	DeathNum += (int)((double)info->GetPeopleNum() * (double)build->DistanceBetweenAPTExit() * 0.001); // Exit&APT
+
+	int Save = 0;
+	Save += build->ReligionCntSave(info, news);
+	Save += build->CitizenCntSave(info, news);
+	Save += build->ArmyCntSave(info, news);
+	Save += (int)((double)info->GetPeopleNum() * (double)build->DistanceBetweenAPTReligion() * 0.001); // APT&Religion
+
+	int TotalDeath = DeathNum - Save;
+	int FeelingSad = info->GetPeopleNum() / TotalDeath;
+
+	// 사망률에 대한 민심 군사력 종교권위 하락
+	if (FeelingSad < 3)
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::AfterZombieGood);
+	}
+	else
+	{
+		news->PushNewsQueue(ENEWS_CATEGORY::AfterZombieBad);
+		if (info->GetCitizenPower() - (FeelingSad / 5) < 0)
+		{
+			info->SetCitizenPower(0);
+		}
+		else
+		{
+			info->SetCitizenPower(info->GetCitizenPower() - (FeelingSad / 5));
+		}
+
+		if (info->GetArmyPower() - (FeelingSad / 5) < 0)
+		{
+			info->SetArmyPower(0);
+		}
+		else
+		{
+			info->SetArmyPower(info->GetArmyPower() - (FeelingSad / 5));
+		}
+
+		if (info->GetReligionPower() - (FeelingSad / 5) < 0)
+		{
+			info->SetReligionPower(0);
+		}
+		else
+		{
+			info->SetReligionPower(info->GetReligionPower() - (FeelingSad / 5));
+		}
+	}
+
+
+	// 인구수 변화
+	if (info->GetPeopleNum() + TotalDeath == 0)
+	{
+		info->SetPeopleNum(0);
+	}
+	else
+	{
+		info->SetPeopleNum(info->GetPeopleNum() + Save - DeathNum);
+	}
+
+}
 
 

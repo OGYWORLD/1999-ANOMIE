@@ -43,6 +43,7 @@ public:
 	MediumImagePtr GetArmyMediumImage() { return BuildingImage::ArmyMedium;  }
 	MediumImagePtr GetChurchImage() { return BuildingImage::Church; }
 	MediumImagePtr GetCathedralImage() { return BuildingImage::Cathedral; }
+	MediumImagePtr GetFireImage() { return BuildingImage::Fire; }
 	LargeImagePtr GetParkImage() { return BuildingImage::Park; }
 	LargeImagePtr GetArmyLargeImage() { return BuildingImage::ArmyLarge; }
 
@@ -78,6 +79,8 @@ public:
 	// News
 	void PrintNewsImage();
 
+	// Zombie Day
+	void PrintZombieMenu();
 
 };
 

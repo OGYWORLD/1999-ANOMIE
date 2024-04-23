@@ -75,7 +75,7 @@
 #define MENU_CLEAN_Y	25
 
 #define MENU_CLEAN_BX	32
-#define MENU_CLEAN_BY	29
+#define MENU_CLEAN_BY	30
 
 // Info
 #define INFO_POSITION_X		0
@@ -92,3 +92,7 @@
 #define NEWS_POSITION_Y		0
 
 #define MAX_NEWS		8
+
+// Zombie 
+#define	ZOMBIE_MENU_X		32
+#define	ZOMBIE_MENU_Y		30

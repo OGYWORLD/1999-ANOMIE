@@ -7,21 +7,41 @@ class News
 {
 protected:
 
-	// Citizen
-	std::vector<const char*> CitizenLittleForceNews;
-	std::vector<const char*> CitizenManyForceNews;
-	std::vector<const char*> CitizenWelfareNews;
+	// Citizen News
+	std::vector<std::pair<const char*, int>> CitizenLittleForceNews;
+	std::vector<std::pair<const char*, int>> CitizenManyForceNews;
+	std::vector<std::pair<const char*, int>> CitizenWelfareNews;
 
-	// Army
-	std::vector<const char*> ArmyForceNews;
-	std::vector<const char*> ArmyPropagandaGoodNews;
-	std::vector<const char*> ArmyPropagandaBadNews;
-	std::vector<const char*> ArmyWelfareNews;
+	// Army News
+	std::vector<std::pair<const char*, int>> ArmyForceNews;
+	std::vector<std::pair<const char*, int>> ArmyPropagandaGoodNews;
+	std::vector<std::pair<const char*, int>> ArmyPropagandaBadNews;
+	std::vector<std::pair<const char*, int>> ArmyWelfareNews;
 
-	// Religion
-	std::vector<const char*> ReligionProhibitCitizenNews;
-	std::vector<const char*> ReligionProhibitArmyNews;
-	std::vector<const char*> ParticiateReligionNews;
+	// Religion News
+	std::vector<std::pair<const char*, int>> ReligionProhibitCitizenNews;
+	std::vector<std::pair<const char*, int>> ReligionProhibitArmyNews;
+	std::vector<std::pair<const char*, int>> ParticiateReligionNews;
+
+	// Religion Zombie News
+	std::vector<std::pair<const char*, int>> ZeroReligionZombieNews;
+	std::vector<std::pair<const char*, int>> SmallReligionZombieNews;
+	std::vector<std::pair<const char*, int>> MediumReligionZombieNews;
+	std::vector<std::pair<const char*, int>> LargeReligionZombieNews;
+
+	// Hospital Zombie News
+	std::vector<std::pair<const char*, int>> ZeroHospitalZombieNews;
+	std::vector<std::pair<const char*, int>> HospitalZombieNews;
+
+	// APT Zombie News
+	std::vector<std::pair<const char*, int>> ZeroAPTZombieNews;
+	std::vector<std::pair<const char*, int>> APTZombieNews;
+
+	// Army Zombie News
+	std::vector<std::pair<const char*, int>> ZeroArmyZombieNews;
+	std::vector<std::pair<const char*, int>> SmallArmyZombieNews;
+	std::vector<std::pair<const char*, int>> MediumArmyZombieNews;
+	std::vector<std::pair<const char*, int>> LargeArmyZombieNews;
 
 public:
 	News();

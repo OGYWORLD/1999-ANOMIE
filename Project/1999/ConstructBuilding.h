@@ -1,10 +1,10 @@
 #pragma once
 #include "Map.h"
 #include "SetPosition.h"
-#include "PrintImage.h"
 #include "BuildingImage.h"
 #include "BuildingInfo.h"
 #include "InfoHandler.h"
+#include "NewsHandler.h"
 #include <time.h>
 #include <set>
 #include <map>
@@ -13,7 +13,6 @@ class ConstructBuilding : Map, BuildingImage, BuildingInfo
 {
 private:
 	SetPosition* to;
-	PrintImage* print;
 
 	int ExitNum;
 
@@ -42,5 +41,17 @@ public:
 
 	void PlusCntBuilding(int building, InfoHandler* info);
 	void MinusCntBuilding(int building, InfoHandler* info);
+
+	// Zombie About Building
+	int ReligionCntSave(InfoHandler* info, NewsHandler* news);
+	int CitizenCntSave(InfoHandler* info, NewsHandler* news);
+	int ArmyCntSave(InfoHandler* info, NewsHandler* news);
+
+	// Zombie About Distance
+	int DistanceBetweenAPTReligion();
+	int DistanceBetweenAPTExit();
+
+	// Zoimbie Day Random Destroy
+	void ZombieDayRandomDestory(InfoHandler* info, NewsHandler* news);
 };
 

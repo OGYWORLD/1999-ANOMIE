@@ -4,7 +4,7 @@ NewsHandler::NewsHandler()
 {
 	srand((unsigned int)time(NULL));
 
-	NewsQ.push("제 15대 대통령 임기시작.. 과연..");
+	NewsQ.push(std::pair < const char*, int>("제 15대 대통령 임기시작.. 과연..", 14));
 }
 
 NewsHandler::~NewsHandler()
@@ -14,7 +14,26 @@ NewsHandler::~NewsHandler()
 
 void NewsHandler::ShowNewNews()
 {
-	to->PartClean(NEWS_POSITION_X+2, NEWS_POSITION_Y+4, 39, 15);
+	to->PartClean(NEWS_POSITION_X+2, NEWS_POSITION_Y+4, 40, 15);
+	int Size = NewsQ.size();
+
+	int index = 0;
+	while (NewsQ.size())
+	{
+		to->GoToXYPosition(NEWS_POSITION_X + 4, NEWS_POSITION_Y + 4 + index);
+		to->SetColor(NewsQ.front().second);
+		printf("%s", NewsQ.front().first);
+
+		NewsQ.pop();
+
+		index+=2;
+	}
+
+}
+
+void NewsHandler::ShowZombieNews()
+{
+	to->PartClean(NEWS_POSITION_X + 2, NEWS_POSITION_Y + 4, 40, 15);
 	to->SetColor(14);
 	int Size = NewsQ.size();
 
@@ -22,13 +41,14 @@ void NewsHandler::ShowNewNews()
 	while (NewsQ.size())
 	{
 		to->GoToXYPosition(NEWS_POSITION_X + 4, NEWS_POSITION_Y + 4 + index);
-		printf("%s", NewsQ.front());
+		to->SetColor(NewsQ.front().second);
+		printf("%s", NewsQ.front().first);
+		Sleep(1000);
 
 		NewsQ.pop();
 
-		index+=2;
+		index += 2;
 	}
-
 }
 
 void NewsHandler::PushNewsQueue(int category)
@@ -130,7 +150,7 @@ void NewsHandler::PushNewsQueue(int category)
 		{
 			NewsQ.pop();
 		}
-		NewsQ.push("[국민] 우린 이미 무정부상태");
+		NewsQ.push(std::pair < const char*, int>("[국민] 우린 이미 무정부상태", 13));
 	}
 	else if (category == ENEWS_CATEGORY::ArmyEndingNews)
 	{
@@ -138,15 +158,152 @@ void NewsHandler::PushNewsQueue(int category)
 		{
 			NewsQ.pop();
 		}
-		NewsQ.push("[국방] 국가, 개혁이 필요하지않는가");
+		NewsQ.push(std::pair < const char*, int>("[국방] 국가, 개혁이 필요하지않는가", 13));
 	}
 	else if (category == ENEWS_CATEGORY::ReligionEndingNews)
 	{
-	if (NewsQ.size() == MAX_NEWS)
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+			NewsQ.push(std::pair < const char*, int>("[종교] 신이 국가를 버리지 않았음을...", 13));
+	}
+	else if (category == ENEWS_CATEGORY::ZeroReligionZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(ZeroReligionZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::SmallReligionZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(SmallReligionZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::MediumReligionZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(MediumReligionZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::LargeReligionZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(LargeReligionZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::ZeroAPTZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(ZeroAPTZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::APTZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(APTZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::ParkZombieNews)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair < const char*, int>("[국민] 사태 발생시, 공원에 사람 밀집..", 12));
+	}
+	else if (category == ENEWS_CATEGORY::SmallArmyZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(SmallArmyZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::MediumArmyZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(MediumArmyZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::LargeArmyZombieNews)
+	{
+		r = rand() % 3;
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(LargeArmyZombieNews[r]);
+	}
+	else if (category == ENEWS_CATEGORY::ReligionPay)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[종교] 종교인의 세금, 국가를 위한 것", 3));
+	}
+	else if (category == ENEWS_CATEGORY::ReligionNotPay)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[종교] 신성함은 세금에 구애받지 않아", 3));
+	}
+	else if (category == ENEWS_CATEGORY::AfterZombieGood)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[공통] 정부의 훌륭한 대처, 긍정적 여론", 10));
+	}
+	else if (category == ENEWS_CATEGORY::AfterZombieBad)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[공통] 생각보다 큰 피해, 모두가 고통", 12));
+	}
+	else if (category == ENEWS_CATEGORY::PunishmentFromGod)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[공통] 좀비사태로 인해 건물 붕괴...", 4));
+	}
+}
+
+void NewsHandler::MakeQueueEmpty()
+{
+	while (!NewsQ.empty())
 	{
 		NewsQ.pop();
-	}
-		NewsQ.push("[종교] 신이 국가를 버리지 않았음을...");
 	}
 }
 

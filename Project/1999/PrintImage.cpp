@@ -349,3 +349,33 @@ void PrintImage::PrintNewsImage()
 	to->GoToXYPosition(NEWS_POSITION_X + 12, NEWS_POSITION_Y + 2);
 	printf("♣ 오늘의 뉴우스 ♣");
 }
+
+void PrintImage::PrintZombieMenu()
+{
+	to->GoToXYPosition(MENU_POINT_POSITION_X - 6, MENU_POINT_POSITION_Y - 3);
+	to->SetColor(16);
+	for (int i = 0; i < ZOMBIE_MENU_Y; i++)
+	{
+		for (int j = 0; j < ZOMBIE_MENU_X; j++)
+		{
+			to->GoToXYPosition(MENU_POINT_POSITION_X - 6 + j, MENU_POINT_POSITION_Y - 3 + i);
+			printf(" ");
+		}
+	}
+
+	to->GoToXYPosition(MENU_POINT_POSITION_X + 5, MENU_POINT_POSITION_Y + 5);
+	to->SetColor(241);
+	printf(" Windows ");
+	to->GoToXYPosition(MENU_POINT_POSITION_X - 4, MENU_POINT_POSITION_Y + 7);
+	to->SetColor(23);
+	printf("시스템에 응답하지 않는 응용");
+	to->GoToXYPosition(MENU_POINT_POSITION_X - 4, MENU_POINT_POSITION_Y + 8);
+	printf("프로그램을 중지시키는 방법이");
+	to->GoToXYPosition(MENU_POINT_POSITION_X - 4, MENU_POINT_POSITION_Y + 9);
+	printf("있지만, 이 상태에서는 그러한");
+	to->GoToXYPosition(MENU_POINT_POSITION_X - 4, MENU_POINT_POSITION_Y + 10);
+	printf("응용프로그램이 없습니다.");
+
+	to->GoToXYPosition(MENU_POINT_POSITION_X - 4, MENU_POINT_POSITION_Y + 15);
+	printf("Please Wait the Windows...");
+}
