@@ -1,7 +1,6 @@
 #pragma once
 #include "Map.h"
 #include "SetPosition.h"
-#include "PrintImage.h"
 #include "BuildingImage.h"
 #include "BuildingInfo.h"
 #include "InfoHandler.h"
@@ -14,7 +13,6 @@ class ConstructBuilding : Map, BuildingImage, BuildingInfo
 {
 private:
 	SetPosition* to;
-	PrintImage* print;
 
 	int ExitNum;
 
@@ -52,5 +50,8 @@ public:
 	// Zombie About Distance
 	int DistanceBetweenAPTReligion();
 	int DistanceBetweenAPTExit();
+
+	// Zoimbie Day Random Destroy
+	void ZombieDayRandomDestory(InfoHandler* info, NewsHandler* news);
 };
 

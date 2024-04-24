@@ -20,6 +20,7 @@ public:
 	void ShowZombieNews();
 
 	void PushNewsQueue(int category);
+	void MakeQueueEmpty();
 
 };
 

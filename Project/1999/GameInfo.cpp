@@ -2,7 +2,8 @@
 
 GameInfo::GameInfo()
 {
-	Money = 200000;
+	//Money = 200000;
+	Money = 2000000;
 	PeopleNum = 1000000;
 	Time = 540;
 	Year = 1999;
@@ -16,6 +17,14 @@ GameInfo::GameInfo()
 	CitizenEnding = 0;
 	ArmyEnding = 0;
 	ReligionEnding = 0;
+	AllDieEnding = 0;
+
+	int size = sizeof(CntArr) / sizeof(CntArr[0]);
+	for (int i = 0; i < size; i++)
+	{
+		CntArr[i] = 0;
+	}
+
 }
 
 GameInfo::~GameInfo()

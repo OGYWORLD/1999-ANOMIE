@@ -23,6 +23,13 @@ protected:
 	int CitizenEnding;
 	int ArmyEnding;
 	int ReligionEnding;
+	int AllDieEnding;
+
+	// 0: DayCnt, 1: CitizenLittleForceCnt, 2: CitizenManyForceCnt, 3: CitizenWelfareCnt
+	// 4: ArmyForceCnt, 5: ArmyPropagandaCnt, 6: ArmyWelfareCnt
+	// 7: ProhibitReligionForCitizenCnt, 8: ProhibitReligionForArmyCnt, 9: ReligionWelfareCnt
+	// 10: ZombieAttackCnt, 11: DestroyBuildingCnt, 12: SafeZombieCnt, 13: NonSafeZombieCnt
+	int CntArr[14];
 
 	int InfoImage[INFO_Y][INFO_X] =
 	{

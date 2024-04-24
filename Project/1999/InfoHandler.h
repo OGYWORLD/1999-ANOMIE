@@ -26,10 +26,10 @@ public:
 	void DrawLine();
 
 	//getset
-	int GetCountryName() { return this->CountryName[30]; }
+	std::string GetCountryName() { return this->CountryName; }
 	void SetCountryName(std::string s) { this->CountryName = s; }
 
-	int GetPresidentName() { return this->PresidentName[30]; }
+	std::string GetPresidentName() { return this->PresidentName; }
 	void SetPresidentName(std::string s) { this->PresidentName = s; }
 
 	int GetMoney() { return this->Money; }
@@ -95,6 +95,15 @@ public:
 		else { this->ReligionEnding = n; }
 	}
 
+	int GetAllDieEnding() { return this->AllDieEnding; }
+	void SetAllDieEnding(int n)
+	{
+		if (n > 100) { this->AllDieEnding = 100; }
+		else { this->AllDieEnding = n; }
+	}
+
+	int* GetCntArr() { return this->CntArr; }
+	void SetCntArr(int index, int n) { this->CntArr[index] = n; }
 
 	// Citizen Menu
 	void ForceMoney(int level);

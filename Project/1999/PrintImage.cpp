@@ -212,6 +212,28 @@ void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X])
 	}
 }
 
+void PrintImage::ConverDisapproveImage(int y, int Image[][DISAPPROVE_X])
+{
+	for (int i = 0; i < y; i++)
+	{
+		for (int j = 0; j < DISAPPROVE_X; j++)
+		{
+			to->GoToXYPosition(DISAPPROVE_POSITION_X + j, DISAPPROVE_POSITION_Y + i);
+			if (Image[i][j] != 0)
+			{
+				to->SetColor(Image[i][j]);
+				printf(" ");
+				to->SetColor(0);
+			}
+			else
+			{
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+}
+
 void PrintImage::PrintPre2Text()
 {
 	to->PartClean(0, 0, WHOLE_IMAGE_X, PRIVIEW_Y);

@@ -142,6 +142,7 @@
     <ClCompile Include="BuildingImage.cpp" />
     <ClCompile Include="BuildingInfo.cpp" />
     <ClCompile Include="ConstructBuilding.cpp" />
+    <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="InfoHandler.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="ConstantGroup.h" />
     <ClInclude Include="ConstructBuilding.h" />
     <ClInclude Include="EKEYBOARD.h" />
+    <ClInclude Include="EndingScene.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="InfoHandler.h" />
@@ -182,6 +184,9 @@
     <ClInclude Include="StartKeyboard.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="WholeImage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
