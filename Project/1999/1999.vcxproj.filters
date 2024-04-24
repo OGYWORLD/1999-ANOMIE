@@ -123,6 +123,9 @@
     <ClCompile Include="NewsHandler.cpp">
       <Filter>Source Files\News</Filter>
     </ClCompile>
+    <ClCompile Include="EndingScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
@@ -188,5 +191,11 @@
     <ClInclude Include="NewsHandler.h">
       <Filter>Header Files\GameScene\News</Filter>
     </ClInclude>
+    <ClInclude Include="EndingScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

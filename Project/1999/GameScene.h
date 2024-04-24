@@ -4,6 +4,7 @@
 #include "MenuHandler.h"
 #include "InfoHandler.h"
 #include "NewsHandler.h"
+#include "EndingScene.h"
 
 
 class GameScene
@@ -14,6 +15,7 @@ private:
 	SetPosition* to = new SetPosition;
 	InfoHandler* info = new InfoHandler;
 	NewsHandler* news = new NewsHandler;
+	EndingScene* ending = new EndingScene;
 
 public:
 	GameScene();
@@ -28,6 +30,7 @@ public:
 	// DayUpdate
 	void DateUpdate();
 	int EndingCheck();
+	int AllDieEndingCheck();
 	void EndOfTheDay();
 
 	// Zombie Day

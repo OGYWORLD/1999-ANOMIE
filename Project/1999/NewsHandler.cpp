@@ -150,7 +150,7 @@ void NewsHandler::PushNewsQueue(int category)
 		{
 			NewsQ.pop();
 		}
-		NewsQ.push(std::pair < const char*, int>("[국민] 우린 이미 무정부상태", 13));
+		NewsQ.push(std::pair < const char*, int>("[국민] 우린 이미 무정부상태", 95));
 	}
 	else if (category == ENEWS_CATEGORY::ArmyEndingNews)
 	{
@@ -158,7 +158,7 @@ void NewsHandler::PushNewsQueue(int category)
 		{
 			NewsQ.pop();
 		}
-		NewsQ.push(std::pair < const char*, int>("[국방] 국가, 개혁이 필요하지않는가", 13));
+		NewsQ.push(std::pair < const char*, int>("[국방] 국가, 개혁이 필요하지않는가", 176));
 	}
 	else if (category == ENEWS_CATEGORY::ReligionEndingNews)
 	{
@@ -166,7 +166,7 @@ void NewsHandler::PushNewsQueue(int category)
 		{
 			NewsQ.pop();
 		}
-			NewsQ.push(std::pair < const char*, int>("[종교] 신이 국가를 버리지 않았음을...", 13));
+			NewsQ.push(std::pair < const char*, int>("[종교] 신이 국가를 버리지 않았음을...", 160));
 	}
 	else if (category == ENEWS_CATEGORY::ZeroReligionZombieNews)
 	{
@@ -271,7 +271,7 @@ void NewsHandler::PushNewsQueue(int category)
 		{
 			NewsQ.pop();
 		}
-		NewsQ.push(std::pair <const char*, int>("[종교] 신성함은 세금에 구애받지 않아", 3));
+		NewsQ.push(std::pair <const char*, int>("[종교] 신성함은 세금에 구애받지 않아", 12));
 	}
 	else if (category == ENEWS_CATEGORY::AfterZombieGood)
 	{
@@ -296,6 +296,14 @@ void NewsHandler::PushNewsQueue(int category)
 			NewsQ.pop();
 		}
 		NewsQ.push(std::pair <const char*, int>("[공통] 좀비사태로 인해 건물 붕괴...", 4));
+	}
+	else if (category == ENEWS_CATEGORY::ZombieAppear)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[긴급] 좀비 발생, 대피요망", 70));
 	}
 }
 

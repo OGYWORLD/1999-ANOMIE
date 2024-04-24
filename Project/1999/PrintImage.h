@@ -13,6 +13,7 @@ typedef int(*LargeImagePtr)[LARGE_X];
 typedef int(*LogoImagePtr)[START_LOGO_X];
 typedef int(*MenuImagePtr)[MENU_IMAGE_X];
 typedef int(*PTAKImagePtr)[PRESS_BUTTOM_X];
+typedef int(*DisapproveImagePtr)[DISAPPROVE_X];
 
 class PrintImage : WholeImage, BuildingImage
 {
@@ -36,6 +37,16 @@ public:
 	LogoImagePtr GetLogoImage() { return WholeImage::LogoImage; }
 	PTAKImagePtr GetPTAKImage() { return WholeImage::PTAKImage; }
 
+	DisapproveImagePtr GetDisapproveImage() { return WholeImage::DisapproveImage; }
+	DisapproveImagePtr GetCoudetatImage() { return WholeImage::CoupdetatImage; }
+	DisapproveImagePtr GetInterventionImage() { return WholeImage::InterventionImage; }
+	DisapproveImagePtr GetExtinctionImage() { return WholeImage::ExtinctionImage; }
+
+	WholeImagePtr GetCitizenEndingImage() { return WholeImage::CitizenEndingImage; }
+	WholeImagePtr GetArmyEndingImage() { return WholeImage::ArmyEndingImage; }
+	WholeImagePtr GetReligionEndingImage() { return WholeImage::ReligionEndingImage; }
+	WholeImagePtr GetAllDieEndingImage() { return WholeImage::AllDieEndingImage; }
+
 	// About Icon Image
 	SmallImagePtr GetHosPitalImage() { return BuildingImage::Hospital; }
 	SmallImagePtr GetArmySmallImage() { return BuildingImage::ArmySmall;  }
@@ -53,6 +64,7 @@ public:
 	void ConvertLogoImage(int y, int Image[][START_LOGO_X]);
 	void ConvertMenuImage(int y, int Image[][MENU_IMAGE_X]);
 	void ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X]);
+	void ConverDisapproveImage(int y, int Image[][DISAPPROVE_X]);
 
 
 	// Common Size Image

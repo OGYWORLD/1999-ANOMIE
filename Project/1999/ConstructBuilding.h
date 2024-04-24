@@ -37,7 +37,7 @@ public:
 	void CleanBuildShadow(int size, int x, int y);
 
 	void NewBuild(int building, int x, int y, InfoHandler* info);
-	void DestroyBuilding(int building, int size, int x, int y, InfoHandler* info);
+	void DestroyBuilding(int building, int size, int x, int y, InfoHandler* info, int Zombie);
 
 	void PlusCntBuilding(int building, InfoHandler* info);
 	void MinusCntBuilding(int building, InfoHandler* info);

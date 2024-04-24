@@ -69,6 +69,7 @@ void ConstructBuilding::GetPlayerExitNum()
 			{
 				nKey = _getch();
 				if (nKey == 186) { nKey = EKEYBOARD::C_KEY; }
+				to->CleanInputBuffer();
 			}
 			else if (nKey == EKEYBOARD::C_KEY)
 			{
@@ -302,7 +303,7 @@ int ConstructBuilding::BuildBuilding(int building, InfoHandler* info)
 			else if (nKey == EKEYBOARD::V_KEY)
 			{
 				// °Ç¹° ÆÄ±« È£Ãâ
-				DestroyBuilding(building, BuildingSize[building], CurX, CurY, info);
+				DestroyBuilding(building, BuildingSize[building], CurX, CurY, info, 0);
 
 				to->GoToXYPosition(0, 0);
 				Map::PrintWholeMap();
@@ -552,7 +553,7 @@ void ConstructBuilding::NewBuild(int building, int x, int y, InfoHandler* info)
 	}
 }
 
-void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, InfoHandler* info)
+void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, InfoHandler* info, int Zombie)
 {
 
 	int DeleteX, DeleteY;
@@ -562,7 +563,7 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 	// Checking for building on choosen place 
 	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < size * 2; j++)
+		for (int j = 0; j < size * 2 - Zombie; j++)
 		{
 			if (Map::TotalMap[y + i][x + j]->GetInfo() != 0)
 			{
@@ -581,7 +582,14 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 			MinusCntBuilding(Map::TotalMap[iter->second][iter->first]->GetInfo(), info);
 			RemoveCOORDData(Map::TotalMap[iter->second][iter->first]->GetStartX(), y, Map::TotalMap[iter->second][iter->first]->GetStartY(), BuildingSize[Map::TotalMap[iter->second][iter->first]->GetInfo()]);
 
-			info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 2);
+			if (Zombie == 1)
+			{
+				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 3);
+			}
+			else
+			{
+				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 2);
+			}
 			info->PrintMoney(14);
 			info->PrintPower(14);
 
@@ -900,49 +908,84 @@ int ConstructBuilding::DistanceBetweenAPTExit()
 void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* news)
 {
 	// 3 / (Á¾±³ °Ç¹° °³¼ö + Á¾±³±ÇÀ§/10) È®·ü·Î °Ç¹°À» »Ñ½ÇÁö¸»Áö Á¤ÇÔ
-	int DecideDisaster = rand() % (ReligionNum + info->GetReligionPower()/10 + 1);
-	if (DecideDisaster < 3)
+	int DecideDisaster = rand() % (ReligionNum + 1);
+	if (DecideDisaster < 3 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
 	{
-		to->SetColor(14);
-		to->GoToXYPosition(0, 0);
-		printf("Turn");
+		info->SetCntArr(ECOUNT::ZOMBIE_DESTROY_CNT, info->GetCntArr()[ECOUNT::ZOMBIE_DESTROY_CNT] + 1);
 
-		// ¸î °³ »Ñ½ÇÁö Á¤ÇÏ±â
-		int RandomDestoryCnt = rand() % 2 + 1;
-
-		// °Ç¹° »Ñ½Ã±â
-		// ·£´ý ÁÂÇ¥ »Ì±â
-		int x = rand() % 145 + 3;
-		int y = rand() % 40 + 2;
-
-		// °Ç¹°ÀÌ Á¸ÀçÇÔ
-		if (Map::TotalMap[y][x]->GetInfo() != 0)
+		while (1)
 		{
-			// news »ðÀÔ
-			news->PushNewsQueue(ENEWS_CATEGORY::PunishmentFromGod);
+			// °Ç¹° »Ñ½Ã±â
+			// ·£´ý ÁÂÇ¥ »Ì±â
+			int x = rand() % 151 + 2;
+			int y = rand() % 47 + 1;
 
-			to->GoToXYPosition(0, 0);
-			to->SetColor(10);
-			printf("Turn");
-
-			for (int i = 0; i < MEDIUM_Y; i++)
+			// °Ç¹°ÀÌ Á¸ÀçÇÔ
+			if (Map::TotalMap[y][x]->GetInfo() != 0)
 			{
-				for (int j = 0; j < MEDIUM_X; j++)
+				// news »ðÀÔ
+				news->PushNewsQueue(ENEWS_CATEGORY::PunishmentFromGod);
+
+				for (int i = 0; i < MEDIUM_Y; i++)
 				{
-					if (Fire[i][j] != 0)
+					for (int j = 0; j < MEDIUM_X; j++)
 					{
-						to->GoToXYPosition(x + j, y + i);
-						to->SetColor(Fire[i][j]);
-						printf(" ");
-						to->SetColor(0);
+						if (Fire[i][j] != 0)
+						{
+							if (x + j <= 141 && y + i <= 44)
+							{
+								to->GoToXYPosition(0, 0);
+								printf("section 1");
+
+								to->GoToXYPosition(x + j, y + i);
+								to->SetColor(Fire[i][j]);
+								printf(" ");
+								to->SetColor(0);
+							}
+							else if (x + j > 141 && y + i <= 44)
+							{
+								to->GoToXYPosition(0, 1);
+								printf("section 2");
+
+								to->GoToXYPosition(x + j - 10, y + i);
+								to->SetColor(Fire[i][j]);
+								printf(" ");
+								to->SetColor(0);
+							}
+							else if (x + j <= 141 && y + i > 44)
+							{
+								to->GoToXYPosition(0, 2);
+								printf("section 3");
+
+								to->GoToXYPosition(x + j, y + i - 5);
+								to->SetColor(Fire[i][j]);
+								printf(" ");
+								to->SetColor(0);
+							}
+							else
+							{
+								to->GoToXYPosition(0, 3);
+								printf("section 4");
+
+								to->GoToXYPosition(x + j - 10, y + i - 5);
+								to->SetColor(Fire[i][j]);
+								printf(" ");
+								to->SetColor(0);
+							}
+						}
 					}
+					printf("\n");
 				}
-				printf("\n");
+
+				DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info, 1);
+
+				Sleep(2000);
+				break;
 			}
-
-			DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info);
-
-			Sleep(2000);
+			else
+			{
+				continue;
+			}
 		}
 	}
 

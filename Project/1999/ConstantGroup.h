@@ -33,6 +33,7 @@
 
 #define WHOLE_IMAGE_X	200
 #define WHOLE_IMAGE_Y	120
+#define WHOLE_IMAGE_HALF_Y	60
 
 #define SMALL_X		6
 #define SMALL_Y		3
@@ -96,3 +97,13 @@
 // Zombie 
 #define	ZOMBIE_MENU_X		32
 #define	ZOMBIE_MENU_Y		30
+
+// Ending
+#define ENDING_TEXT_POSITION_X		72
+#define ENDING_TEXT_POSITION_Y		20
+
+#define DISAPPROVE_X	140
+#define DISAPPROVE_Y	15
+
+#define DISAPPROVE_POSITION_X	68
+#define DISAPPROVE_POSITION_Y	10

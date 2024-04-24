@@ -18,18 +18,22 @@ void PlayGame::PlayGameMode()
 	//pre->PlayPreviewScene(); // Preview Scene
 	//start->PlayStartScene(); // Start Scene
 
-	int PlayerInput = select->PlaySelectScene();
-	if (PlayerInput == ESELECT_SCENE::NEW_GAME)
+	while (1)
 	{
-		game->PlayInGame(); // InGame Scence
-	}
-	else if (PlayerInput == ESELECT_SCENE::TUTORIAL)
-	{
-		//tutorial Scenen
-	}
-	else if (PlayerInput == ESELECT_SCENE::EXIT)
-	{
-		return; // Exit Game
+		int PlayerInput = select->PlaySelectScene();
+		if (PlayerInput == ESELECT_SCENE::NEW_GAME)
+		{
+			// GamePlay
+			game->PlayInGame();
+		}
+		else if (PlayerInput == ESELECT_SCENE::TUTORIAL)
+		{
+			//tutorial Scenen
+		}
+		else if (PlayerInput == ESELECT_SCENE::EXIT)
+		{
+			return; // Exit Game
+		}
 	}
 
 }
