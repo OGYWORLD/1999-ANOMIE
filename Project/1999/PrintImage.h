@@ -43,6 +43,9 @@ public:
 	DisapproveImagePtr GetExtinctionImage() { return WholeImage::ExtinctionImage; }
 
 	WholeImagePtr GetCitizenEndingImage() { return WholeImage::CitizenEndingImage; }
+	WholeImagePtr GetArmyEndingImage() { return WholeImage::ArmyEndingImage; }
+	WholeImagePtr GetReligionEndingImage() { return WholeImage::ReligionEndingImage; }
+	WholeImagePtr GetAllDieEndingImage() { return WholeImage::AllDieEndingImage; }
 
 	// About Icon Image
 	SmallImagePtr GetHosPitalImage() { return BuildingImage::Hospital; }

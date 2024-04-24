@@ -2,8 +2,7 @@
 
 GameInfo::GameInfo()
 {
-	//Money = 200000;
-	Money = 2000000;
+	Money = 200000;
 	PeopleNum = 1000000;
 	Time = 540;
 	Year = 1999;

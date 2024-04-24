@@ -54,7 +54,7 @@ News::News()
 	SmallReligionZombieNews.push_back(std::pair < const char*, int>("[종교] 춘천성당, 작지만 큰 피해 막아..", 10));
 	SmallReligionZombieNews.push_back(std::pair < const char*, int>("[종교] 신의 축복.. 인명 피해 적어..", 10));
 
-	MediumReligionZombieNews.push_back(std::pair < const char*, int>("[종교] 기독교 연합단체, 체계적 진압 보여", 10));
+	MediumReligionZombieNews.push_back(std::pair < const char*, int>("[종교] 기독교 연합단체, 체계적 진압", 10));
 	MediumReligionZombieNews.push_back(std::pair < const char*, int>("[종교] 부천성당, 인명대피소로 운영", 10));
 	MediumReligionZombieNews.push_back(std::pair < const char*, int>("[종교] 생각보다 컸던 종교의 도움", 10));
 

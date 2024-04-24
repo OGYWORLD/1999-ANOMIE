@@ -36,7 +36,7 @@ void GameScene::PlayInGame()
 	while (1)
 	{
 		int ZombieDay = rand() % (info->GetArmyPower()+1);
-		if ((ZombieDay < 3 || (DayCount % 10 == 0)) && DayCount > 5 && EndingFlag == -1)
+		if ((ZombieDay < 10 || (DayCount % 10 == 0)) && DayCount > 5 && EndingFlag == -1)
 		{
 			ZombieDayCnt++;
 
@@ -57,7 +57,6 @@ void GameScene::PlayInGame()
 			// Day Update
 			DayCount++;
 			DateUpdate();
-			EndOfTheDay();
 			EndingFlag = AllDieEndingCheck();
 
 			to->PartClean(INFO_POSITION_X + 45, INFO_POSITION_Y + 1, 96, 8);
@@ -194,17 +193,18 @@ void GameScene::PlayInGame()
 						if (_kbhit())
 						{
 							int nKey = _getch();
-							if (nKey == EKEYBOARD::NUM1_KEY || nKey == EKEYBOARD::NUM2_KEY) // 세금 1
+							if ((nKey == EKEYBOARD::NUM1_KEY || nKey == EKEYBOARD::NUM2_KEY) && info->GetCitizenPower() > 0) // 세금 1
 							{
 								to->CleanInputBuffer();
-								info->ForceMoney(EKEYBOARD::NUM1_KEY);
 								if (nKey == EKEYBOARD::NUM1_KEY)
 								{
+									info->ForceMoney(EKEYBOARD::NUM1_KEY);
 									info->SetCntArr(ECOUNT::CITIZEN_L_FORCE_CNT, info->GetCntArr()[ECOUNT::CITIZEN_L_FORCE_CNT] + 1);
 									news->PushNewsQueue(ENEWS_CATEGORY::CitizenLittleForceNews);
 								}
 								else if (nKey == EKEYBOARD::NUM2_KEY)
 								{
+									info->ForceMoney(EKEYBOARD::NUM2_KEY);
 									info->SetCntArr(ECOUNT::CITIZEN_M_FORCE_CNT, info->GetCntArr()[ECOUNT::CITIZEN_M_FORCE_CNT] + 1);
 									news->PushNewsQueue(ENEWS_CATEGORY::CitizenManyForceNews); 
 								}
@@ -212,7 +212,7 @@ void GameScene::PlayInGame()
 								info->PrintInfo();
 								break;
 							}
-							else if (nKey == EKEYBOARD::NUM3_KEY) // 복지정책
+							else if (nKey == EKEYBOARD::NUM3_KEY && info->GetCitizenPower() > 0) // 복지정책
 							{
 								info->SetCntArr(ECOUNT::CITIZEN_WALFARE_CNT, info->GetCntArr()[ECOUNT::CITIZEN_WALFARE_CNT] + 1);
 								to->CleanInputBuffer();
@@ -224,6 +224,12 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::M_KEY) // 메뉴로
 							{
+								to->CleanInputBuffer();
+								break;
+							}
+							else
+							{
+								// 금지 소리 출력
 								to->CleanInputBuffer();
 								break;
 							}
@@ -240,7 +246,7 @@ void GameScene::PlayInGame()
 						if (_kbhit())
 						{
 							int nKey = _getch();
-							if (nKey == EKEYBOARD::NUM1_KEY) // 군인 월급 감소
+							if (nKey == EKEYBOARD::NUM1_KEY && info->GetArmyPower() > 0) // 군인 월급 감소
 							{
 								info->SetCntArr(ECOUNT::ARMY_FORCE_CNT, info->GetCntArr()[ECOUNT::ARMY_FORCE_CNT] + 1);
 								to->CleanInputBuffer();
@@ -250,7 +256,7 @@ void GameScene::PlayInGame()
 								info->PrintInfo();
 								break;
 							}
-							if (nKey == EKEYBOARD::NUM2_KEY) // 프로파간다
+							if (nKey == EKEYBOARD::NUM2_KEY && info->GetArmyPower() > 0) // 프로파간다
 							{
 								info->SetCntArr(ECOUNT::ARMY_PROPAGANDA_CNT, info->GetCntArr()[ECOUNT::ARMY_PROPAGANDA_CNT] + 1);
 								to->CleanInputBuffer();
@@ -267,7 +273,7 @@ void GameScene::PlayInGame()
 								info->PrintInfo();
 								break;
 							}
-							else if (nKey == EKEYBOARD::NUM3_KEY) // 국방부 예산 확대
+							else if (nKey == EKEYBOARD::NUM3_KEY && info->GetArmyPower() > 0) // 국방부 예산 확대
 							{
 								info->SetCntArr(ECOUNT::ARMY_WELFARE_CNT, info->GetCntArr()[ECOUNT::ARMY_WELFARE_CNT] + 1);
 								to->CleanInputBuffer();
@@ -279,6 +285,12 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::M_KEY) // 메뉴로
 							{
+								to->CleanInputBuffer();
+								break;
+							}
+							else
+							{
+								// 금지 소리 출력
 								to->CleanInputBuffer();
 								break;
 							}
@@ -295,7 +307,7 @@ void GameScene::PlayInGame()
 						if (_kbhit())
 						{
 							int nKey = _getch();
-							if (nKey == EKEYBOARD::NUM1_KEY) // 국민 종교활동 금지
+							if (nKey == EKEYBOARD::NUM1_KEY && info->GetReligionPower() > 0) // 국민 종교활동 금지
 							{
 								info->SetCntArr(ECOUNT::PROHIBIT_R_C_CNT, info->GetCntArr()[ECOUNT::PROHIBIT_R_C_CNT] + 1);
 								to->CleanInputBuffer();
@@ -305,7 +317,7 @@ void GameScene::PlayInGame()
 								info->PrintInfo();
 								break;
 							}
-							if (nKey == EKEYBOARD::NUM2_KEY) // 군인 종교활동 금지
+							if (nKey == EKEYBOARD::NUM2_KEY && info->GetReligionPower() > 0) // 군인 종교활동 금지
 							{
 								info->SetCntArr(ECOUNT::PROHIBIT_R_A_CNT, info->GetCntArr()[ECOUNT::PROHIBIT_R_A_CNT] + 1);
 								to->CleanInputBuffer();
@@ -315,7 +327,7 @@ void GameScene::PlayInGame()
 								info->PrintInfo();
 								break;
 							}
-							else if (nKey == EKEYBOARD::NUM3_KEY) // 종교활동 참여
+							else if (nKey == EKEYBOARD::NUM3_KEY && info->GetReligionPower() > 0) // 종교활동 참여
 							{
 								info->SetCntArr(ECOUNT::RELIGION_WELFARE_CNT, info->GetCntArr()[ECOUNT::RELIGION_WELFARE_CNT] + 1);
 								to->CleanInputBuffer();
@@ -327,6 +339,12 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::M_KEY) // 메뉴로
 							{
+								to->CleanInputBuffer();
+								break;
+							}
+							else
+							{
+								// 금지 소리 출력
 								to->CleanInputBuffer();
 								break;
 							}
@@ -563,7 +581,7 @@ int GameScene::EndingCheck()
 		}
 	}
 	// ALLDie Ending Checking
-	if (info->GetArmyPower() <= 0 && info->GetCitizenPower() <= 0 && info->GetReligionEnding())
+	if (info->GetArmyPower() <= 0 && info->GetCitizenPower() <= 0 && info->GetReligionPower())
 	{
 		return ESELECT_SCENE::ALLDIE_ENDING; // ALLDie Ending
 	}
@@ -575,7 +593,7 @@ int GameScene::EndingCheck()
 int GameScene::AllDieEndingCheck()
 {
 	// ALLDie Ending Checking
-	if (info->GetArmyPower() <= 0 && info->GetCitizenPower() <= 0 && info->GetReligionEnding() <= 0)
+	if (info->GetArmyPower() <= 0 && info->GetCitizenPower() <= 0 && info->GetReligionPower() <= 0)
 	{
 		return 4; // ALLDie Ending
 	}
@@ -601,7 +619,7 @@ void GameScene::EndOfTheDay() // Info Update When The End of the Day
 	if (info->GetReligionPower() >= 50)
 	{
 		news->PushNewsQueue(ENEWS_CATEGORY::ReligionPay);
-		info->SetMoney(info->GetMoney() + info->GetReligionPower() * 500);
+		info->SetMoney(info->GetMoney() + info->GetReligionPower() * 100);
 	}
 	else
 	{
@@ -637,31 +655,31 @@ void GameScene::ZombieAttack()
 	{
 		info->SetCntArr(ECOUNT::NONSAFE_ZOMBIE_CNT, info->GetCntArr()[ECOUNT::NONSAFE_ZOMBIE_CNT] + 1);
 		news->PushNewsQueue(ENEWS_CATEGORY::AfterZombieBad);
-		if (info->GetCitizenPower() - (FeelingSad/ 3) < 0)
+		if (info->GetCitizenPower() - (FeelingSad/ 2) < 0)
 		{
 			info->SetCitizenPower(0);
 		}
 		else
 		{
-			info->SetCitizenPower(info->GetCitizenPower() - (FeelingSad / 3));
+			info->SetCitizenPower(info->GetCitizenPower() - (FeelingSad / 2));
 		}
 
-		if (info->GetArmyPower() - (FeelingSad / 3) < 0)
+		if (info->GetArmyPower() - (FeelingSad / 2) < 0)
 		{
 			info->SetArmyPower(0);
 		}
 		else
 		{
-			info->SetArmyPower(info->GetArmyPower() - (FeelingSad / 3));
+			info->SetArmyPower(info->GetArmyPower() - (FeelingSad / 2));
 		}
 
-		if (info->GetReligionPower() - (FeelingSad / 3) < 0)
+		if (info->GetReligionPower() - (FeelingSad / 2) < 0)
 		{
 			info->SetReligionPower(0);
 		}
 		else
 		{
-			info->SetReligionPower(info->GetReligionPower() - (FeelingSad / 3));
+			info->SetReligionPower(info->GetReligionPower() - (FeelingSad / 2));
 		}
 	}
 

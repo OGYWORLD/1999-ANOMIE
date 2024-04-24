@@ -69,6 +69,7 @@ void ConstructBuilding::GetPlayerExitNum()
 			{
 				nKey = _getch();
 				if (nKey == 186) { nKey = EKEYBOARD::C_KEY; }
+				to->CleanInputBuffer();
 			}
 			else if (nKey == EKEYBOARD::C_KEY)
 			{
@@ -302,7 +303,7 @@ int ConstructBuilding::BuildBuilding(int building, InfoHandler* info)
 			else if (nKey == EKEYBOARD::V_KEY)
 			{
 				// 건물 파괴 호출
-				DestroyBuilding(building, BuildingSize[building], CurX, CurY, info);
+				DestroyBuilding(building, BuildingSize[building], CurX, CurY, info, 0);
 
 				to->GoToXYPosition(0, 0);
 				Map::PrintWholeMap();
@@ -552,7 +553,7 @@ void ConstructBuilding::NewBuild(int building, int x, int y, InfoHandler* info)
 	}
 }
 
-void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, InfoHandler* info)
+void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, InfoHandler* info, int Zombie)
 {
 
 	int DeleteX, DeleteY;
@@ -562,7 +563,7 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 	// Checking for building on choosen place 
 	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < size * 2; j++)
+		for (int j = 0; j < size * 2 - Zombie; j++)
 		{
 			if (Map::TotalMap[y + i][x + j]->GetInfo() != 0)
 			{
@@ -581,7 +582,14 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 			MinusCntBuilding(Map::TotalMap[iter->second][iter->first]->GetInfo(), info);
 			RemoveCOORDData(Map::TotalMap[iter->second][iter->first]->GetStartX(), y, Map::TotalMap[iter->second][iter->first]->GetStartY(), BuildingSize[Map::TotalMap[iter->second][iter->first]->GetInfo()]);
 
-			info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 2);
+			if (Zombie == 1)
+			{
+				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 3);
+			}
+			else
+			{
+				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 2);
+			}
 			info->PrintMoney(14);
 			info->PrintPower(14);
 
@@ -901,7 +909,7 @@ void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* n
 {
 	// 3 / (종교 건물 개수 + 종교권위/10) 확률로 건물을 뿌실지말지 정함
 	int DecideDisaster = rand() % (ReligionNum + 1);
-	if (DecideDisaster < 3)
+	if (DecideDisaster < 3 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
 	{
 		info->SetCntArr(ECOUNT::ZOMBIE_DESTROY_CNT, info->GetCntArr()[ECOUNT::ZOMBIE_DESTROY_CNT] + 1);
 
@@ -909,31 +917,30 @@ void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* n
 		{
 			// 건물 뿌시기
 			// 랜덤 좌표 뽑기
-			int x = rand() % 145 + 3;
-			int y = rand() % 40 + 2;
+			int x = rand() % 151 + 2;
+			int y = rand() % 47 + 1;
 
 			// 건물이 존재함
-			if (Map::TotalMap[y][x]->GetInfo() != 0)
+			if (Map::TotalMap[y][x]->GetInfo() != 0 && Map::TotalMap[y][x]->GetInfo() != -1 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
 			{
 				// news 삽입
 				news->PushNewsQueue(ENEWS_CATEGORY::PunishmentFromGod);
+				
+				to->SetColor(64);
+				int s = Map::TotalMap[y][x]->GetSize();
+				int OriginX = Map::TotalMap[y][x]->GetStartX();
+				int OriginY = Map::TotalMap[y][x]->GetStartY();
 
-				for (int i = 0; i < MEDIUM_Y; i++)
+				for (int i = 0; i < s; i++)
 				{
-					for (int j = 0; j < MEDIUM_X; j++)
+					for (int j = 0; j < s * 2; j++)
 					{
-						if (Fire[i][j] != 0)
-						{
-							to->GoToXYPosition(x + j, y + i);
-							to->SetColor(Fire[i][j]);
-							printf(" ");
-							to->SetColor(0);
-						}
+						to->GoToXYPosition(OriginX + j, OriginY + i);
+						printf(" ");
 					}
-					printf("\n");
 				}
-
-				DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info);
+				
+				DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info, 1);
 
 				Sleep(2000);
 				break;
