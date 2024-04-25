@@ -150,6 +150,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapInfo.cpp" />
     <ClCompile Include="MenuHandler.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="News.cpp" />
     <ClCompile Include="NewsHandler.cpp" />
     <ClCompile Include="PlayGame.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="SetPosition.cpp" />
     <ClCompile Include="StartKeyboard.cpp" />
     <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="TutorialScene.cpp" />
     <ClCompile Include="WholeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +176,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapInfo.h" />
     <ClInclude Include="MenuHandler.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="News.h" />
     <ClInclude Include="NewsHandler.h" />
     <ClInclude Include="PlayGame.h" />
@@ -183,6 +186,7 @@
     <ClInclude Include="SetPosition.h" />
     <ClInclude Include="StartKeyboard.h" />
     <ClInclude Include="StartScene.h" />
+    <ClInclude Include="TutorialScene.h" />
     <ClInclude Include="WholeImage.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,3 @@
-﻿  ConstructBuilding.cpp
-C:\Users\VR\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\VR\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(575,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\VR\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(559,15): warning C4101: 'DeleteY': unreferenced local variable
-C:\Users\VR\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(559,6): warning C4101: 'DeleteX': unreferenced local variable
+﻿  TutorialScene.cpp
+C:\Users\VR\Desktop\KE_1999\Project\1999\TutorialScene.cpp(293,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   1999.vcxproj -> C:\Users\VR\Desktop\KE_1999\Project\x64\Debug\1999.exe

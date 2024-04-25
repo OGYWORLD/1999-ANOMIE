@@ -342,7 +342,7 @@ int ConstructBuilding::BuildBuilding(int building, InfoHandler* info)
 				else if (nKey == EKEYBOARD::KEY_RIGHT)
 				{
 					CurX+=2;
-					if (CurX > 154 - BuildingSize[building]*2)
+					if (CurX > 154 - BuildingSize[building] * 2)
 					{
 						CurX = 154 - BuildingSize[building] * 2;
 					}
@@ -717,81 +717,89 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	int power;
 	if (building == EKEYBOARD::NUM1_KEY)
 	{
+		HospitalNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM2_KEY)
 	{
+		ArmySmallNum--;
 		power = info->GetArmyPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM3_KEY)
 	{
+		APTNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM4_KEY)
 	{
+		ArmyMediumNum--;
 		power = info->GetArmyPower();
 		power -= 3;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM5_KEY)
 	{
+		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM6_KEY)
 	{
+		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM7_KEY)
 	{
+		ParkNum--;
 		power = info->GetCitizenPower();
 		power -= 5;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM8_KEY)
 	{
+		ArmyLargeNum--;
 		power = info->GetArmyPower();
 		power -= 5;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetArmyPower(power);
 	}
@@ -921,60 +929,23 @@ void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* n
 			int y = rand() % 47 + 1;
 
 			// 건물이 존재함
-			if (Map::TotalMap[y][x]->GetInfo() != 0)
+			if (Map::TotalMap[y][x]->GetInfo() != 0 && Map::TotalMap[y][x]->GetInfo() != -1 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
 			{
 				// news 삽입
 				news->PushNewsQueue(ENEWS_CATEGORY::PunishmentFromGod);
+				
+				to->SetColor(64);
+				int s = Map::TotalMap[y][x]->GetSize();
+				int OriginX = Map::TotalMap[y][x]->GetStartX();
+				int OriginY = Map::TotalMap[y][x]->GetStartY();
 
-				for (int i = 0; i < MEDIUM_Y; i++)
+				for (int i = 0; i < s; i++)
 				{
-					for (int j = 0; j < MEDIUM_X; j++)
+					for (int j = 0; j < s * 2; j++)
 					{
-						if (Fire[i][j] != 0)
-						{
-							if (x + j <= 141 && y + i <= 44)
-							{
-								to->GoToXYPosition(0, 0);
-								printf("section 1");
-
-								to->GoToXYPosition(x + j, y + i);
-								to->SetColor(Fire[i][j]);
-								printf(" ");
-								to->SetColor(0);
-							}
-							else if (x + j > 141 && y + i <= 44)
-							{
-								to->GoToXYPosition(0, 1);
-								printf("section 2");
-
-								to->GoToXYPosition(x + j - 10, y + i);
-								to->SetColor(Fire[i][j]);
-								printf(" ");
-								to->SetColor(0);
-							}
-							else if (x + j <= 141 && y + i > 44)
-							{
-								to->GoToXYPosition(0, 2);
-								printf("section 3");
-
-								to->GoToXYPosition(x + j, y + i - 5);
-								to->SetColor(Fire[i][j]);
-								printf(" ");
-								to->SetColor(0);
-							}
-							else
-							{
-								to->GoToXYPosition(0, 3);
-								printf("section 4");
-
-								to->GoToXYPosition(x + j - 10, y + i - 5);
-								to->SetColor(Fire[i][j]);
-								printf(" ");
-								to->SetColor(0);
-							}
-						}
+						to->GoToXYPosition(OriginX + j, OriginY + i);
+						printf(" ");
 					}
-					printf("\n");
 				}
 
 				DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info, 1);

@@ -139,7 +139,7 @@ void EndingScene::AllDieEnding(InfoHandler* info)
 	to->GoToXYPosition(ENDING_TEXT_POSITION_X - 13, ENDING_TEXT_POSITION_Y + 6);
 	std::cout << "United Nations peacekeeping found a survior for a month, But they couldn't find any survior in " << info->GetCountryName();
 	to->GoToXYPosition(ENDING_TEXT_POSITION_X - 5, ENDING_TEXT_POSITION_Y + 7);
-	std::cout << "(유엔군은 한 달동안" << info->GetCountryName() << "에서 생존자를 찾았지만 어떠한 생존자도 찾을 수 없었습니다.)";
+	std::cout << "(유엔군은 한 달동안 " << info->GetCountryName() << "에서 생존자를 찾았지만 어떠한 생존자도 찾을 수 없었습니다.)";
 	Sleep(3000);
 
 	to->GoToXYPosition(ENDING_TEXT_POSITION_X + 10, ENDING_TEXT_POSITION_Y + 9);

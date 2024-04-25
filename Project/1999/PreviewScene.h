@@ -11,6 +11,5 @@ public:
 	~PreviewScene();
 
 	void PlayPreviewScene();
-
 };
 

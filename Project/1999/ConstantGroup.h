@@ -44,6 +44,18 @@
 #define LARGE_X		16
 #define LARGE_Y		8
 
+// Tutorial
+#define TUTORIAL_BOX_POSITION_X		78
+#define TUTORIAL_BOX_POSITION_Y		2
+
+#define TUTORIAL_BOX_BX				115
+#define TUTORIAL_BOX_BY				32
+
+#define TUTORIAL_ANNOUNCE_X			135
+#define TUTORIAL_ANNOUNCE_Y			32
+
+#define TUTORIAL_INTRODUCE_MENU_ANNOUNCE_NUM	14
+
 // InGame
 
 // Random Map

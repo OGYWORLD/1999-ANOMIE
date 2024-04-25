@@ -61,6 +61,12 @@
     <Filter Include="Source Files\News">
       <UniqueIdentifier>{f8ad03e0-b59d-4b3c-b72c-65bb30afd094}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Music">
+      <UniqueIdentifier>{c24dcdf2-0e67-40e6-a8a7-50bf74e4f2fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Music">
+      <UniqueIdentifier>{769c2441-9f71-4b21-9054-0d270fc76101}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Map.cpp">
@@ -124,6 +130,12 @@
       <Filter>Source Files\News</Filter>
     </ClCompile>
     <ClCompile Include="EndingScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Source Files\Music</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -192,6 +204,12 @@
       <Filter>Header Files\GameScene\News</Filter>
     </ClInclude>
     <ClInclude Include="EndingScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Header Files\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

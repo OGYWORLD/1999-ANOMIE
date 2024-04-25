@@ -42,6 +42,10 @@ public:
 	DisapproveImagePtr GetInterventionImage() { return WholeImage::InterventionImage; }
 	DisapproveImagePtr GetExtinctionImage() { return WholeImage::ExtinctionImage; }
 
+	WholeImagePtr GetZeepImage() { return WholeImage::ZeepImage; }
+	WholeImagePtr GetVideoTitleImage() { return WholeImage::VideoTitleImage; }
+	WholeImagePtr GetVideoMainImage() { return WholeImage::VideoMainImage; }
+
 	WholeImagePtr GetCitizenEndingImage() { return WholeImage::CitizenEndingImage; }
 	WholeImagePtr GetArmyEndingImage() { return WholeImage::ArmyEndingImage; }
 	WholeImagePtr GetReligionEndingImage() { return WholeImage::ReligionEndingImage; }
