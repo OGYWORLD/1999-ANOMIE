@@ -626,6 +626,8 @@ void GameScene::EndOfTheDay() // Info Update When The End of the Day
 		news->PushNewsQueue(ENEWS_CATEGORY::ReligionNotPay);
 	}
 
+	// default ¼¼±Ý ³³ºÎ
+	info->SetMoney(info->GetMoney() + info->GetPeopleNum() * 0.01);
 }
 
 void GameScene::ZombieAttack()

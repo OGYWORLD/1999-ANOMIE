@@ -135,6 +135,9 @@
     <ClCompile Include="Music.cpp">
       <Filter>Source Files\Music</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
@@ -205,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="Music.h">
       <Filter>Header Files\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -217,13 +217,13 @@ void InfoHandler::ForceMoney(int level)
 {
 	if (level == EKEYBOARD::NUM1_KEY)
 	{
-		Money += (int)((double)PeopleNum * 0.05);
+		Money += (int)((double)PeopleNum * 0.08);
 		CitizenPower -= 20;
 		if (CitizenPower < 0) { CitizenPower = 0; }
 	}
 	else if (level == EKEYBOARD::NUM2_KEY)
 	{
-		Money += (int)((double)PeopleNum * 0.03);
+		Money += (int)((double)PeopleNum * 0.05);
 		CitizenPower -= 10;
 		if (CitizenPower < 0) { CitizenPower = 0; }
 	}
@@ -245,6 +245,8 @@ void InfoHandler::Welfare()
 	}
 
 	Money -= r;
+	if (Money < 0) { Money = 0; }
+
 	CitizenPower += (r / 10000);
 	if (CitizenPower > 100) { CitizenPower = 100; }
 
@@ -252,7 +254,7 @@ void InfoHandler::Welfare()
 
 void InfoHandler::ForceArmyMoney()
 {
-	Money += (int)((double)PeopleNum * 0.1);
+	Money += (int)((double)PeopleNum * 0.5);
 	ArmyPower -= 20;
 	if (ArmyPower < 0) { ArmyPower = 0; }
 }
@@ -260,7 +262,7 @@ void InfoHandler::ForceArmyMoney()
 int InfoHandler::Propaganda()
 {
 	int GoodOrBad = rand() % 100;
-	if (GoodOrBad < 10)
+	if (GoodOrBad < 30)
 	{
 		ArmyPower -= 20;
 		if (ArmyPower < 0) { ArmyPower = 0; }
@@ -282,7 +284,8 @@ int InfoHandler::Propaganda()
 
 		}
 		Money -= r;
-		ArmyPower += (r / 10000);
+		if (Money < 0) { Money = 0; }
+		ArmyPower += (r / 5000);
 		if (ArmyPower > 100) { ArmyPower = 100; }
 
 		return 0;
@@ -301,13 +304,15 @@ void InfoHandler::ArmyWelfare()
 		return;
 	}
 	Money -= r;
+	if (Money < 0) { Money = 0; }
+
 	ArmyPower += (r / 10000);
 	if (ArmyPower > 100) { ArmyPower = 100; }
 }
 
 void InfoHandler::ProhibitReligionForCitizen()
 {
-	int r = rand() % 2 + 1;
+	int r = rand() % 2 + 3;
 	CitizenPower += r;
 	ReligionPower -= r;
 
@@ -323,7 +328,7 @@ void InfoHandler::ProhibitReligionForCitizen()
 
 void InfoHandler::ProhibitReligionForArmy()
 {
-	int r = rand() % 2 + 1;
+	int r = rand() % 2 + 3;
 	ArmyPower += r;
 	ReligionPower -= r;
 

@@ -11,6 +11,7 @@ PlayGame::~PlayGame()
 	delete game;
 	delete pre;
 	delete select;
+	delete tutorial;
 }
 
 void PlayGame::PlayGameMode()
@@ -29,6 +30,7 @@ void PlayGame::PlayGameMode()
 		else if (PlayerInput == ESELECT_SCENE::TUTORIAL)
 		{
 			//tutorial Scenen
+			tutorial->PlayTutorial();
 		}
 		else if (PlayerInput == ESELECT_SCENE::EXIT)
 		{

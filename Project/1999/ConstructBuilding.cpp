@@ -342,7 +342,7 @@ int ConstructBuilding::BuildBuilding(int building, InfoHandler* info)
 				else if (nKey == EKEYBOARD::KEY_RIGHT)
 				{
 					CurX+=2;
-					if (CurX > 154 - BuildingSize[building]*2)
+					if (CurX > 154 - BuildingSize[building] * 2)
 					{
 						CurX = 154 - BuildingSize[building] * 2;
 					}
@@ -584,7 +584,7 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 
 			if (Zombie == 1)
 			{
-				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 3);
+				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 4);
 			}
 			else
 			{
@@ -717,81 +717,89 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 	int power;
 	if (building == EKEYBOARD::NUM1_KEY)
 	{
+		HospitalNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM2_KEY)
 	{
+		ArmySmallNum--;
 		power = info->GetArmyPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM3_KEY)
 	{
+		APTNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM4_KEY)
 	{
+		ArmyMediumNum--;
 		power = info->GetArmyPower();
 		power -= 3;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM5_KEY)
 	{
+		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM6_KEY)
 	{
+		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM7_KEY)
 	{
+		ParkNum--;
 		power = info->GetCitizenPower();
 		power -= 5;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM8_KEY)
 	{
+		ArmyLargeNum--;
 		power = info->GetArmyPower();
 		power -= 5;
-		if (power > 100)
+		if (power < 0)
 		{
-			power = 100;
+			power = 0;
 		}
 		info->SetArmyPower(power);
 	}
@@ -939,7 +947,7 @@ void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* n
 						printf(" ");
 					}
 				}
-				
+
 				DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info, 1);
 
 				Sleep(2000);

@@ -160,6 +160,7 @@
     <ClCompile Include="SetPosition.cpp" />
     <ClCompile Include="StartKeyboard.cpp" />
     <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="TutorialScene.cpp" />
     <ClCompile Include="WholeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,7 @@
     <ClInclude Include="SetPosition.h" />
     <ClInclude Include="StartKeyboard.h" />
     <ClInclude Include="StartScene.h" />
+    <ClInclude Include="TutorialScene.h" />
     <ClInclude Include="WholeImage.h" />
   </ItemGroup>
   <ItemGroup>
