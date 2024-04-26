@@ -7,10 +7,13 @@ PreviewScene::PreviewScene()
 PreviewScene::~PreviewScene()
 {
 	delete print;
+	delete music;
 }
 
 void PreviewScene::PlayPreviewScene()
 {
+	music->PlayMusicPrayer();
+
 	print->PrintPre1Text();
 	Sleep(4000);
 
@@ -25,8 +28,5 @@ void PreviewScene::PlayPreviewScene()
 
 	print->PrintPre3Text();
 	Sleep(4000);
-
-	
-
 
 }

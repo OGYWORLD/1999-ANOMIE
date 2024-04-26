@@ -8,10 +8,13 @@ EndingScene::~EndingScene()
 {
 	delete print;
 	delete to;
+	delete music;
 }
 
 void EndingScene::CitizenEnding(InfoHandler* info)
 {
+	music->PlayerMusicMazurka();
+
 	system("cls");
 	print->ConvertWholeImage(WHOLE_IMAGE_HALF_Y, print->GetCitizenEndingImage());
 	Sleep(2000);
@@ -48,6 +51,8 @@ void EndingScene::CitizenEnding(InfoHandler* info)
 
 void EndingScene::ArmyEnding(InfoHandler* info)
 {
+	music->PlayerMusicMazurka();
+
 	system("cls");
 	print->ConvertWholeImage(WHOLE_IMAGE_HALF_Y, print->GetArmyEndingImage());
 	Sleep(2000);
@@ -83,6 +88,8 @@ void EndingScene::ArmyEnding(InfoHandler* info)
 
 void EndingScene::ReligionEnding(InfoHandler* info)
 {
+	music->PlayerMusicMazurka();
+
 	system("cls");
 	print->ConvertWholeImage(WHOLE_IMAGE_HALF_Y, print->GetReligionEndingImage());
 	Sleep(2000);
@@ -118,6 +125,8 @@ void EndingScene::ReligionEnding(InfoHandler* info)
 
 void EndingScene::AllDieEnding(InfoHandler* info)
 {
+	music->PlayerMusicMazurka();
+
 	system("cls");
 	print->ConvertWholeImage(WHOLE_IMAGE_HALF_Y, print->GetAllDieEndingImage());
 	Sleep(2000);

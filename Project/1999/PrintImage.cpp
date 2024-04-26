@@ -265,7 +265,7 @@ void PrintImage::PrintPre3Text()
 	to->SetColor(10);
 	for (int i = 0; i < 2; i++, CurY += 2)
 	{
-		to->GoToXYPosition(PREVIEW_TEXT_POSITION_X, PREVIEW_TEXT_POSITION_Y + i + CurY);
+		to->GoToXYPosition(PREVIEW_TEXT_POSITION_X + 5, PREVIEW_TEXT_POSITION_Y + i + CurY);
 		printf("%s", Line1[i]);
 	}
 }
@@ -273,9 +273,9 @@ void PrintImage::PrintPre3Text()
 void PrintImage::PrintPre1Text()
 {
 	to->PartClean(0, 0, WHOLE_IMAGE_X, PRIVIEW_Y);
-	char Line1[2][50] =
+	char Line1[2][56] =
 	{
-		{"리벌 바이러스. 일명, 좀비 바이러스가 발생한지"},
+		{"리벌(Re;birth) 바이러스. 일명, 좀비 바이러스가 발생한지"},
 		{"오늘부로 13년이 지났습니다."}
 	};
 

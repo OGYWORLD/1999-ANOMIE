@@ -5,6 +5,8 @@
 GameScene::GameScene()
 {
 	srand(time(NULL));
+
+	WhichMusic = EMUSIC::INFINI;
 }
 
 GameScene::~GameScene()
@@ -15,14 +17,18 @@ GameScene::~GameScene()
 	delete info;
 	delete news;
 	delete ending;
+	delete music;
 }
 
 void GameScene::PlayInGame()
 {
+	// Map Setting
 	PlayGetName();
 	to->CleanInputBuffer();
-
 	build->PrintWholeMap();
+
+	// Play Game
+	music->PlayerMusicInfini();
 	info->PrintInfo();
 	menu->PrintNewsImage();
 	news->ShowNewNews();
@@ -51,6 +57,9 @@ void GameScene::PlayInGame()
 			build->ZombieDayRandomDestory(info, news);
 			ZombieAttack();
 			news->ShowZombieNews();
+
+			to->PartClean(INFO_POSITION_X + 45, INFO_POSITION_Y + 1, 96, 8);
+			info->PrintInfo();
 
 			Sleep(1000);
 
@@ -534,9 +543,8 @@ int GameScene::EndingCheck()
 			return -1;
 		}
 	}
-
 	// Army Ending Checking
-	if (info->GetArmyPower() >= 90)
+	if (info->GetArmyPower() >= 50 && info->GetCitizenPower() <= 20)
 	{
 		if (info->GetArmyEnding() == 0)
 		{
@@ -581,7 +589,7 @@ int GameScene::EndingCheck()
 		}
 	}
 	// ALLDie Ending Checking
-	if (info->GetArmyPower() <= 0 && info->GetCitizenPower() <= 0 && info->GetReligionPower())
+	if (info->GetArmyPower() <= 0 && info->GetCitizenPower() <= 0 && info->GetReligionPower() <= 0)
 	{
 		return ESELECT_SCENE::ALLDIE_ENDING; // ALLDie Ending
 	}
@@ -595,7 +603,7 @@ int GameScene::AllDieEndingCheck()
 	// ALLDie Ending Checking
 	if (info->GetArmyPower() <= 0 && info->GetCitizenPower() <= 0 && info->GetReligionPower() <= 0)
 	{
-		return 4; // ALLDie Ending
+		return ESELECT_SCENE::ALLDIE_ENDING; // ALLDie Ending
 	}
 
 	return -1;
@@ -628,6 +636,27 @@ void GameScene::EndOfTheDay() // Info Update When The End of the Day
 
 	// default 세금 납부
 	info->SetMoney(info->GetMoney() + info->GetPeopleNum() * 0.01);
+
+	// 노래재생 변경 - 민심, 군사력, 종교권위가 하나라도 50미만이면 노래변경
+	if (info->GetCitizenPower() < 50 || info->GetArmyPower() < 50 || info->GetReligionPower() < 50)
+	{
+		if (WhichMusic == EMUSIC::INFINI)
+		{
+			music->PlayerMusicDaedulus();
+			WhichMusic = EMUSIC::DAEDULUS;
+		}
+	}
+	else
+	{
+		if (WhichMusic == EMUSIC::DAEDULUS)
+		{
+			music->PlayerMusicInfini();
+			WhichMusic = EMUSIC::INFINI;
+		}
+	}
+
+	// 사이비 메이커
+	build->Religon42BMaker(info, news);
 }
 
 void GameScene::ZombieAttack()
@@ -648,6 +677,9 @@ void GameScene::ZombieAttack()
 	int TotalDeath = DeathNum - Save;
 	int FeelingSad = info->GetPeopleNum() / TotalDeath;
 
+	to->GoToXYPosition(0, 0);
+	to->SetColor(10);
+
 	// 사망률에 대한 민심 군사력 종교권위 하락
 	if (FeelingSad < 3)
 	{
@@ -657,31 +689,31 @@ void GameScene::ZombieAttack()
 	{
 		info->SetCntArr(ECOUNT::NONSAFE_ZOMBIE_CNT, info->GetCntArr()[ECOUNT::NONSAFE_ZOMBIE_CNT] + 1);
 		news->PushNewsQueue(ENEWS_CATEGORY::AfterZombieBad);
-		if (info->GetCitizenPower() - (FeelingSad/ 2) < 0)
+		if (info->GetCitizenPower() - (FeelingSad * 2) < 0)
 		{
 			info->SetCitizenPower(0);
 		}
 		else
 		{
-			info->SetCitizenPower(info->GetCitizenPower() - (FeelingSad / 2));
+			info->SetCitizenPower(info->GetCitizenPower() - (FeelingSad * 2));
 		}
 
-		if (info->GetArmyPower() - (FeelingSad / 2) < 0)
+		if (info->GetArmyPower() - (FeelingSad * 2) < 0)
 		{
 			info->SetArmyPower(0);
 		}
 		else
 		{
-			info->SetArmyPower(info->GetArmyPower() - (FeelingSad / 2));
+			info->SetArmyPower(info->GetArmyPower() - (FeelingSad * 2));
 		}
 
-		if (info->GetReligionPower() - (FeelingSad / 2) < 0)
+		if (info->GetReligionPower() - (FeelingSad * 2) < 0)
 		{
 			info->SetReligionPower(0);
 		}
 		else
 		{
-			info->SetReligionPower(info->GetReligionPower() - (FeelingSad / 2));
+			info->SetReligionPower(info->GetReligionPower() - (FeelingSad * 2));
 		}
 	}
 

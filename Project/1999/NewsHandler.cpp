@@ -305,6 +305,14 @@ void NewsHandler::PushNewsQueue(int category)
 		}
 		NewsQ.push(std::pair <const char*, int>("[긴급] 좀비 발생, 대피요망", 70));
 	}
+	else if (category == ENEWS_CATEGORY::Maker42B)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[종교] 유명 교회, 사이비로 밝혀져...", 12));
+	}
 }
 
 void NewsHandler::MakeQueueEmpty()

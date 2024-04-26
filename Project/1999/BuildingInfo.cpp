@@ -10,7 +10,7 @@ BuildingInfo::~BuildingInfo()
 
 std::pair<int, int> BuildingInfo::CalCulCenterCOORD(int size, int x, int y)
 {
-	return std::pair<int, int>(x - size - 1, y - size /  2);
+	return std::pair<int, int>(x + size, y + size /  2);
 }
 
 std::pair<int, int> BuildingInfo::CalCulCenterCOORDMap(std::map<std::pair<int, int>, std::pair<int, int>> map)

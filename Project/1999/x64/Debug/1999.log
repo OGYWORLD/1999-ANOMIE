@@ -1,3 +1,2 @@
-﻿  TutorialScene.cpp
-C:\Users\VR\Desktop\KE_1999\Project\1999\TutorialScene.cpp(293,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  PrintImage.cpp
   1999.vcxproj -> C:\Users\VR\Desktop\KE_1999\Project\x64\Debug\1999.exe

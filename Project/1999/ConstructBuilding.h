@@ -42,6 +42,8 @@ public:
 	void PlusCntBuilding(int building, InfoHandler* info);
 	void MinusCntBuilding(int building, InfoHandler* info);
 
+	void Religon42BMaker(InfoHandler* info, NewsHandler* news);
+
 	// Zombie About Building
 	int ReligionCntSave(InfoHandler* info, NewsHandler* news);
 	int CitizenCntSave(InfoHandler* info, NewsHandler* news);

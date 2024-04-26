@@ -218,13 +218,13 @@ void InfoHandler::ForceMoney(int level)
 	if (level == EKEYBOARD::NUM1_KEY)
 	{
 		Money += (int)((double)PeopleNum * 0.08);
-		CitizenPower -= 20;
+		CitizenPower -= 10;
 		if (CitizenPower < 0) { CitizenPower = 0; }
 	}
 	else if (level == EKEYBOARD::NUM2_KEY)
 	{
 		Money += (int)((double)PeopleNum * 0.05);
-		CitizenPower -= 10;
+		CitizenPower -= 5;
 		if (CitizenPower < 0) { CitizenPower = 0; }
 	}
 	

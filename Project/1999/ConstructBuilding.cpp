@@ -582,13 +582,25 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 			MinusCntBuilding(Map::TotalMap[iter->second][iter->first]->GetInfo(), info);
 			RemoveCOORDData(Map::TotalMap[iter->second][iter->first]->GetStartX(), y, Map::TotalMap[iter->second][iter->first]->GetStartY(), BuildingSize[Map::TotalMap[iter->second][iter->first]->GetInfo()]);
 
-			if (Zombie == 1)
-			{
-				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 3);
-			}
-			else
+			if (Zombie == 0) // 평상시
 			{
 				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 2);
+			}
+			if (Map::TotalMap[iter->second][iter->first]->GetInfo() == EKEYBOARD::RELIGION_42B_KEY) //42B Destroy
+			{
+				if (info->GetMoney() < 100000)
+				{
+					info->PrintMoney(64);
+					Sleep(500);
+
+					info->PrintMoney(14);
+
+					continue;
+				}
+
+				info->SetCitizenPower(info->GetCitizenPower() + 10);
+				info->SetReligionPower(info->GetReligionPower() + 10);
+				info->SetMoney(info->GetMoney() - 100000);
 			}
 			info->PrintMoney(14);
 			info->PrintPower(14);
@@ -618,10 +630,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetCitizenPower();
 		power+=1;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetCitizenPower(power);
 
 		HospitalNum++;
@@ -630,10 +638,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetArmyPower();
 		power += 1;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetArmyPower(power);
 
 		ArmySmallNum++;
@@ -641,11 +645,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM3_KEY)
 	{
 		power = info->GetCitizenPower();
-		power += 2;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetCitizenPower(power);
 
 		APTNum++;
@@ -654,10 +653,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetArmyPower();
 		power += 3;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetArmyPower(power);
 
 		ArmyMediumNum++;
@@ -666,10 +661,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetReligionPower();
 		power += 1;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetReligionPower(power);
 
 		ReligionNum++;
@@ -678,10 +669,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetReligionPower();
 		power += 1;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetReligionPower(power);
 
 		ReligionNum++;
@@ -690,10 +677,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetCitizenPower();
 		power += 5;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetCitizenPower(power);
 
 		ParkNum++;
@@ -702,10 +685,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetArmyPower();
 		power += 5;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetArmyPower(power);
 
 		ArmyLargeNum++;
@@ -720,10 +699,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		HospitalNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM2_KEY)
@@ -731,10 +706,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ArmySmallNum--;
 		power = info->GetArmyPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM3_KEY)
@@ -742,10 +713,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		APTNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM4_KEY)
@@ -753,10 +720,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ArmyMediumNum--;
 		power = info->GetArmyPower();
 		power -= 3;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM5_KEY)
@@ -764,10 +727,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM6_KEY)
@@ -775,10 +734,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM7_KEY)
@@ -786,10 +741,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ParkNum--;
 		power = info->GetCitizenPower();
 		power -= 5;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM8_KEY)
@@ -797,11 +748,55 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ArmyLargeNum--;
 		power = info->GetArmyPower();
 		power -= 5;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetArmyPower(power);
+	}
+}
+
+void ConstructBuilding::Religon42BMaker(InfoHandler* info, NewsHandler* news)
+{
+	// 종교시설개수 * 2 / 100의 확률로 사이비 메이커 발동
+	int Random = rand() % 100;
+	if (ReligionNum * 2 > Random)
+	{
+		ReligionNum--;
+		info->SetCitizenPower(info->GetCitizenPower() - 10);
+		info->SetReligionPower(info->GetReligionPower() - 10);
+		
+		int MapSize = PerCenterCOORDReligion.size();
+		Random = rand() % MapSize;
+
+		int OriginX, OriginY;
+		std::map<std::pair<int, int>, std::pair<int, int>>::iterator iter;
+		int index = 0;
+		for (iter = PerCenterCOORDReligion.begin(); iter != PerCenterCOORDReligion.end(); ++iter, index++)
+		{
+			if (index == Random)
+			{
+				OriginX = iter->first.first;
+				OriginY = iter->first.second;
+			}
+
+		}
+
+		int BuildSize = Map::TotalMap[OriginY][OriginX]->GetSize();
+		RemoveCOORDData(OriginX, OriginY, Map::TotalMap[OriginY][OriginX]->GetInfo(), BuildSize);
+		for (int i = 0; i < BuildSize; i++)
+		{
+			for (int j = 0; j < BuildSize * 2; j++)
+			{
+				if (Map::TotalMap[OriginY + i][OriginX + j]->GetColor() != 0)
+				{
+					Map::TotalMap[OriginY + i][OriginX + j]->SetColor(32);
+				}
+				Map::TotalMap[OriginY + i][OriginX + j]->SetInfo(EKEYBOARD::RELIGION_42B_KEY);
+			}
+		}
+
+
+		to->GoToXYPosition(0, 0);
+		Map::PrintWholeMap();
+
+		news->PushNewsQueue(ENEWS_CATEGORY::Maker42B);
 	}
 }
 
@@ -917,7 +912,7 @@ void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* n
 {
 	// 3 / (종교 건물 개수 + 종교권위/10) 확률로 건물을 뿌실지말지 정함
 	int DecideDisaster = rand() % (ReligionNum + 1);
-	if (DecideDisaster < 3 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
+	if (DecideDisaster < 10 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
 	{
 		info->SetCntArr(ECOUNT::ZOMBIE_DESTROY_CNT, info->GetCntArr()[ECOUNT::ZOMBIE_DESTROY_CNT] + 1);
 

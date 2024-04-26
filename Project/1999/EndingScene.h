@@ -2,12 +2,14 @@
 #include "PrintImage.h"
 #include "SetPosition.h"
 #include "InfoHandler.h"
+#include "Music.h"
 
 class EndingScene
 {
 private:
 	PrintImage* print = new PrintImage;
 	SetPosition* to = new SetPosition;
+	Music* music = new Music;
 
 public:
 	EndingScene();
