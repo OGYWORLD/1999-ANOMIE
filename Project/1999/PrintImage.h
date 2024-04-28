@@ -2,6 +2,7 @@
 #include "WholeImage.h"
 #include "BuildingImage.h"
 #include "SetPosition.h"
+#include "Music.h"
 
 // Image
 typedef int(*WholeImagePtr)[WHOLE_IMAGE_X];
@@ -19,6 +20,7 @@ class PrintImage : WholeImage, BuildingImage
 {
 protected:
 	SetPosition* to = new SetPosition;
+	Music* music = new Music;
 
 public:
 

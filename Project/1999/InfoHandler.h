@@ -17,6 +17,9 @@ public:
 	InfoHandler();
 	~InfoHandler();
 
+	// Initializer
+	void GameInfoInitializer();
+
 	// Print
 	void PrintDate(int color);
 	void PrintMoney(int color);
@@ -57,6 +60,7 @@ public:
 	void SetCitizenPower(int n)
 	{
 		if (n > 100) { this->CitizenPower = 100; }
+		else if (n < 0) { this->CitizenPower = 0; }
 		else { this->CitizenPower = n; }
 	}
 
@@ -64,6 +68,7 @@ public:
 	void SetReligionPower(int n)
 	{
 		if (n > 100) { this->ReligionPower = 100; }
+		else if (n < 0) { this->ReligionPower = 0; }
 		else { this->ReligionPower = n; }
 	}
 
@@ -71,35 +76,32 @@ public:
 	void SetArmyPower(int n)
 	{
 		if(n > 100) { this->ArmyPower = 100; }
+		else if (n < 0) { this->ArmyPower = 0; }
 		else { this->ArmyPower = n; }
 	}
 
 	int GetCitizenEnding() { return this->CitizenEnding; }
 	void SetCitizenEnding(int n)
 	{
-		if (n > 100) { this->CitizenEnding = 100; }
-		else { this->CitizenEnding = n; }
+		this->CitizenEnding = n;
 	}
 
 	int GetArmyEnding() { return this->ArmyEnding; }
 	void SetArmyEnding(int n)
 	{
-		if (n > 100) { this->ArmyEnding = 100; }
-		else { this->ArmyEnding = n; }
+		this->ArmyEnding = n;
 	}
 
 	int GetReligionEnding() { return this->ReligionEnding; }
 	void SetReligionEnding(int n)
 	{
-		if (n > 100) { this->ReligionEnding = 100; }
-		else { this->ReligionEnding = n; }
+		this->ReligionEnding = n;
 	}
 
 	int GetAllDieEnding() { return this->AllDieEnding; }
 	void SetAllDieEnding(int n)
 	{
-		if (n > 100) { this->AllDieEnding = 100; }
-		else { this->AllDieEnding = n; }
+		this->AllDieEnding = n;
 	}
 
 	int* GetCntArr() { return this->CntArr; }

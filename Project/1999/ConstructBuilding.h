@@ -5,6 +5,7 @@
 #include "BuildingInfo.h"
 #include "InfoHandler.h"
 #include "NewsHandler.h"
+#include "Music.h"
 #include <time.h>
 #include <set>
 #include <map>
@@ -12,7 +13,8 @@
 class ConstructBuilding : Map, BuildingImage, BuildingInfo
 {
 private:
-	SetPosition* to;
+	SetPosition* to = new SetPosition;
+	Music* music = new Music;
 
 	int ExitNum;
 
@@ -22,6 +24,9 @@ private:
 public:
 	ConstructBuilding();
 	~ConstructBuilding();
+
+	// Initializer
+	void BuildingIntializer();
 
 	int GetExitNum()
 	{
@@ -41,6 +46,8 @@ public:
 
 	void PlusCntBuilding(int building, InfoHandler* info);
 	void MinusCntBuilding(int building, InfoHandler* info);
+
+	void Religon42BMaker(InfoHandler* info, NewsHandler* news);
 
 	// Zombie About Building
 	int ReligionCntSave(InfoHandler* info, NewsHandler* news);

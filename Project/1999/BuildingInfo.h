@@ -31,7 +31,6 @@ protected:
 	// CenterCOORD
 	std::pair<int, int> CenterCOORDAPT;
 	std::pair<int, int> CenterCOORDReligion;
-	std::pair<int, int> CenterCOORDPark;
 
 public:
 	BuildingInfo();

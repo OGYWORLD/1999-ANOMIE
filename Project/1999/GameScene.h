@@ -5,6 +5,7 @@
 #include "InfoHandler.h"
 #include "NewsHandler.h"
 #include "EndingScene.h"
+#include "Music.h"
 
 
 class GameScene
@@ -16,6 +17,9 @@ private:
 	InfoHandler* info = new InfoHandler;
 	NewsHandler* news = new NewsHandler;
 	EndingScene* ending = new EndingScene;
+	Music* music = new Music;
+
+	int WhichMusic;
 
 public:
 	GameScene();
@@ -35,6 +39,9 @@ public:
 
 	// Zombie Day
 	void ZombieAttack();
+
+	// Music Check();
+	void MusicCheck(int zombie);
 	
 };
 

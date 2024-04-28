@@ -73,5 +73,6 @@ public:
 
 	void InitMap();
 	void PrintWholeMap();
+
 };
 

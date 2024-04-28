@@ -12,6 +12,12 @@ NewsHandler::~NewsHandler()
 	delete to;
 }
 
+void NewsHandler::NewsInitializer()
+{
+	MakeQueueEmpty();
+	NewsQ.push(std::pair < const char*, int>("제 15대 대통령 임기시작.. 과연..", 14));
+}
+
 void NewsHandler::ShowNewNews()
 {
 	to->PartClean(NEWS_POSITION_X+2, NEWS_POSITION_Y+4, 40, 15);
@@ -43,6 +49,7 @@ void NewsHandler::ShowZombieNews()
 		to->GoToXYPosition(NEWS_POSITION_X + 4, NEWS_POSITION_Y + 4 + index);
 		to->SetColor(NewsQ.front().second);
 		printf("%s", NewsQ.front().first);
+		music->PlayZombieNews();
 		Sleep(1000);
 
 		NewsQ.pop();
@@ -304,6 +311,14 @@ void NewsHandler::PushNewsQueue(int category)
 			NewsQ.pop();
 		}
 		NewsQ.push(std::pair <const char*, int>("[긴급] 좀비 발생, 대피요망", 70));
+	}
+	else if (category == ENEWS_CATEGORY::Maker42B)
+	{
+		if (NewsQ.size() == MAX_NEWS)
+		{
+			NewsQ.pop();
+		}
+		NewsQ.push(std::pair <const char*, int>("[종교] 유명 교회, 사이비로 밝혀져...", 12));
 	}
 }
 

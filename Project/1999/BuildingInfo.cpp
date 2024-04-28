@@ -2,6 +2,13 @@
 
 BuildingInfo::BuildingInfo()
 {
+	APTNum = 0;
+	HospitalNum = 0;
+	ParkNum = 0;
+	ReligionNum = 0;
+	ArmySmallNum = 0;
+	ArmyMediumNum = 0;
+	ArmyLargeNum = 0;
 }
 
 BuildingInfo::~BuildingInfo()
@@ -10,7 +17,7 @@ BuildingInfo::~BuildingInfo()
 
 std::pair<int, int> BuildingInfo::CalCulCenterCOORD(int size, int x, int y)
 {
-	return std::pair<int, int>(x - size - 1, y - size /  2);
+	return std::pair<int, int>(x + size, y + size /  2);
 }
 
 std::pair<int, int> BuildingInfo::CalCulCenterCOORDMap(std::map<std::pair<int, int>, std::pair<int, int>> map)
@@ -59,11 +66,6 @@ void BuildingInfo::RemoveCOORDData(int x, int y, int building, int size)
 		PerCenterCOORDReligion.erase(std::pair<int, int>(x, y));
 		CenterCOORDReligion = CalCulCenterCOORDMap(PerCenterCOORDReligion);
 	}
-	else if (building == EKEYBOARD::NUM7_KEY)
-	{
-		PerCenterCOORDPark.erase(std::pair<int, int>(x, y));
-		CenterCOORDPark = CalCulCenterCOORDMap(PerCenterCOORDPark);
-	}
 }
 
 void BuildingInfo::AddCOORDData(int x, int y, int building, int size)
@@ -81,10 +83,5 @@ void BuildingInfo::AddCOORDData(int x, int y, int building, int size)
 	{ 
 		PerCenterCOORDReligion[std::pair<int, int>(x, y)] = std::pair<int, int>(CalCulCenterCOORD(size, x, y));
 		CenterCOORDReligion = CalCulCenterCOORDMap(PerCenterCOORDReligion);
-	}
-	else if (building == EKEYBOARD::NUM7_KEY)
-	{ 
-		PerCenterCOORDPark[std::pair<int, int>(x, y)] = std::pair<int, int>(CalCulCenterCOORD(size, x, y));
-		CenterCOORDPark = CalCulCenterCOORDMap(PerCenterCOORDPark);
 	}
 }

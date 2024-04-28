@@ -23,13 +23,31 @@ ConstructBuilding::ConstructBuilding()
 	BuildingPrice.insert(std::pair<int, int>(52, 120000)); // Army Medium
 	BuildingPrice.insert(std::pair<int, int>(53, 70000)); // Curch
 	BuildingPrice.insert(std::pair<int, int>(54, 70000)); // Cathedral
-	BuildingPrice.insert(std::pair<int, int>(55, 50000)); // Park
+	BuildingPrice.insert(std::pair<int, int>(55, 30000)); // Park
 	BuildingPrice.insert(std::pair<int, int>(56, 200000)); // Army Large
 }
 
 ConstructBuilding::~ConstructBuilding()
 {
 	delete to;
+	delete music;
+}
+
+void ConstructBuilding::BuildingIntializer()
+{
+	APTNum = 0;
+	HospitalNum = 0;
+	ParkNum = 0;
+	ReligionNum = 0;
+	ArmySmallNum = 0;
+	ArmyMediumNum = 0;
+	ArmyLargeNum = 0;
+
+	PerCenterCOORDAPT.clear();
+	PerCenterCOORDReligion.clear();
+	PerCenterExit.clear();
+
+	Map::InitMap();
 }
 
 void ConstructBuilding::PrintWholeMap()
@@ -63,6 +81,7 @@ void ConstructBuilding::GetPlayerExitNum()
 			int nKey = _getch();
 			if (nKey == EKEYBOARD::SPACE)
 			{
+				music->PlayBigClick();
 				break;
 			}
 			else if (nKey == EKEYBOARD::KOREAN)
@@ -73,6 +92,7 @@ void ConstructBuilding::GetPlayerExitNum()
 			}
 			else if (nKey == EKEYBOARD::C_KEY)
 			{
+				music->PlayFinish();
 				Map::InitMap();
 				MakeRandomExit();
 				to->PartClean(0, 0, MAP_X, MAP_Y);
@@ -83,6 +103,7 @@ void ConstructBuilding::GetPlayerExitNum()
 				nKey = _getch();
 				if (nKey == EKEYBOARD::KEY_LEFT)
 				{
+					music->PlayMoveBeep();
 					ExitNum--;
 					if (ExitNum < 2)
 					{
@@ -98,6 +119,7 @@ void ConstructBuilding::GetPlayerExitNum()
 				}
 				else if (nKey == EKEYBOARD::KEY_RIGHT)
 				{
+					music->PlayMoveBeep();
 					ExitNum++;
 					if (ExitNum > 4)
 					{
@@ -129,9 +151,9 @@ void ConstructBuilding::MakeRandomExit()
 	int index = 0;
 	while (index < ExitNum)
 	{
-		// 156 x 50, but 6 is for extra
-		int DecideXPart = rand() % 3; // 0: x=0, 1: x = 155(EndLine), 2: x = 0 ~ 150(Along Line)
-		int DecideYPart = rand() % 3;
+		// 156 x 50, but 5 is for extra
+		int DecideXPart = rand() % 3; // 0: x=0, 1: x = 155(EndLine), 2: x = 5 ~ 150(Along Line)
+		int DecideYPart = rand() % 2;
 
 		// Along Line Decide
 		if (DecideXPart == 0)
@@ -141,7 +163,7 @@ void ConstructBuilding::MakeRandomExit()
 			// Block Check
 			for (int i = 0; i < 4; i++)
 			{
-				if (Map::TotalMap[DecideYPart - i][DecideXPart]->GetInfo() == 0 || Map::TotalMap[DecideYPart - (3 - i)][DecideXPart]->GetInfo() == 0)
+				if (TotalMap[DecideYPart - i][DecideXPart]->GetInfo() == 0 || TotalMap[DecideYPart - (3 - i)][DecideXPart]->GetInfo() == 0)
 				{
 					BlockValidCheck = 1;
 					break;
@@ -162,7 +184,7 @@ void ConstructBuilding::MakeRandomExit()
 			// Block Check
 			for (int i = 0; i < 4; i++)
 			{
-				if (Map::TotalMap[DecideYPart + i][DecideXPart]->GetInfo() == 0 || Map::TotalMap[DecideYPart - (4 - i)][DecideXPart]->GetInfo() == 0)
+				if (TotalMap[DecideYPart + i][DecideXPart]->GetInfo() == 0 || TotalMap[DecideYPart - (3 - i)][DecideXPart]->GetInfo() == 0)
 				{
 					BlockValidCheck = 1;
 					break;
@@ -191,7 +213,7 @@ void ConstructBuilding::MakeRandomExit()
 			// Block Check
 			for (int i = 0; i < 4; i++)
 			{
-				if (Map::TotalMap[DecideYPart][DecideXPart + i]->GetInfo() == 0 || Map::TotalMap[DecideYPart][DecideXPart - (4 - i)]->GetInfo() == 0)
+				if (TotalMap[DecideYPart][DecideXPart + i]->GetInfo() == 0 || TotalMap[DecideYPart][DecideXPart - (3 - i)]->GetInfo() == 0)
 				{
 					BlockValidCheck = 1;
 					break;
@@ -220,17 +242,17 @@ void ConstructBuilding::MakeRandomExit()
 				{
 					if (DecideXPart == 0)
 					{
-						Map::TotalMap[DecideYPart + i][DecideXPart + 1]->SetColor(0);
-						Map::TotalMap[DecideYPart + i][DecideXPart + 1]->SetInfo(0);
+						TotalMap[DecideYPart + i][DecideXPart + 1]->SetColor(0);
+						TotalMap[DecideYPart + i][DecideXPart + 1]->SetInfo(0);
 					}
 					else
 					{
-						Map::TotalMap[DecideYPart + i][DecideXPart - 1]->SetColor(0);
-						Map::TotalMap[DecideYPart + i][DecideXPart - 1]->SetInfo(0);
+						TotalMap[DecideYPart + i][DecideXPart - 1]->SetColor(0);
+						TotalMap[DecideYPart + i][DecideXPart - 1]->SetInfo(0);
 					}
 
-					Map::TotalMap[DecideYPart + i][DecideXPart]->SetColor(0);
-					Map::TotalMap[DecideYPart + i][DecideXPart]->SetInfo(0);
+					TotalMap[DecideYPart + i][DecideXPart]->SetColor(0);
+					TotalMap[DecideYPart + i][DecideXPart]->SetInfo(0);
 				}
 			}
 			else
@@ -239,17 +261,17 @@ void ConstructBuilding::MakeRandomExit()
 				{
 					if (DecideYPart == 0)
 					{
-						Map::TotalMap[DecideYPart + 1][DecideXPart + i]->SetColor(0);
-						Map::TotalMap[DecideYPart + 1][DecideXPart + i]->SetInfo(0);
+						TotalMap[DecideYPart + 1][DecideXPart + i]->SetColor(0);
+						TotalMap[DecideYPart + 1][DecideXPart + i]->SetInfo(0);
 					}
 					else
 					{
-						Map::TotalMap[DecideYPart - 1][DecideXPart + i]->SetColor(0);
-						Map::TotalMap[DecideYPart - 1][DecideXPart + i]->SetInfo(0);
+						TotalMap[DecideYPart - 1][DecideXPart + i]->SetColor(0);
+						TotalMap[DecideYPart - 1][DecideXPart + i]->SetInfo(0);
 					}
 
-					Map::TotalMap[DecideYPart][DecideXPart + i]->SetColor(0);
-					Map::TotalMap[DecideYPart][DecideXPart + i]->SetInfo(0);
+					TotalMap[DecideYPart][DecideXPart + i]->SetColor(0);
+					TotalMap[DecideYPart][DecideXPart + i]->SetInfo(0);
 				}
 			}
 		}
@@ -295,6 +317,7 @@ int ConstructBuilding::BuildBuilding(int building, InfoHandler* info)
 			if (nKey == EKEYBOARD::SPACE)
 			{
 				// 건물짓기 호출
+				music->PlayBuildSound();
 				NewBuild(building, CurX, CurY, info);
 
 				to->GoToXYPosition(0, 0);
@@ -303,6 +326,7 @@ int ConstructBuilding::BuildBuilding(int building, InfoHandler* info)
 			else if (nKey == EKEYBOARD::V_KEY)
 			{
 				// 건물 파괴 호출
+				music->PlayDestroySound();
 				DestroyBuilding(building, BuildingSize[building], CurX, CurY, info, 0);
 
 				to->GoToXYPosition(0, 0);
@@ -379,7 +403,7 @@ void ConstructBuilding::ShowBuildShadow(int size, int x, int y, int direction)
 		for (int i = 0; i < size * 2; i++)
 		{
 			to->GoToXYPosition(x + i, y + size);
-			to->SetColor(Map::TotalMap[y + size][x + i]->GetColor());
+			to->SetColor(TotalMap[y + size][x + i]->GetColor());
 			printf(" ");
 			to->SetColor(0);
 		}
@@ -389,7 +413,7 @@ void ConstructBuilding::ShowBuildShadow(int size, int x, int y, int direction)
 		for (int i = 0; i < size * 2; i++)
 		{
 			to->GoToXYPosition(x + i, y-1);
-			to->SetColor(Map::TotalMap[y - 1][x + i]->GetColor());
+			to->SetColor(TotalMap[y - 1][x + i]->GetColor());
 			printf(" ");
 			to->SetColor(0);
 		}
@@ -401,7 +425,7 @@ void ConstructBuilding::ShowBuildShadow(int size, int x, int y, int direction)
 			for (int j = 0; j < 2; j++)
 			{
 				to->GoToXYPosition(x + size * 2 + j, y + i);
-				to->SetColor(Map::TotalMap[y + i][x + size * 2 + j]->GetColor());
+				to->SetColor(TotalMap[y + i][x + size * 2 + j]->GetColor());
 				printf(" ");
 				to->SetColor(0);
 			}
@@ -414,7 +438,7 @@ void ConstructBuilding::ShowBuildShadow(int size, int x, int y, int direction)
 			for (int j = 0; j < 2; j++)
 			{
 				to->GoToXYPosition(x - j - 1, y + i);
-				to->SetColor(Map::TotalMap[y + i][x - j - 1]->GetColor());
+				to->SetColor(TotalMap[y + i][x - j - 1]->GetColor());
 				printf(" ");
 				to->SetColor(0);
 			}
@@ -427,7 +451,7 @@ void ConstructBuilding::ShowBuildShadow(int size, int x, int y, int direction)
 		for (int j = 0; j < size * 2; j++)
 		{
 			to->GoToXYPosition(x + j, y + i);
-			if (Map::TotalMap[y + i][x + j]->GetInfo() != 0)
+			if (TotalMap[y + i][x + j]->GetInfo() != 0)
 			{
 				to->SetColor(193);
 				printf(" ");
@@ -453,7 +477,7 @@ void ConstructBuilding::CleanBuildShadow(int size, int x, int y)
 		for (int j = 0; j < size * 2; j++)
 		{
 			to->GoToXYPosition(x + j, y + i);
-			to->SetColor(Map::TotalMap[y + i][x + j]->GetColor());
+			to->SetColor(TotalMap[y + i][x + j]->GetColor());
 			printf(" ");
 			to->SetColor(0);
 		}
@@ -469,7 +493,7 @@ void ConstructBuilding::NewBuild(int building, int x, int y, InfoHandler* info)
 	{
 		for (int j = 0; j < size * 2; j++)
 		{
-			if (Map::TotalMap[y + i][x + j]->GetInfo() != 0)
+			if (TotalMap[y + i][x + j]->GetInfo() != 0)
 			{
 				ValidCheck = 1;
 				break;
@@ -501,51 +525,50 @@ void ConstructBuilding::NewBuild(int building, int x, int y, InfoHandler* info)
 		{
 			for (int j = 0; j < size * 2; j++)
 			{
-				Map::TotalMap[y + i][x + j]->SetStartX(x);
-				Map::TotalMap[y + i][x + j]->SetStartY(y);
-				Map::TotalMap[y + i][x + j]->SetInfo(-1);
-				Map::TotalMap[y + i][x + j]->SetSize(size);
+				TotalMap[y + i][x + j]->SetStartX(x);
+				TotalMap[y + i][x + j]->SetStartY(y);
+				TotalMap[y + i][x + j]->SetSize(size);
 
 
 				if (building == EKEYBOARD::NUM1_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::HOSPITAL);
-					Map::TotalMap[y + i][x + j]->SetColor(Hospital[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::HOSPITAL);
+					TotalMap[y + i][x + j]->SetColor(Hospital[i][j]);
 				}
 				else if (building == EKEYBOARD::NUM2_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::ARMY_SAMLL);
-					Map::TotalMap[y + i][x + j]->SetColor(ArmySmall[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::ARMY_SAMLL);
+					TotalMap[y + i][x + j]->SetColor(ArmySmall[i][j]);
 				}
 				else if (building == EKEYBOARD::NUM3_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::APT);
-					Map::TotalMap[y + i][x + j]->SetColor(APT[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::APT);
+					TotalMap[y + i][x + j]->SetColor(APT[i][j]);
 				}
 				else if (building == EKEYBOARD::NUM4_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::ARMY_MEDIUM);
-					Map::TotalMap[y + i][x + j]->SetColor(ArmyMedium[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::ARMY_MEDIUM);
+					TotalMap[y + i][x + j]->SetColor(ArmyMedium[i][j]);
 				}
 				else if (building == EKEYBOARD::NUM5_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::CHURCH);
-					Map::TotalMap[y + i][x + j]->SetColor(Church[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::CHURCH);
+					TotalMap[y + i][x + j]->SetColor(Church[i][j]);
 				}
 				else if (building == EKEYBOARD::NUM6_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::CATHEDRAL);
-					Map::TotalMap[y + i][x + j]->SetColor(Cathedral[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::CATHEDRAL);
+					TotalMap[y + i][x + j]->SetColor(Cathedral[i][j]);
 				}
 				else if (building == EKEYBOARD::NUM7_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::PARK);
-					Map::TotalMap[y + i][x + j]->SetColor(Park[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::PARK);
+					TotalMap[y + i][x + j]->SetColor(Park[i][j]);
 				}
 				else if (building == EKEYBOARD::NUM8_KEY)
 				{ 
-					Map::TotalMap[y + i][x + j]->SetInfo(EBUILDING::ARMY_LARGE);
-					Map::TotalMap[y + i][x + j]->SetColor(ArmyLarge[i][j]);
+					TotalMap[y + i][x + j]->SetInfo(EBUILDING::ARMY_LARGE);
+					TotalMap[y + i][x + j]->SetColor(ArmyLarge[i][j]);
 				}
 
 			}
@@ -565,9 +588,9 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 	{
 		for (int j = 0; j < size * 2 - Zombie; j++)
 		{
-			if (Map::TotalMap[y + i][x + j]->GetInfo() != 0)
+			if (TotalMap[y + i][x + j]->GetInfo() != 0)
 			{
-				DeleteCOOR.insert(std::pair<int, int>{Map::TotalMap[y + i][x + j]->GetStartX(), Map::TotalMap[y + i][x + j]->GetStartY()});
+				DeleteCOOR.insert(std::pair<int, int>{TotalMap[y + i][x + j]->GetStartX(), TotalMap[y + i][x + j]->GetStartY()});
 			}
 		}
 	}
@@ -579,16 +602,28 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 		std::set<std::pair<int, int>>::iterator iter;
 		for (iter = DeleteCOOR.begin(); iter != DeleteCOOR.end(); ++iter)
 		{
-			MinusCntBuilding(Map::TotalMap[iter->second][iter->first]->GetInfo(), info);
-			RemoveCOORDData(Map::TotalMap[iter->second][iter->first]->GetStartX(), y, Map::TotalMap[iter->second][iter->first]->GetStartY(), BuildingSize[Map::TotalMap[iter->second][iter->first]->GetInfo()]);
+			MinusCntBuilding(TotalMap[iter->second][iter->first]->GetInfo(), info);
+			RemoveCOORDData(TotalMap[iter->second][iter->first]->GetStartX(), y, TotalMap[iter->second][iter->first]->GetStartY(), BuildingSize[TotalMap[iter->second][iter->first]->GetInfo()]);
 
-			if (Zombie == 1)
+			if (Zombie == 0 && TotalMap[iter->second][iter->first]->GetInfo() != EKEYBOARD::RELIGION_42B_KEY) // 평상시
 			{
-				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 4);
+				info->SetMoney(info->GetMoney() + BuildingPrice[TotalMap[iter->second][iter->first]->GetInfo()] / 2);
 			}
-			else
+			else if (TotalMap[iter->second][iter->first]->GetInfo() == EKEYBOARD::RELIGION_42B_KEY) //42B Destroy
 			{
-				info->SetMoney(info->GetMoney() + BuildingPrice[Map::TotalMap[iter->second][iter->first]->GetInfo()] / 2);
+				if (info->GetMoney() < 100000)
+				{
+					info->PrintMoney(64);
+					Sleep(500);
+
+					info->PrintMoney(14);
+
+					continue;
+				}
+
+				info->SetCitizenPower(info->GetCitizenPower() + 10);
+				info->SetReligionPower(info->GetReligionPower() + 10);
+				info->SetMoney(info->GetMoney() - 100000);
 			}
 			info->PrintMoney(14);
 			info->PrintPower(14);
@@ -598,11 +633,11 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 			{
 				for (int j = 0; j < CurSize * 2; j++)
 				{
-					Map::TotalMap[iter->second + i][iter->first + j]->SetStartX(-1);
-					Map::TotalMap[iter->second + i][iter->first + j]->SetStartY(-1);
-					Map::TotalMap[iter->second + i][iter->first + j]->SetInfo(0);
-					Map::TotalMap[iter->second + i][iter->first + j]->SetSize(-1);
-					Map::TotalMap[iter->second + i][iter->first + j]->SetColor(0);
+					TotalMap[iter->second + i][iter->first + j]->SetStartX(-1);
+					TotalMap[iter->second + i][iter->first + j]->SetStartY(-1);
+					TotalMap[iter->second + i][iter->first + j]->SetInfo(0);
+					TotalMap[iter->second + i][iter->first + j]->SetSize(-1);
+					TotalMap[iter->second + i][iter->first + j]->SetColor(0);
 				}
 			}
 		}
@@ -618,10 +653,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetCitizenPower();
 		power+=1;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetCitizenPower(power);
 
 		HospitalNum++;
@@ -630,10 +661,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetArmyPower();
 		power += 1;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetArmyPower(power);
 
 		ArmySmallNum++;
@@ -641,11 +668,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM3_KEY)
 	{
 		power = info->GetCitizenPower();
-		power += 2;
-		if (power > 100)
-		{
-			power = 100;
-		}
+		power += 3;
 		info->SetCitizenPower(power);
 
 		APTNum++;
@@ -654,10 +677,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetArmyPower();
 		power += 3;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetArmyPower(power);
 
 		ArmyMediumNum++;
@@ -665,11 +684,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM5_KEY)
 	{
 		power = info->GetReligionPower();
-		power += 1;
-		if (power > 100)
-		{
-			power = 100;
-		}
+		power += 2;
 		info->SetReligionPower(power);
 
 		ReligionNum++;
@@ -677,11 +692,7 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	else if (building == EKEYBOARD::NUM6_KEY)
 	{
 		power = info->GetReligionPower();
-		power += 1;
-		if (power > 100)
-		{
-			power = 100;
-		}
+		power += 2;
 		info->SetReligionPower(power);
 
 		ReligionNum++;
@@ -690,10 +701,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetCitizenPower();
 		power += 5;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetCitizenPower(power);
 
 		ParkNum++;
@@ -702,10 +709,6 @@ void ConstructBuilding::PlusCntBuilding(int building, InfoHandler* info)
 	{
 		power = info->GetArmyPower();
 		power += 5;
-		if (power > 100)
-		{
-			power = 100;
-		}
 		info->SetArmyPower(power);
 
 		ArmyLargeNum++;
@@ -720,10 +723,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		HospitalNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM2_KEY)
@@ -731,10 +730,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ArmySmallNum--;
 		power = info->GetArmyPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM3_KEY)
@@ -742,10 +737,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		APTNum--;
 		power = info->GetCitizenPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM4_KEY)
@@ -753,10 +744,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ArmyMediumNum--;
 		power = info->GetArmyPower();
 		power -= 3;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetArmyPower(power);
 	}
 	else if (building == EKEYBOARD::NUM5_KEY)
@@ -764,10 +751,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM6_KEY)
@@ -775,10 +758,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ReligionNum--;
 		power = info->GetReligionPower();
 		power -= 1;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetReligionPower(power);
 	}
 	else if (building == EKEYBOARD::NUM7_KEY)
@@ -786,10 +765,6 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ParkNum--;
 		power = info->GetCitizenPower();
 		power -= 5;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetCitizenPower(power);
 	}
 	else if (building == EKEYBOARD::NUM8_KEY)
@@ -797,11 +772,55 @@ void ConstructBuilding::MinusCntBuilding(int building, InfoHandler* info)
 		ArmyLargeNum--;
 		power = info->GetArmyPower();
 		power -= 5;
-		if (power < 0)
-		{
-			power = 0;
-		}
 		info->SetArmyPower(power);
+	}
+}
+
+void ConstructBuilding::Religon42BMaker(InfoHandler* info, NewsHandler* news)
+{
+	// 종교시설개수 * 2 / 100의 확률로 사이비 메이커 발동
+	int Random = rand() % 100;
+	if (ReligionNum * 2 > Random)
+	{
+		ReligionNum--;
+		info->SetCitizenPower(info->GetCitizenPower() - 10);
+		info->SetReligionPower(info->GetReligionPower() - 10);
+		
+		int MapSize = PerCenterCOORDReligion.size();
+		Random = rand() % MapSize;
+
+		int OriginX, OriginY;
+		std::map<std::pair<int, int>, std::pair<int, int>>::iterator iter;
+		int index = 0;
+		for (iter = PerCenterCOORDReligion.begin(); iter != PerCenterCOORDReligion.end(); ++iter, index++)
+		{
+			if (index == Random)
+			{
+				OriginX = iter->first.first;
+				OriginY = iter->first.second;
+			}
+
+		}
+
+		int BuildSize = TotalMap[OriginY][OriginX]->GetSize();
+		RemoveCOORDData(OriginX, OriginY, TotalMap[OriginY][OriginX]->GetInfo(), BuildSize);
+		for (int i = 0; i < BuildSize; i++)
+		{
+			for (int j = 0; j < BuildSize * 2; j++)
+			{
+				if (TotalMap[OriginY + i][OriginX + j]->GetColor() != 0)
+				{
+					TotalMap[OriginY + i][OriginX + j]->SetColor(32);
+				}
+				TotalMap[OriginY + i][OriginX + j]->SetInfo(EKEYBOARD::RELIGION_42B_KEY);
+			}
+		}
+
+
+		to->GoToXYPosition(0, 0);
+		Map::PrintWholeMap();
+
+		news->PushNewsQueue(ENEWS_CATEGORY::Maker42B);
 	}
 }
 
@@ -915,9 +934,9 @@ int ConstructBuilding::DistanceBetweenAPTExit()
 
 void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* news)
 {
-	// 3 / (종교 건물 개수 + 종교권위/10) 확률로 건물을 뿌실지말지 정함
+	// 10 / (종교 건물 개수 + 1) 확률로 건물을 뿌실지말지 정함
 	int DecideDisaster = rand() % (ReligionNum + 1);
-	if (DecideDisaster < 3 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
+	if (DecideDisaster < 10 && HospitalNum + APTNum + ParkNum + ArmySmallNum + ArmyMediumNum + ArmyLargeNum > 0)
 	{
 		info->SetCntArr(ECOUNT::ZOMBIE_DESTROY_CNT, info->GetCntArr()[ECOUNT::ZOMBIE_DESTROY_CNT] + 1);
 
@@ -935,9 +954,9 @@ void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* n
 				news->PushNewsQueue(ENEWS_CATEGORY::PunishmentFromGod);
 				
 				to->SetColor(64);
-				int s = Map::TotalMap[y][x]->GetSize();
-				int OriginX = Map::TotalMap[y][x]->GetStartX();
-				int OriginY = Map::TotalMap[y][x]->GetStartY();
+				int s = TotalMap[y][x]->GetSize();
+				int OriginX = TotalMap[y][x]->GetStartX();
+				int OriginY = TotalMap[y][x]->GetStartY();
 
 				for (int i = 0; i < s; i++)
 				{
@@ -948,7 +967,7 @@ void ConstructBuilding::ZombieDayRandomDestory(InfoHandler* info, NewsHandler* n
 					}
 				}
 
-				DestroyBuilding(Map::TotalMap[y][x]->GetInfo(), 1, x, y, info, 1);
+				DestroyBuilding(TotalMap[y][x]->GetInfo(), 1, x, y, info, 1);
 
 				Sleep(2000);
 				break;

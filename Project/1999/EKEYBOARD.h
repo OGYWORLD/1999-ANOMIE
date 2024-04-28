@@ -21,6 +21,7 @@ enum EKEYBOARD
 	NUM6_KEY = 54, // Cathedral
 	NUM7_KEY = 55, // Park
 	NUM8_KEY = 56, // ArmyLarge
+	RELIGION_42B_KEY = 57,
 
 	KOREAN = 164,
 };
@@ -89,7 +90,8 @@ enum ENEWS_CATEGORY
 	AfterZombieGood,
 	AfterZombieBad,
 	PunishmentFromGod,
-	ZombieAppear
+	ZombieAppear,
+	Maker42B
 };
 
 enum ECOUNT
@@ -108,4 +110,10 @@ enum ECOUNT
 	ZOMBIE_DESTROY_CNT,
 	SAFE_ZOMBIE_CNT,
 	NONSAFE_ZOMBIE_CNT
+};
+
+enum EMUSIC
+{
+	INFINI,
+	DAEDULUS
 };

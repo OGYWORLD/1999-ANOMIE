@@ -1,2 +1,5 @@
-﻿  PlayGame.cpp
+﻿  Main.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\Main.cpp(50,79): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Main.cpp(50,79): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Main.cpp(53): warning C4715: 'PlayTest': not all control paths return a value
   1999.vcxproj -> C:\Users\admin\Desktop\KE_1999\Project\x64\Debug\1999.exe

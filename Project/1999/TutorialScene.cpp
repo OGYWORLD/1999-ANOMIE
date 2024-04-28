@@ -3,7 +3,10 @@
 TutorialScene::TutorialScene()
 {
 	ReturnMenu = -1;
-	index = 0;
+	index = 1;
+	Page = 1;
+
+	Announce.push_back("이곳에는 이전 다이어로그가 표시됩니다.");
 
 	Announce.push_back("먼저 대통령의 권한을 알려드립니다.");
 
@@ -27,7 +30,7 @@ TutorialScene::TutorialScene()
 	Announce.push_back("건물은 시민, 국방, 종교에 따라 나누어져있습니다.");
 	Announce.push_back("건물을 건설할 때마다, 건물의 종류에 따라 긍정적인 여론이 발생합니다.");
 	Announce.push_back("조심하세요, 파괴할 때는 건물로 인한 여론이 사라지고 건설비도 절반 밖에 돌려받지 못합니다.");
-	Announce.push_back("특히, 좀비 재난 시 발생되는 건물 파괴는 초기 건설비의 1/4도 수거하지 못합니다.");
+	Announce.push_back("특히, 좀비 재난 시 발생되는 건물 파괴는 어떠한 건설비도 돌려받지 못합니다.");
 	Announce.push_back("건물은 단지 여론 조성을 위해 사용되지 않습니다.");
 	Announce.push_back("좀비 재난이 발생했을때 국민을 안전으로 인도해주는 역할을 합니다.");
 	Announce.push_back("꼭 모든 건물이 그런 건 아니라는 걸 명심하세요.");
@@ -35,6 +38,8 @@ TutorialScene::TutorialScene()
 	Announce.push_back("대통령님께서 진심으로 국민을 생각하신다면 그런 센스는 가지고 있으시길 바랍니다.");
 	Announce.push_back("또한, ... 뭐 종교 건물 정도야 대통령님의 뜻에 따라 건설되겠죠.");
 	Announce.push_back("이 부분에 대해서는 따로 말씀드리지 않겠습니다.");
+	Announce.push_back("아, 지금까지의 역사에 기반하면 종교가 기승이면 이단이 항상 생기더군요.");
+	Announce.push_back("뭐.. 어디까지나 역사에 기반이지만요.");
 
 	Announce.push_back("마지막으로, 민심, 군사력, 종교 권위에 대해 알려드립니다.");
 
@@ -54,17 +59,20 @@ TutorialScene::~TutorialScene()
 {
 	delete print;
 	delete to;
+	delete music;
 }
 
 void TutorialScene::PlayTutorial()
 {
 	ReturnMenu = -1;
-	//PrintIntro();
+	PrintIntro();
 	PrintMenuTutorial();
 }
 
 void TutorialScene::PrintIntro()
 {
+	music->PlayMusicIzanami2();
+
 	system("cls");
 
 	print->ConvertWholeImage(WHOLE_IMAGE_HALF_Y, print->GetZeepImage());
@@ -81,6 +89,11 @@ void TutorialScene::PrintIntro()
 
 void TutorialScene::PrintMenuTutorial()
 {
+	int EndTutorial = 0;
+	ReturnMenu = -1;
+	index = 1;
+	Page = 1;
+
 	system("cls");
 
 	print->ConvertWholeImage(WHOLE_IMAGE_HALF_Y, print->GetVideoMainImage());
@@ -90,53 +103,128 @@ void TutorialScene::PrintMenuTutorial()
 	to->GoToXYPosition(88, 45);
 	printf("다음 space bar | 메뉴로 m");
 
-	to->SetColor(31);
-	to->GoToXYPosition(90, 25);
-	printf("1. 대통령 권한 안내");
-
-	SetAnnouncePosition(Announce, 10);
-
-	PrintMenuInfo();
-
-	for (int i = 0; i < TUTORIAL_INTRODUCE_MENU_ANNOUNCE_NUM; i++)
+	while (1)
 	{
-		SetAnnouncePosition(Announce, 10);
+		if (Page == 1)
+		{
+			PrintCategory(14, 8, 8);
+			Page = 2;
+			index = 1;
+			to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
+			to->SetColor(31);
+			to->GoToXYPosition(90, 25);
+			printf("1. 대통령 권한 안내");
+
+
+			if (SetAnnouncePosition(Announce, 10) == 1) { return; }
+
+			PrintMenuInfo();
+
+			for (int i = 0; i < TUTORIAL_INTRODUCE_MENU_ANNOUNCE_NUM; i++)
+			{
+				int EndCheck = SetAnnouncePosition(Announce, 10);
+				if (EndCheck == 1)
+				{
+					EndTutorial = 1;
+					break;
+				}
+				else if (EndCheck == 2)
+				{
+					EndTutorial = 2;
+					ReturnMenu = -1;
+					break;
+				}
+			}
+			if (EndTutorial == 1) { return; }
+			else if (EndTutorial == 2)
+			{
+				EndTutorial = -1;
+				continue;
+			}
+		}
+		else if (Page == 2)
+		{
+			PrintCategory(8, 14, 8);
+			Page = 3;
+			index = 16;
+
+			to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
+			to->SetColor(31);
+			to->GoToXYPosition(90, 25);
+			printf("2. 건물 건설 안내");
+
+			if (SetAnnouncePosition(Announce, 10) == 1) { return; }
+
+			PrintConstructInfo();
+
+			for (int i = 0; i < TUTORIAL_INTRODUCE_CONSTRUCT_ANNOUNCE_NUM; i++)
+			{
+				int EndCheck = SetAnnouncePosition(Announce, 10);
+				if (EndCheck == 1)
+				{
+					EndTutorial = 1;
+					break;
+				}
+				else if (EndCheck == 2)
+				{
+					EndTutorial = 2;
+					ReturnMenu = -1;
+					break;
+				}
+			}
+			if (EndTutorial == 1) { return; }
+			else if (EndTutorial == 2)
+			{
+				EndTutorial = -1;
+				continue;
+			}
+		}
+		else
+		{
+			PrintCategory(8, 8, 14);
+			index = 30;
+			Page = 1;
+			to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
+			to->SetColor(31);
+			to->GoToXYPosition(83, 25);
+			printf("3. 민심, 군사력, 종교 권위 안내");
+
+			if (SetAnnouncePosition(Announce, 10) == 1) { return; }
+
+			PrintPowerInfo();
+
+			for (int i = 0; i < TUTORIAL_INTRODUCE_POWER_ANNOUNCE_NUM; i++)
+			{
+				int EndCheck = SetAnnouncePosition(Announce, 10);
+				if (EndCheck == 1)
+				{
+					EndTutorial = 1;
+					break;
+				}
+				else if (EndCheck == 2)
+				{
+					EndTutorial = 2;
+					ReturnMenu = -1;
+					break;
+				}
+			}
+			if (EndTutorial == 1) { return; }
+			else if (EndTutorial == 2)
+			{
+				EndTutorial = -1;
+				continue;
+			}
+
+			to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
+			to->SetColor(47);
+			to->GoToXYPosition(92, 25);
+			printf("수고하셨습니다");
+
+			if (SetAnnouncePosition(Announce, 10) == 1) { return; }
+
+			index = 1;
+		}
 	}
-
-	to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
-	to->SetColor(31);
-	to->GoToXYPosition(90, 25);
-	printf("2. 건물 건설 안내");
-
-	SetAnnouncePosition(Announce, 10);
-
-	PrintConstructInfo();
-
-	for (int i = 0; i < TUTORIAL_INTRODUCE_CONSTRUCT_ANNOUNCE_NUM; i++)
-	{
-		SetAnnouncePosition(Announce, 10);
-	}
-
-	to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
-	to->SetColor(31);
-	to->GoToXYPosition(83, 25);
-	printf("3. 민심, 군사력, 종교 권위 안내");
-	
-	SetAnnouncePosition(Announce, 10);
-
-	PrintPowerInfo();
-
-	for (int i = 0; i < TUTORIAL_INTRODUCE_POWER_ANNOUNCE_NUM; i++)
-	{
-		SetAnnouncePosition(Announce, 10);
-	}
-
-	to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
-	to->SetColor(47);
-	to->GoToXYPosition(92, 25);
-	printf("수고하셨습니다");
-
-	SetAnnouncePosition(Announce, 10);
 }
 
 void TutorialScene::PrintMenuInfo()
@@ -241,10 +329,33 @@ int TutorialScene::NextKey()
 
 		if (nKey == EKEYBOARD::SPACE)
 		{
+			music->PlayMoveBeep();
+			break;
+		}
+		else if (nKey == EKEYBOARD::NUM1_KEY)
+		{
+			music->PlayMoveBeep();
+			Page = 1;
+			ReturnMenu = 2;
+			break;
+		}
+		else if (nKey == EKEYBOARD::NUM2_KEY)
+		{
+			music->PlayMoveBeep();
+			Page = 2;
+			ReturnMenu = 2;
+			break;
+		}
+		else if (nKey == EKEYBOARD::NUM3_KEY)
+		{
+			music->PlayMoveBeep();
+			Page = 3;
+			ReturnMenu = 2;
 			break;
 		}
 		if (nKey == EKEYBOARD::M_KEY)
 		{
+			music->PlayBigClick();
 			to->SetColor(0);
 			ReturnMenu = 1;
 			break;
@@ -320,13 +431,28 @@ void TutorialScene::PrintPowerInfo()
 {
 	to->PartClean(TUTORIAL_BOX_POSITION_X, TUTORIAL_BOX_POSITION_Y, TUTORIAL_BOX_BX, TUTORIAL_BOX_BY);
 
-	to->SetColor(31);
+	to->SetColor(78);
 	to->GoToXYPosition(75, 22);
 	printf("데이타 부족으로 인해 자료가 존재하지 않습니다.");
 
 }
 
-void TutorialScene::SetAnnouncePosition(std::vector<const char*> s, int color)
+void TutorialScene::PrintCategory(int p1, int p2, int p3)
+{
+	to->SetColor(p1);
+	to->GoToXYPosition(28, 55);
+	printf("1. 대통령 권한 안내 (key 1)");
+
+	to->SetColor(p2);
+	to->GoToXYPosition(88, 55);
+	printf("2. 건물 건설 안내 (key 2)");
+
+	to->SetColor(p3);
+	to->GoToXYPosition(148, 55);
+	printf("3. 민심, 군사력, 종교 권위 안내 (key 3)");
+}
+
+int TutorialScene::SetAnnouncePosition(std::vector<const char*> s, int color)
 {
 	to->PartClean(42, 39, 115, 1);
 	to->SetColor(color);
@@ -337,16 +463,21 @@ void TutorialScene::SetAnnouncePosition(std::vector<const char*> s, int color)
 	std::cout << s[index];
 
 	//backlog
-	if (index > 1)
+	if (index >= 1)
 	{
 		to->PartClean(42, 49, 115, 1);
 		int BackSize = strlen(s[index - 1])/2;
 		to->GoToXYPosition(TUTORIAL_ANNOUNCE_X - BackSize, TUTORIAL_ANNOUNCE_Y + 10);
+
+		// Before Dialog
 		to->SetColor(8);
 		std::cout << s[index - 1];
 	}
 
 	index++;
 
-	if (NextKey() == 1) { return; }
+	int nk = NextKey();
+	if(nk == 1) { return 1; }
+	else if (nk == 2) { return 2; }
+	else { return 0; }
 }

@@ -16,8 +16,9 @@ PlayGame::~PlayGame()
 
 void PlayGame::PlayGameMode()
 {
-	pre->PlayPreviewScene(); // Preview Scene
-	start->PlayStartScene(); // Start Scene
+	//Sleep(5000);
+	//pre->PlayPreviewScene(); // Preview Scene
+	//start->PlayStartScene(); // Start Scene
 
 	while (1)
 	{

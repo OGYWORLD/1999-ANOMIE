@@ -8,6 +8,7 @@ StartKeyboard::~StartKeyboard()
 {
 	delete to;
 	delete print;
+	delete music;
 }
 
 void StartKeyboard::GetPlayerInput()
@@ -18,8 +19,8 @@ void StartKeyboard::GetPlayerInput()
 	{
 		if (_kbhit())
 		{
+			music->PlayBigClick();
 			to->CleanInputBuffer();
-
 			break;
 		}
 

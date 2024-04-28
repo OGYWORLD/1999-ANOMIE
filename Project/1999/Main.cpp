@@ -1,7 +1,8 @@
 #include "PlayGame.h"
-
+ 
 int main()
 {
+	
 	system("mode con cols=202 lines=61 | title 1999");
 	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
 	cursorInfo.dwSize = 1;
