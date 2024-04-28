@@ -1,5 +1,75 @@
-﻿  Main.cpp
-C:\Users\admin\Desktop\KE_1999\Project\1999\Main.cpp(50,79): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
-C:\Users\admin\Desktop\KE_1999\Project\1999\Main.cpp(50,79): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
-C:\Users\admin\Desktop\KE_1999\Project\1999\Main.cpp(53): warning C4715: 'PlayTest': not all control paths return a value
+﻿  BuildingImage.cpp
+  ConstructBuilding.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(598,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(582,15): warning C4101: 'DeleteY': unreferenced local variable
+C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(582,6): warning C4101: 'DeleteX': unreferenced local variable
+C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(789,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  EndingScene.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(17,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(18,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(56,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(57,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(95,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(96,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(134,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(135,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(181,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\EndingScene.cpp(182,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  GameInfo.cpp
+  GameScene.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\GameScene.cpp(7,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\GameScene.cpp(675,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  InfoHandler.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\InfoHandler.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Map.cpp
+  MenuHandler.cpp
+  Music.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(65,92): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(65,92): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(67,82): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(67,82): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(59,17): warning C4101: 'PlayBigClick': unreferenced local variable
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(81,92): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(81,92): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(83,82): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(83,82): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(75,17): warning C4101: 'PlayMoveBeep': unreferenced local variable
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(97,90): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(97,90): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(99,78): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(99,78): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(91,17): warning C4101: 'PlayFinish': unreferenced local variable
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(113,94): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(113,94): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(115,86): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(115,86): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(107,17): warning C4101: 'PlayBuildSound': unreferenced local variable
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(129,96): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(129,96): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(131,90): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(131,90): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(123,17): warning C4101: 'PlayDestroySound': unreferenced local variable
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(145,97): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(145,97): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(147,92): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(147,92): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+C:\Users\admin\Desktop\KE_1999\Project\1999\Music.cpp(139,17): warning C4101: 'PlayProhibitSound': unreferenced local variable
+  News.cpp
+  NewsHandler.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\NewsHandler.cpp(24,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\NewsHandler.cpp(44,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  PlayGame.cpp
+  PreviewScene.cpp
+  PrintImage.cpp
+  SelectScene.cpp
+  StartKeyboard.cpp
+  StartScene.cpp
+  TutorialScene.cpp
+C:\Users\admin\Desktop\KE_1999\Project\1999\TutorialScene.cpp(460,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\admin\Desktop\KE_1999\Project\1999\TutorialScene.cpp(469,40): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  WholeImage.cpp
+  Generating Code...
+  Main.cpp
+  LINK : C:\Users\admin\Desktop\KE_1999\Project\x64\Debug\1999.exe not found or not built by the last incremental link; performing full link
   1999.vcxproj -> C:\Users\admin\Desktop\KE_1999\Project\x64\Debug\1999.exe
