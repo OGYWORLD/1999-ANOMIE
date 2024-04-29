@@ -1,6 +1,7 @@
+/* 키보드 입력 및 건물 번호, 엔딩 구분 enum 선언 클래스*/
 #pragma once
 
-enum EKEYBOARD
+enum EKEYBOARD // 키보드 입력
 {
 	DIRECTION = 224,
 	KEY_UP = 72,
@@ -26,7 +27,7 @@ enum EKEYBOARD
 	KOREAN = 164,
 };
 
-enum EBUILDING
+enum EBUILDING // 건물 번호
 {
 	HOSPITAL = 49,
 	ARMY_SAMLL = 50,
@@ -38,7 +39,7 @@ enum EBUILDING
 	ARMY_LARGE = 56
 };
 
-enum EMENU_SELECT
+enum EMENU_SELECT // 인게임 메뉴 선택(y축값)
 {
 	CITIZEN = 0,
 	ARMY = 7,
@@ -46,7 +47,7 @@ enum EMENU_SELECT
 	CONSTRUCT = 21
 };
 
-enum ESELECT_SCENE
+enum ESELECT_SCENE // 선택화면 및 엔딩 종류
 {
 	NEW_GAME = 0,
 	TUTORIAL = 7,
@@ -57,7 +58,7 @@ enum ESELECT_SCENE
 	ALLDIE_ENDING = 4
 };
 
-enum ENEWS_CATEGORY
+enum ENEWS_CATEGORY // 뉴스탭의 뉴스 카테고리
 {
 	CitizenLittleForceNews,
 	CitizenManyForceNews,
@@ -94,7 +95,7 @@ enum ENEWS_CATEGORY
 	Maker42B
 };
 
-enum ECOUNT
+enum ECOUNT // 엔딩에 출력할 변수를 배열로 관리하기 위한 인덱스로 사용될 enum
 {
 	DAYCOUNT,
 	CITIZEN_L_FORCE_CNT,
@@ -112,7 +113,7 @@ enum ECOUNT
 	NONSAFE_ZOMBIE_CNT
 };
 
-enum EMUSIC
+enum EMUSIC // 인게임 음악 재생 중복을 위한 enum
 {
 	INFINI,
 	DAEDULUS

@@ -9,17 +9,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\GameScene">
-      <UniqueIdentifier>{14081eb7-b6a7-45bd-bf83-3b3c2b76cdf9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{456d8ce3-e3fe-49d1-82f9-b43240e72055}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GameScene\Constant">
-      <UniqueIdentifier>{ead1ac1f-8eab-44b4-81a9-b41bf789fdec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GameScene\Imgae">
-      <UniqueIdentifier>{bc171c7c-c23a-4b75-9f47-ec6f5d7aa6c7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Keyboard">
       <UniqueIdentifier>{393850f2-804e-4465-a3be-cac4cff0e4c0}</UniqueIdentifier>
@@ -40,23 +31,11 @@
     <Filter Include="Source Files\Keyboard">
       <UniqueIdentifier>{0ce422c5-7540-488e-a37b-1157322c8105}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GameScene\Menu">
-      <UniqueIdentifier>{a7fa829a-8def-43cb-9e25-5c41a16d2cdb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Menu">
       <UniqueIdentifier>{d1070ba6-5c18-4197-a401-1fd2f453b933}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GameScene\Map">
-      <UniqueIdentifier>{7a3712ab-2e3f-4f7d-becf-a71fe85865c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GameScene\Info">
-      <UniqueIdentifier>{e080e672-14c3-4ebb-8978-c9f2438b822f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Info">
       <UniqueIdentifier>{9dce9a55-0e44-4d4e-b357-7f202bca9f03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GameScene\News">
-      <UniqueIdentifier>{6e13eb49-86da-4a8c-91e3-53d44b78f951}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\News">
       <UniqueIdentifier>{f8ad03e0-b59d-4b3c-b72c-65bb30afd094}</UniqueIdentifier>
@@ -66,6 +45,24 @@
     </Filter>
     <Filter Include="Source Files\Music">
       <UniqueIdentifier>{769c2441-9f71-4b21-9054-0d270fc76101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Constant">
+      <UniqueIdentifier>{ead1ac1f-8eab-44b4-81a9-b41bf789fdec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Info">
+      <UniqueIdentifier>{e080e672-14c3-4ebb-8978-c9f2438b822f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{7a3712ab-2e3f-4f7d-becf-a71fe85865c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menu">
+      <UniqueIdentifier>{a7fa829a-8def-43cb-9e25-5c41a16d2cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\News">
+      <UniqueIdentifier>{6e13eb49-86da-4a8c-91e3-53d44b78f951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Image">
+      <UniqueIdentifier>{bc171c7c-c23a-4b75-9f47-ec6f5d7aa6c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,16 +90,10 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="PlayGame.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="StartScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="SetPosition.cpp">
-      <Filter>Source Files\Keyboard</Filter>
-    </ClCompile>
-    <ClCompile Include="StartKeyboard.cpp">
       <Filter>Source Files\Keyboard</Filter>
     </ClCompile>
     <ClCompile Include="MenuHandler.cpp">
@@ -138,34 +129,34 @@
     <ClCompile Include="TutorialScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="PlayGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Header Files\GameScene\Map</Filter>
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="MapInfo.h">
-      <Filter>Header Files\GameScene\Map</Filter>
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="ConstantGroup.h">
-      <Filter>Header Files\GameScene\Constant</Filter>
+      <Filter>Header Files\Constant</Filter>
     </ClInclude>
     <ClInclude Include="BuildingImage.h">
-      <Filter>Header Files\GameScene\Imgae</Filter>
+      <Filter>Header Files\Image</Filter>
     </ClInclude>
     <ClInclude Include="ConstructBuilding.h">
-      <Filter>Header Files\GameScene\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayGame.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="PrintImage.h">
-      <Filter>Header Files\GameScene\Imgae</Filter>
+      <Filter>Header Files\Image</Filter>
     </ClInclude>
     <ClInclude Include="WholeImage.h">
-      <Filter>Header Files\GameScene\Imgae</Filter>
+      <Filter>Header Files\Image</Filter>
     </ClInclude>
     <ClInclude Include="StartScene.h">
       <Filter>Header Files\Scenes</Filter>
@@ -174,13 +165,10 @@
       <Filter>Header Files\Keyboard</Filter>
     </ClInclude>
     <ClInclude Include="EKEYBOARD.h">
-      <Filter>Header Files\GameScene\Constant</Filter>
-    </ClInclude>
-    <ClInclude Include="StartKeyboard.h">
-      <Filter>Header Files\Keyboard</Filter>
+      <Filter>Header Files\Constant</Filter>
     </ClInclude>
     <ClInclude Include="MenuHandler.h">
-      <Filter>Header Files\GameScene\Menu</Filter>
+      <Filter>Header Files\Menu</Filter>
     </ClInclude>
     <ClInclude Include="PreviewScene.h">
       <Filter>Header Files\Scenes</Filter>
@@ -189,19 +177,19 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="BuildingInfo.h">
-      <Filter>Header Files\GameScene\Map</Filter>
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="GameInfo.h">
-      <Filter>Header Files\GameScene\Info</Filter>
+      <Filter>Header Files\Info</Filter>
     </ClInclude>
     <ClInclude Include="InfoHandler.h">
-      <Filter>Header Files\GameScene\Info</Filter>
+      <Filter>Header Files\Info</Filter>
     </ClInclude>
     <ClInclude Include="News.h">
-      <Filter>Header Files\GameScene\News</Filter>
+      <Filter>Header Files\News</Filter>
     </ClInclude>
     <ClInclude Include="NewsHandler.h">
-      <Filter>Header Files\GameScene\News</Filter>
+      <Filter>Header Files\News</Filter>
     </ClInclude>
     <ClInclude Include="EndingScene.h">
       <Filter>Header Files\Scenes</Filter>
@@ -211,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="TutorialScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayGame.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

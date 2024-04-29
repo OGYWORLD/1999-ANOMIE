@@ -1,3 +1,5 @@
+/* 인게임 내 변수 클래스*/
+
 #pragma once
 
 #include "ConstantGroup.h"
@@ -6,31 +8,31 @@
 class GameInfo
 {
 protected:
-	int Money;
-	std::string CountryName = "";
-	std::string PresidentName = "";
-	int PeopleNum;
-	int Time;
-	int Year;
-	int Month;
-	int Day;
-	int ZombieAttack;
+#pragma region GameInfo
+	int Money; // 정부 예산
+	std::string CountryName = ""; // 국가 이름
+	std::string PresidentName = ""; // 대통령 이름
+	int PeopleNum; // 인구수
+	int Year; // 년도
+	int Month; // 월
+	int Day; // 일
 
-	int CitizenPower;
-	int ReligionPower;
-	int ArmyPower;
+	int CitizenPower; // 민심
+	int ReligionPower; // 종교권위
+	int ArmyPower; // 군사력
 
-	int CitizenEnding;
-	int ArmyEnding;
-	int ReligionEnding;
-	int AllDieEnding;
+	int CitizenEnding : 4; // 탄핵엔딩 flag
+	int ArmyEnding : 4; // 쿠데타 엔딩 flag
+	int ReligionEnding : 4; // 종교 개입 엔딩 flag
+	int AllDieEnding : 4; // 전멸 엔딩 flag
 
-	// 0: DayCnt, 1: CitizenLittleForceCnt, 2: CitizenManyForceCnt, 3: CitizenWelfareCnt
-	// 4: ArmyForceCnt, 5: ArmyPropagandaCnt, 6: ArmyWelfareCnt
-	// 7: ProhibitReligionForCitizenCnt, 8: ProhibitReligionForArmyCnt, 9: ReligionWelfareCnt
-	// 10: ZombieAttackCnt, 11: DestroyBuildingCnt, 12: SafeZombieCnt, 13: NonSafeZombieCnt
-	int CntArr[14];
+	/* 0: DayCnt, 1 : CitizenLittleForceCnt, 2 : CitizenManyForceCnt, 3 : CitizenWelfareCnt
+	 4: ArmyForceCnt, 5: ArmyPropagandaCnt, 6: ArmyWelfareCnt
+	 7: ProhibitReligionForCitizenCnt, 8: ProhibitReligionForArmyCnt, 9: ReligionWelfareCnt
+	 10: ZombieAttackCnt, 11: DestroyBuildingCnt, 12: SafeZombieCnt, 13: NonSafeZombieCnt */
+	int CntArr[14]; // 엔딩에 출력될 행위, 상황 횟수
 
+		// Info 탭 이미지
 	int InfoImage[INFO_Y][INFO_X] =
 	{
 		{145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,},
@@ -44,6 +46,7 @@ protected:
 {145,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,145,},
 {145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,145,}
 	};
+#pragma endregion
 
 public:
 	GameInfo();

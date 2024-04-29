@@ -50,6 +50,14 @@ void Map::InitMap()
 				TotalMap[i][j]->SetColor(240);
 				TotalMap[i][j]->SetInfo(-1);
 			}
+			else
+			{
+				TotalMap[i][j]->SetColor(0);
+				TotalMap[i][j]->SetInfo(0);
+			}
+			TotalMap[i][j]->SetSize(-1);
+			TotalMap[i][j]->SetStartX(-1);
+			TotalMap[i][j]->SetStartY(-1);
 		}
 	}
 }
@@ -62,9 +70,9 @@ void Map::PrintWholeMap()
 		{
 			if (TotalMap[i][j]->GetColor() != 0)
 			{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), TotalMap[i][j]->GetColor());
+				to->SetColor(TotalMap[i][j]->GetColor());
 				printf(" ");
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
+				to->SetColor(0);
 			}
 			else
 			{

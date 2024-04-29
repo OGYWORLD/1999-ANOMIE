@@ -1,3 +1,4 @@
+/* 이미지 및 텍스트 좌표 및 크기 모음*/
 #pragma once
 
 // Map
@@ -112,8 +113,11 @@
 #define	ZOMBIE_MENU_X		32
 #define	ZOMBIE_MENU_Y		30
 
+// Max Distance
+#define MAX_DISTANCE	163
+
 // Ending
-#define ENDING_TEXT_POSITION_X		72
+#define ENDING_TEXT_POSITION_X		66
 #define ENDING_TEXT_POSITION_Y		20
 
 #define DISAPPROVE_X	140

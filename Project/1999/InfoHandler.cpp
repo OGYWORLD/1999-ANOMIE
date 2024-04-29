@@ -2,12 +2,35 @@
 
 InfoHandler::InfoHandler()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 }
 
 InfoHandler::~InfoHandler()
 {
 	delete to;
+}
+
+void InfoHandler::GameInfoInitializer()
+{
+	Money = 2000000;
+	PeopleNum = 1000000;
+	Year = 1999;
+	Month = 1;
+	Day = 1;
+	CitizenPower = 50;
+	ReligionPower = 50;
+	ArmyPower = 50;
+
+	CitizenEnding = 0;
+	ArmyEnding = 0;
+	ReligionEnding = 0;
+	AllDieEnding = 0;
+
+	int size = sizeof(CntArr) / sizeof(CntArr[0]);
+	for (int i = 0; i < size; i++)
+	{
+		CntArr[i] = 0;
+	}
 }
 
 void InfoHandler::PrintInfo()
@@ -285,7 +308,7 @@ int InfoHandler::Propaganda()
 		}
 		Money -= r;
 		if (Money < 0) { Money = 0; }
-		ArmyPower += (r / 5000);
+		ArmyPower += (r / 5000) + 5;
 		if (ArmyPower > 100) { ArmyPower = 100; }
 
 		return 0;
@@ -312,39 +335,45 @@ void InfoHandler::ArmyWelfare()
 
 void InfoHandler::ProhibitReligionForCitizen()
 {
-	int r = rand() % 2 + 3;
-	CitizenPower += r;
-	ReligionPower -= r;
+	int r = rand() % 4 + 3;
+	if (ReligionPower >= r)
+	{
+		CitizenPower += r;
+		ReligionPower -= r;
 
-	if (CitizenPower > 100)
-	{
-		CitizenPower = 100;
-	}
-	if (ReligionPower < 0)
-	{
-		CitizenPower = 0;
+		if (CitizenPower > 100)
+		{
+			CitizenPower = 100;
+		}
+		if (ReligionPower < 0)
+		{
+			CitizenPower = 0;
+		}
 	}
 }
 
 void InfoHandler::ProhibitReligionForArmy()
 {
-	int r = rand() % 2 + 3;
-	ArmyPower += r;
-	ReligionPower -= r;
+	int r = rand() % 4 + 3;
+	if (ReligionPower >= r)
+	{
+		ArmyPower += r;
+		ReligionPower -= r;
 
-	if (ArmyPower > 100)
-	{
-		ArmyPower = 100;
-	}
-	if (ReligionPower < 0)
-	{
-		ArmyPower = 0;
+		if (ArmyPower > 100)
+		{
+			ArmyPower = 100;
+		}
+		if (ReligionPower < 0)
+		{
+			ArmyPower = 0;
+		}
 	}
 }
 
 void InfoHandler::ParticiateReligion()
 {
-	int r = rand() % 10000 + 10000;
+	int r = rand() % 10000 + 30000;
 	if (Money < r)
 	{
 		PrintMoney(64);
@@ -354,6 +383,6 @@ void InfoHandler::ParticiateReligion()
 		return;
 	}
 	Money -= r;
-	ReligionPower += (r / 10000);
+	ReligionPower += (r / 10000) + 2;
 	if (ReligionPower > 100) { ReligionPower = 100; }
 }

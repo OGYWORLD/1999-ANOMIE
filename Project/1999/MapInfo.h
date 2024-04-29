@@ -1,26 +1,21 @@
+/* TotalMap의 요소가 될 클래스*/
 #pragma once
 
 class MapInfo
 {
 private:
-	int StartX; // Build's Start X position
-	int StartY; // Build's Start Y position
-	int Info; // 0: Build Avaliable, -1: Build Unvaliable, 49: hospital ~ 56: ArmyLarge
-	int Size; // Building Size
-	int Color; // Dot Color
+	int StartX; // 건물의 맨 좌측 상단의 x좌표
+	int StartY; // 건물의 맨 좌측 상단의 y좌표
+	int Info; // 0: 건설 가능, -1: 건설 불가능, 49: 병원 ~ 56: 부대(대)
+	int Size; // 빌딩 사이즈
+	int Color; // 도트 컬러
 
 public:
-	MapInfo(int sx, int sy, int i, int s, int c)
-	{
-		this->StartX = sx;
-		this->StartY = sy;
-		this->Info = i;
-		this->Size = s;
-		this->Color = c;
-	}
+	MapInfo(int sx, int sy, int i, int s, int c);
 
 	~MapInfo();
 
+#pragma region Getter Setter
 	void SetStartX(int sx)
 	{
 		this->StartX = sx;
@@ -65,5 +60,7 @@ public:
 	{
 		return this->Color;
 	}
+#pragma endregion
+
 };
 

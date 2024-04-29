@@ -71,7 +71,7 @@ void TutorialScene::PlayTutorial()
 
 void TutorialScene::PrintIntro()
 {
-	music->PlayerMusicIzanami2();
+	music->PlayMusicIzanami2();
 
 	system("cls");
 
@@ -329,28 +329,33 @@ int TutorialScene::NextKey()
 
 		if (nKey == EKEYBOARD::SPACE)
 		{
+			music->PlayMoveBeep();
 			break;
 		}
 		else if (nKey == EKEYBOARD::NUM1_KEY)
 		{
+			music->PlayMoveBeep();
 			Page = 1;
 			ReturnMenu = 2;
 			break;
 		}
 		else if (nKey == EKEYBOARD::NUM2_KEY)
 		{
+			music->PlayMoveBeep();
 			Page = 2;
 			ReturnMenu = 2;
 			break;
 		}
 		else if (nKey == EKEYBOARD::NUM3_KEY)
 		{
+			music->PlayMoveBeep();
 			Page = 3;
 			ReturnMenu = 2;
 			break;
 		}
 		if (nKey == EKEYBOARD::M_KEY)
 		{
+			music->PlayBigClick();
 			to->SetColor(0);
 			ReturnMenu = 1;
 			break;
@@ -452,7 +457,7 @@ int TutorialScene::SetAnnouncePosition(std::vector<const char*> s, int color)
 	to->PartClean(42, 39, 115, 1);
 	to->SetColor(color);
 
-	int size = strlen(s[index])/2;
+	int size = (int)(strlen(s[index])/2);
 
 	to->GoToXYPosition(TUTORIAL_ANNOUNCE_X - size, TUTORIAL_ANNOUNCE_Y);
 	std::cout << s[index];
@@ -461,7 +466,7 @@ int TutorialScene::SetAnnouncePosition(std::vector<const char*> s, int color)
 	if (index >= 1)
 	{
 		to->PartClean(42, 49, 115, 1);
-		int BackSize = strlen(s[index - 1])/2;
+		int BackSize = (int)(strlen(s[index - 1])/2);
 		to->GoToXYPosition(TUTORIAL_ANNOUNCE_X - BackSize, TUTORIAL_ANNOUNCE_Y + 10);
 
 		// Before Dialog

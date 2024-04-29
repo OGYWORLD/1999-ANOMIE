@@ -1,8 +1,9 @@
+/* 배경음악 및 효과음 재생 클래스*/
 #pragma once
-
 #include <windows.h>
 #pragma comment (lib, "winmm.lib")
-#include <mmsystem.h>;
+#include <mmsystem.h>
+#include <Digitalv.h>   
 
 class Music
 {
@@ -12,13 +13,28 @@ public:
 	Music();
 	~Music();
 
-	//BGM
+
+#pragma region BackGroundMusic
 	void PlayMusicPrayer();
-	void PlayerMusicIzanami();
-	void PlayerMusicIzanami2();
-	void PlayerMusicInfini();
-	void PlayerMusicDaedulus();
-	void PlayerMusicMazurka();
+	void PlayMusicIzanami();
+	void PlayMusicIzanami2();
+	void PlayMusicInfini();
+	void PlayMusicDaedulus();
+	void PlayMusicMazurka();
+	void PlayMusicXenial();
+#pragma endregion
+
+
+#pragma region SoundEffect
+	void PlayZombieSiren();
+	void PlayZombieNews();
+	void PlayBigClick();
+	void PlayMoveBeep();
+	void PlayFinish();
+	void PlayBuildSound();
+	void PlayDestroySound();
+	void PlayProhibitSound();
+#pragma endregion
  
 };
 

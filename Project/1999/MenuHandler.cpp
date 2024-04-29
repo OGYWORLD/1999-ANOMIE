@@ -2,11 +2,11 @@
 
 MenuHandler::MenuHandler()
 {
-	PlayerInput = -1;
 }
 
 MenuHandler::~MenuHandler()
 {
+	delete music;
 }
 
 int MenuHandler::ShowDefaultMenu(int OriginX, int OriginY, int BetweenY)
@@ -32,6 +32,7 @@ int MenuHandler::ShowDefaultMenu(int OriginX, int OriginY, int BetweenY)
 			int nKey = _getch();
 			if (nKey == EKEYBOARD::SPACE)
 			{
+				music->PlayBigClick();
 				to->CleanInputBuffer();
 				return CurY;
 			}
@@ -40,6 +41,7 @@ int MenuHandler::ShowDefaultMenu(int OriginX, int OriginY, int BetweenY)
 				nKey = _getch();
 				if (nKey == EKEYBOARD::KEY_UP)
 				{
+					music->PlayMoveBeep();
 					to->CleanInputBuffer();
 					CurY -= 7;
 					if (CurY < 0)
@@ -50,6 +52,7 @@ int MenuHandler::ShowDefaultMenu(int OriginX, int OriginY, int BetweenY)
 				}
 				else if (nKey == EKEYBOARD::KEY_DOWN)
 				{
+					music->PlayMoveBeep();
 					to->CleanInputBuffer();
 					CurY += 7;
 					if (CurY > 21)
@@ -161,7 +164,7 @@ void MenuHandler::ShowConstructMenu2()
 	printf("공원: 7");
 	to->GoToXYPosition(CONSTRUCT_MENU_X + 11, CONSTRUCT_MENU_Y + 11);
 	to->SetColor(3);
-	printf("50,000원");
+	printf("30,000원");
 
 	// Print Army(Large)
 	ConvertLargeImage(LARGE_Y, GetArmyLargeImage(), CONSTRUCT_MENU_X + 6, CONSTRUCT_MENU_Y + 13);

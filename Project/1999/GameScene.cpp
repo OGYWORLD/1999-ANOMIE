@@ -4,7 +4,7 @@
 
 GameScene::GameScene()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	WhichMusic = EMUSIC::INFINI;
 }
@@ -22,13 +22,19 @@ GameScene::~GameScene()
 
 void GameScene::PlayInGame()
 {
+	// Initialize
+	build->BuildingIntializer();
+	info->GameInfoInitializer();
+	news->NewsInitializer();
+	WhichMusic = EMUSIC::INFINI;
+
 	// Map Setting
 	PlayGetName();
 	to->CleanInputBuffer();
 	build->PrintWholeMap();
 
 	// Play Game
-	music->PlayerMusicInfini();
+	music->PlayMusicInfini();
 	info->PrintInfo();
 	menu->PrintNewsImage();
 	news->ShowNewNews();
@@ -54,6 +60,10 @@ void GameScene::PlayInGame()
 			news->MakeQueueEmpty();
 			
 			menu->PrintZombieMenu();
+
+			music->PlayZombieSiren();
+			Sleep(1000);
+
 			build->ZombieDayRandomDestory(info, news);
 			ZombieAttack();
 			news->ShowZombieNews();
@@ -72,7 +82,8 @@ void GameScene::PlayInGame()
 			to->PartClean(NEWS_POSITION_X + 2, NEWS_POSITION_Y + 4, 40, 15);
 			news->ShowNewNews();
 			info->PrintInfo();
-
+			
+			MusicCheck(1);
 			to->CleanInputBuffer();
 		}
 		else
@@ -111,12 +122,14 @@ void GameScene::PlayInGame()
 									}
 									if (nKey == EKEYBOARD::Z_KEY)
 									{
+										music->PlayMoveBeep();
 										to->CleanInputBuffer();
 										page = 1;
 										break;
 									}
 									else if (nKey == EKEYBOARD::M_KEY)
 									{
+										music->PlayBigClick();
 										to->CleanInputBuffer();
 										page = 0;
 										DefaultMenuFlag = 1;
@@ -124,6 +137,7 @@ void GameScene::PlayInGame()
 									}
 									else if (nKey >= EKEYBOARD::NUM1_KEY && nKey <= EKEYBOARD::NUM6_KEY)
 									{
+										music->PlayMoveBeep();
 										int ConstructInput = build->BuildBuilding(nKey, info);
 										if (ConstructInput == EKEYBOARD::M_KEY)
 										{
@@ -134,6 +148,7 @@ void GameScene::PlayInGame()
 										}
 										else if (ConstructInput == EKEYBOARD::Z_KEY)
 										{
+											music->PlayMoveBeep();
 											to->CleanInputBuffer();
 											page = 1;
 											break;
@@ -155,12 +170,14 @@ void GameScene::PlayInGame()
 									int nKey = _getch();
 									if (nKey == EKEYBOARD::Z_KEY)
 									{
+										music->PlayMoveBeep();
 										to->CleanInputBuffer();
 										page = 0;
 										break;
 									}
 									else if (nKey == EKEYBOARD::M_KEY)
 									{
+										music->PlayBigClick();
 										to->CleanInputBuffer();
 										page = 0;
 										DefaultMenuFlag = 1;
@@ -168,9 +185,11 @@ void GameScene::PlayInGame()
 									}
 									else if (nKey >= EKEYBOARD::NUM7_KEY && nKey <= EKEYBOARD::NUM8_KEY)
 									{
+										music->PlayMoveBeep();
 										int ConstructInput = build->BuildBuilding(nKey, info);
 										if (ConstructInput == EKEYBOARD::M_KEY)
 										{
+											music->PlayBigClick();
 											to->CleanInputBuffer();
 											page = 0;
 											DefaultMenuFlag = 1;
@@ -178,6 +197,7 @@ void GameScene::PlayInGame()
 										}
 										else if (ConstructInput == EKEYBOARD::Z_KEY)
 										{
+											music->PlayMoveBeep();
 											to->CleanInputBuffer();
 											page = 0;
 											break;
@@ -204,6 +224,7 @@ void GameScene::PlayInGame()
 							int nKey = _getch();
 							if ((nKey == EKEYBOARD::NUM1_KEY || nKey == EKEYBOARD::NUM2_KEY) && info->GetCitizenPower() > 0) // 세금 1
 							{
+								music->PlayMoveBeep();
 								to->CleanInputBuffer();
 								if (nKey == EKEYBOARD::NUM1_KEY)
 								{
@@ -223,6 +244,7 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::NUM3_KEY && info->GetCitizenPower() > 0) // 복지정책
 							{
+								music->PlayMoveBeep();
 								info->SetCntArr(ECOUNT::CITIZEN_WALFARE_CNT, info->GetCntArr()[ECOUNT::CITIZEN_WALFARE_CNT] + 1);
 								to->CleanInputBuffer();
 								info->Welfare();
@@ -233,14 +255,16 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::M_KEY) // 메뉴로
 							{
+								music->PlayBigClick();
 								to->CleanInputBuffer();
 								break;
 							}
 							else
 							{
 								// 금지 소리 출력
+								music->PlayProhibitSound();
 								to->CleanInputBuffer();
-								break;
+								continue;
 							}
 
 							to->CleanInputBuffer();
@@ -257,6 +281,7 @@ void GameScene::PlayInGame()
 							int nKey = _getch();
 							if (nKey == EKEYBOARD::NUM1_KEY && info->GetArmyPower() > 0) // 군인 월급 감소
 							{
+								music->PlayMoveBeep();
 								info->SetCntArr(ECOUNT::ARMY_FORCE_CNT, info->GetCntArr()[ECOUNT::ARMY_FORCE_CNT] + 1);
 								to->CleanInputBuffer();
 								info->ForceArmyMoney();
@@ -267,6 +292,7 @@ void GameScene::PlayInGame()
 							}
 							if (nKey == EKEYBOARD::NUM2_KEY && info->GetArmyPower() > 0) // 프로파간다
 							{
+								music->PlayMoveBeep();
 								info->SetCntArr(ECOUNT::ARMY_PROPAGANDA_CNT, info->GetCntArr()[ECOUNT::ARMY_PROPAGANDA_CNT] + 1);
 								to->CleanInputBuffer();
 								int Result = info->Propaganda();
@@ -284,6 +310,7 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::NUM3_KEY && info->GetArmyPower() > 0) // 국방부 예산 확대
 							{
+								music->PlayMoveBeep();
 								info->SetCntArr(ECOUNT::ARMY_WELFARE_CNT, info->GetCntArr()[ECOUNT::ARMY_WELFARE_CNT] + 1);
 								to->CleanInputBuffer();
 								info->ArmyWelfare();
@@ -294,14 +321,15 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::M_KEY) // 메뉴로
 							{
+								music->PlayBigClick();
 								to->CleanInputBuffer();
 								break;
 							}
 							else
 							{
-								// 금지 소리 출력
+								music->PlayProhibitSound();
 								to->CleanInputBuffer();
-								break;
+								continue;
 							}
 
 							to->CleanInputBuffer();
@@ -318,6 +346,7 @@ void GameScene::PlayInGame()
 							int nKey = _getch();
 							if (nKey == EKEYBOARD::NUM1_KEY && info->GetReligionPower() > 0) // 국민 종교활동 금지
 							{
+								music->PlayMoveBeep();
 								info->SetCntArr(ECOUNT::PROHIBIT_R_C_CNT, info->GetCntArr()[ECOUNT::PROHIBIT_R_C_CNT] + 1);
 								to->CleanInputBuffer();
 								info->ProhibitReligionForCitizen();
@@ -328,6 +357,7 @@ void GameScene::PlayInGame()
 							}
 							if (nKey == EKEYBOARD::NUM2_KEY && info->GetReligionPower() > 0) // 군인 종교활동 금지
 							{
+								music->PlayMoveBeep();
 								info->SetCntArr(ECOUNT::PROHIBIT_R_A_CNT, info->GetCntArr()[ECOUNT::PROHIBIT_R_A_CNT] + 1);
 								to->CleanInputBuffer();
 								info->ProhibitReligionForArmy();
@@ -338,6 +368,7 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::NUM3_KEY && info->GetReligionPower() > 0) // 종교활동 참여
 							{
+								music->PlayMoveBeep();
 								info->SetCntArr(ECOUNT::RELIGION_WELFARE_CNT, info->GetCntArr()[ECOUNT::RELIGION_WELFARE_CNT] + 1);
 								to->CleanInputBuffer();
 								info->ParticiateReligion();
@@ -348,14 +379,15 @@ void GameScene::PlayInGame()
 							}
 							else if (nKey == EKEYBOARD::M_KEY) // 메뉴로
 							{
+								music->PlayBigClick();
 								to->CleanInputBuffer();
 								break;
 							}
 							else
 							{
-								// 금지 소리 출력
+								music->PlayProhibitSound();
 								to->CleanInputBuffer();
-								break;
+								continue;
 							}
 
 							to->CleanInputBuffer();
@@ -364,11 +396,13 @@ void GameScene::PlayInGame()
 				}
 				else if (MenuSelect == EKEYBOARD::P_KEY)
 				{
+					music->PlayFinish();
 					to->CleanInputBuffer();
 
 					DateUpdate();
 					EndingFlag = EndingCheck();
 					EndOfTheDay();
+					MusicCheck(0);
 					DayCount++;
 
 					to->PartClean(INFO_POSITION_X + 45, INFO_POSITION_Y + 1, 96, 8);
@@ -417,6 +451,7 @@ void GameScene::PlayInGame()
 
 void GameScene::PlayGetName()
 {
+	music->PlayMusicXenial();
 	system("cls");
 	std::string Name;
 	std::string CountryName;
@@ -429,6 +464,7 @@ void GameScene::PlayGetName()
 	printf("당신의 이름은?(최대 10글자): ");
 	to->GoToXYPosition(PREVIEW_TEXT_POSITION_X + 30, PREVIEW_TEXT_POSITION_Y);
 	std::cin >> sName;
+	music->PlayMoveBeep();
 	if (sName.size() > 20)
 	{
 		while (sName.size() > 20)
@@ -446,6 +482,7 @@ void GameScene::PlayGetName()
 	printf("당신의 나라의 이름은?(최대 10글자): ");
 	to->GoToXYPosition(PREVIEW_TEXT_POSITION_X + 36, PREVIEW_TEXT_POSITION_Y + 3);
 	std::cin >> sCountryName;
+	music->PlayMoveBeep();
 	if (sCountryName.size() > 20)
 	{
 		while (sCountryName.size() > 20)
@@ -612,15 +649,15 @@ int GameScene::AllDieEndingCheck()
 void GameScene::EndOfTheDay() // Info Update When The End of the Day
 {
 
-	// 민심이 절반보다 높을 때 전체 인구수 * 0.01 * 민심률 만큼 인구수 증가
-	// 민심이 절반보다 낮을 때 전체 인구수 * 0.01 * 민심률 만큼 인구수 감소
+	// 민심이 절반보다 높을 때 전체 인구수 * 0.1 * 민심률 만큼 인구수 증가
+	// 민심이 절반보다 낮을 때 전체 인구수 * 0.1 * 민심률 만큼 인구수 감소
 	if (info->GetCitizenPower() < 50)
 	{
-		info->SetPeopleNum(info->GetPeopleNum() - (int)((double)info->GetPeopleNum() * 0.01));
+		info->SetPeopleNum(info->GetPeopleNum() - (int)((double)info->GetPeopleNum() * 0.1));
 	}
 	else
 	{
-		info->SetPeopleNum(info->GetPeopleNum() + (int)((double)info->GetPeopleNum() * 0.01));
+		info->SetPeopleNum(info->GetPeopleNum() + (int)((double)info->GetPeopleNum() * 0.1));
 	}
 
 	// 종교 세금 납부
@@ -635,25 +672,7 @@ void GameScene::EndOfTheDay() // Info Update When The End of the Day
 	}
 
 	// default 세금 납부
-	info->SetMoney(info->GetMoney() + info->GetPeopleNum() * 0.01);
-
-	// 노래재생 변경 - 민심, 군사력, 종교권위가 하나라도 50미만이면 노래변경
-	if (info->GetCitizenPower() < 50 || info->GetArmyPower() < 50 || info->GetReligionPower() < 50)
-	{
-		if (WhichMusic == EMUSIC::INFINI)
-		{
-			music->PlayerMusicDaedulus();
-			WhichMusic = EMUSIC::DAEDULUS;
-		}
-	}
-	else
-	{
-		if (WhichMusic == EMUSIC::DAEDULUS)
-		{
-			music->PlayerMusicInfini();
-			WhichMusic = EMUSIC::INFINI;
-		}
-	}
+	info->SetMoney(info->GetMoney() + (int)((double)info->GetPeopleNum() * 0.05));
 
 	// 사이비 메이커
 	build->Religon42BMaker(info, news);
@@ -672,7 +691,7 @@ void GameScene::ZombieAttack()
 	Save += build->ReligionCntSave(info, news);
 	Save += build->CitizenCntSave(info, news);
 	Save += build->ArmyCntSave(info, news);
-	Save += (int)((double)info->GetPeopleNum() * (double)build->DistanceBetweenAPTReligion() * 0.001); // APT&Religion
+	Save += (int)(MAX_DISTANCE - (double)info->GetPeopleNum() * (double)build->DistanceBetweenAPTReligion() * 0.0001); // APT&Religion
 
 	int TotalDeath = DeathNum - Save;
 	int FeelingSad = info->GetPeopleNum() / TotalDeath;
@@ -681,9 +700,10 @@ void GameScene::ZombieAttack()
 	to->SetColor(10);
 
 	// 사망률에 대한 민심 군사력 종교권위 하락
-	if (FeelingSad < 3)
+	if (FeelingSad < 10)
 	{
 		info->SetCntArr(ECOUNT::SAFE_ZOMBIE_CNT, info->GetCntArr()[ECOUNT::SAFE_ZOMBIE_CNT] + 1);
+		news->PushNewsQueue(ENEWS_CATEGORY::AfterZombieGood);
 	}
 	else
 	{
@@ -728,6 +748,27 @@ void GameScene::ZombieAttack()
 		info->SetPeopleNum(info->GetPeopleNum() + Save - DeathNum);
 	}
 
+}
+
+void GameScene::MusicCheck(int zombie)
+{
+	// 노래재생 변경 - 민심, 군사력, 종교권위가 하나라도 50미만이면 노래변경
+	if (info->GetCitizenPower() < 50 || info->GetArmyPower() < 50 || info->GetReligionPower() < 50)
+	{
+		if (WhichMusic == EMUSIC::INFINI || zombie == 1)
+		{
+			music->PlayMusicDaedulus();
+			WhichMusic = EMUSIC::DAEDULUS;
+		}
+	}
+	else
+	{
+		if (WhichMusic == EMUSIC::DAEDULUS || zombie == 1)
+		{
+			music->PlayMusicInfini();
+			WhichMusic = EMUSIC::INFINI;
+		}
+	}
 }
 
 

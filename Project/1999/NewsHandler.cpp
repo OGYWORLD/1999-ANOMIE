@@ -10,12 +10,19 @@ NewsHandler::NewsHandler()
 NewsHandler::~NewsHandler()
 {
 	delete to;
+	delete music;
+}
+
+void NewsHandler::NewsInitializer()
+{
+	MakeQueueEmpty();
+	NewsQ.push(std::pair < const char*, int>("제 15대 대통령 임기시작.. 과연..", 14));
 }
 
 void NewsHandler::ShowNewNews()
 {
 	to->PartClean(NEWS_POSITION_X+2, NEWS_POSITION_Y+4, 40, 15);
-	int Size = NewsQ.size();
+	int Size = (int)NewsQ.size();
 
 	int index = 0;
 	while (NewsQ.size())
@@ -35,7 +42,7 @@ void NewsHandler::ShowZombieNews()
 {
 	to->PartClean(NEWS_POSITION_X + 2, NEWS_POSITION_Y + 4, 40, 15);
 	to->SetColor(14);
-	int Size = NewsQ.size();
+	int Size = (int)NewsQ.size();
 
 	int index = 0;
 	while (NewsQ.size())
@@ -43,6 +50,7 @@ void NewsHandler::ShowZombieNews()
 		to->GoToXYPosition(NEWS_POSITION_X + 4, NEWS_POSITION_Y + 4 + index);
 		to->SetColor(NewsQ.front().second);
 		printf("%s", NewsQ.front().first);
+		music->PlayZombieNews();
 		Sleep(1000);
 
 		NewsQ.pop();
