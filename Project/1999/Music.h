@@ -1,5 +1,5 @@
+/* 배경음악 및 효과음 재생 클래스*/
 #pragma once
-
 #include <windows.h>
 #pragma comment (lib, "winmm.lib")
 #include <mmsystem.h>
@@ -14,7 +14,7 @@ public:
 	~Music();
 
 
-	//BGM
+#pragma region BackGroundMusic
 	void PlayMusicPrayer();
 	void PlayMusicIzanami();
 	void PlayMusicIzanami2();
@@ -22,8 +22,10 @@ public:
 	void PlayMusicDaedulus();
 	void PlayMusicMazurka();
 	void PlayMusicXenial();
+#pragma endregion
 
-	// SoundEffect
+
+#pragma region SoundEffect
 	void PlayZombieSiren();
 	void PlayZombieNews();
 	void PlayBigClick();
@@ -32,6 +34,7 @@ public:
 	void PlayBuildSound();
 	void PlayDestroySound();
 	void PlayProhibitSound();
+#pragma endregion
  
 };
 

@@ -4,7 +4,7 @@
 
 GameScene::GameScene()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	WhichMusic = EMUSIC::INFINI;
 }
@@ -649,15 +649,15 @@ int GameScene::AllDieEndingCheck()
 void GameScene::EndOfTheDay() // Info Update When The End of the Day
 {
 
-	// 민심이 절반보다 높을 때 전체 인구수 * 0.01 * 민심률 만큼 인구수 증가
-	// 민심이 절반보다 낮을 때 전체 인구수 * 0.01 * 민심률 만큼 인구수 감소
+	// 민심이 절반보다 높을 때 전체 인구수 * 0.1 * 민심률 만큼 인구수 증가
+	// 민심이 절반보다 낮을 때 전체 인구수 * 0.1 * 민심률 만큼 인구수 감소
 	if (info->GetCitizenPower() < 50)
 	{
-		info->SetPeopleNum(info->GetPeopleNum() - (int)((double)info->GetPeopleNum() * 0.01));
+		info->SetPeopleNum(info->GetPeopleNum() - (int)((double)info->GetPeopleNum() * 0.1));
 	}
 	else
 	{
-		info->SetPeopleNum(info->GetPeopleNum() + (int)((double)info->GetPeopleNum() * 0.01));
+		info->SetPeopleNum(info->GetPeopleNum() + (int)((double)info->GetPeopleNum() * 0.1));
 	}
 
 	// 종교 세금 납부
@@ -672,7 +672,7 @@ void GameScene::EndOfTheDay() // Info Update When The End of the Day
 	}
 
 	// default 세금 납부
-	info->SetMoney(info->GetMoney() + info->GetPeopleNum() * 0.1);
+	info->SetMoney(info->GetMoney() + (int)((double)info->GetPeopleNum() * 0.05));
 
 	// 사이비 메이커
 	build->Religon42BMaker(info, news);
@@ -691,7 +691,7 @@ void GameScene::ZombieAttack()
 	Save += build->ReligionCntSave(info, news);
 	Save += build->CitizenCntSave(info, news);
 	Save += build->ArmyCntSave(info, news);
-	Save += (int)(MAX_DISTANCE - (double)info->GetPeopleNum() * (double)build->DistanceBetweenAPTReligion() * 0.001); // APT&Religion
+	Save += (int)(MAX_DISTANCE - (double)info->GetPeopleNum() * (double)build->DistanceBetweenAPTReligion() * 0.0001); // APT&Religion
 
 	int TotalDeath = DeathNum - Save;
 	int FeelingSad = info->GetPeopleNum() / TotalDeath;
@@ -700,7 +700,7 @@ void GameScene::ZombieAttack()
 	to->SetColor(10);
 
 	// 사망률에 대한 민심 군사력 종교권위 하락
-	if (FeelingSad < 5)
+	if (FeelingSad < 10)
 	{
 		info->SetCntArr(ECOUNT::SAFE_ZOMBIE_CNT, info->GetCntArr()[ECOUNT::SAFE_ZOMBIE_CNT] + 1);
 		news->PushNewsQueue(ENEWS_CATEGORY::AfterZombieGood);

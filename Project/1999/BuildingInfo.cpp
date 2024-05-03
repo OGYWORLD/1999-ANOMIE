@@ -24,7 +24,7 @@ std::pair<int, int> BuildingInfo::CalCulCenterCOORDMap(std::map<std::pair<int, i
 {
 	std::map<std::pair<int, int>, std::pair<int, int>>::iterator iter;
 
-	double MapLen = map.size();
+	double MapLen = (int)map.size();
 
 	double TotalX = 0;
 	double TotalY = 0;

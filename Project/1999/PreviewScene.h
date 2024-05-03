@@ -1,3 +1,4 @@
+/* 프리뷰 화면 클래스 */
 #pragma once
 #include "PrintImage.h"
 #include "Music.h"
@@ -12,6 +13,6 @@ public:
 	PreviewScene();
 	~PreviewScene();
 
-	void PlayPreviewScene();
+	void PlayPreviewScene(); // 프리뷰 화면 출력
 };
 

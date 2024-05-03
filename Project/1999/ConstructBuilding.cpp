@@ -2,7 +2,7 @@
 
 ConstructBuilding::ConstructBuilding()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	ExitNum = 2;
 
@@ -579,7 +579,8 @@ void ConstructBuilding::NewBuild(int building, int x, int y, InfoHandler* info)
 void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, InfoHandler* info, int Zombie)
 {
 
-	int DeleteX, DeleteY;
+	int DeleteX = 0;
+	int DeleteY = 0;
 
 	std::set<std::pair<int,int>> DeleteCOOR;
 
@@ -595,7 +596,7 @@ void ConstructBuilding::DestroyBuilding(int building, int size, int x, int y, In
 		}
 	}
 
-	int DLen = DeleteCOOR.size();
+	int DLen = (int)DeleteCOOR.size();
 
 	if (DLen != 0)
 	{
@@ -780,13 +781,13 @@ void ConstructBuilding::Religon42BMaker(InfoHandler* info, NewsHandler* news)
 {
 	// 종교시설개수 * 2 / 100의 확률로 사이비 메이커 발동
 	int Random = rand() % 100;
-	if (ReligionNum * 2 > Random)
+	if (ReligionNum * 5 > Random)
 	{
 		ReligionNum--;
 		info->SetCitizenPower(info->GetCitizenPower() - 10);
 		info->SetReligionPower(info->GetReligionPower() - 10);
 		
-		int MapSize = PerCenterCOORDReligion.size();
+		int MapSize = (int)PerCenterCOORDReligion.size();
 		Random = rand() % MapSize;
 
 		int OriginX, OriginY;

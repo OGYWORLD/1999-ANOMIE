@@ -1,5 +1,0 @@
-﻿  ConstructBuilding.cpp
-C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(582,15): warning C4101: 'DeleteY': unreferenced local variable
-C:\Users\admin\Desktop\KE_1999\Project\1999\ConstructBuilding.cpp(582,6): warning C4101: 'DeleteX': unreferenced local variable
-  1999.vcxproj -> C:\Users\admin\Desktop\KE_1999\Project\Debug\1999.exe

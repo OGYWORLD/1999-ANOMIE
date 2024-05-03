@@ -55,8 +55,8 @@ void Music::PlayZombieNews()
 
 void Music::PlayBigClick()
 {
-	MCI_OPEN_PARMS OpenBigClick;
-	MCI_PLAY_PARMS PlayBigClick;
+	MCI_OPEN_PARMS OpenBigClick = {0, 0, 0, 0, 0};
+	MCI_PLAY_PARMS PlayBigClick = { 0, 0, 0 };
 
 	int dwID_BigClick;
 
@@ -71,8 +71,8 @@ void Music::PlayBigClick()
 
 void Music::PlayMoveBeep()
 {
-	MCI_OPEN_PARMS OpenMoveBeep;
-	MCI_PLAY_PARMS PlayMoveBeep;
+	MCI_OPEN_PARMS OpenMoveBeep = { 0, 0, 0, 0, 0 };
+	MCI_PLAY_PARMS PlayMoveBeep = { 0, 0, 0};
 
 	int dwID_MoveBeep;
 
@@ -87,8 +87,8 @@ void Music::PlayMoveBeep()
 
 void Music::PlayFinish()
 {
-	MCI_OPEN_PARMS OpenFinish;
-	MCI_PLAY_PARMS PlayFinish;
+	MCI_OPEN_PARMS OpenFinish = { 0, 0, 0, 0, 0 };
+	MCI_PLAY_PARMS PlayFinish = { 0, 0, 0 };
 
 	int dwID_Finish;
 
@@ -103,8 +103,8 @@ void Music::PlayFinish()
 
 void Music::PlayBuildSound()
 {
-	MCI_OPEN_PARMS OpenBuildSound;
-	MCI_PLAY_PARMS PlayBuildSound;
+	MCI_OPEN_PARMS OpenBuildSound = { 0, 0, 0, 0, 0 };
+	MCI_PLAY_PARMS PlayBuildSound = { 0, 0, 0 };
 
 	int dwID_BuildSound;
 
@@ -119,8 +119,8 @@ void Music::PlayBuildSound()
 
 void Music::PlayDestroySound()
 {
-	MCI_OPEN_PARMS OpenDestroySound;
-	MCI_PLAY_PARMS PlayDestroySound;
+	MCI_OPEN_PARMS OpenDestroySound = { 0, 0, 0, 0, 0 };
+	MCI_PLAY_PARMS PlayDestroySound = { 0, 0, 0 };
 
 	int dwID_DestroySound;
 
@@ -135,8 +135,8 @@ void Music::PlayDestroySound()
 
 void Music::PlayProhibitSound()
 {
-	MCI_OPEN_PARMS OpenProhibitSound;
-	MCI_PLAY_PARMS PlayProhibitSound;
+	MCI_OPEN_PARMS OpenProhibitSound = { 0, 0, 0, 0, 0 };
+	MCI_PLAY_PARMS PlayProhibitSound = { 0, 0, 0};
 
 	int dwID_ProhibitSound;
 

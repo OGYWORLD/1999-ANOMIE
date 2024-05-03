@@ -10,7 +10,7 @@ PrintImage::~PrintImage()
 	delete music;
 }
 
-void PrintImage::ConvertLogoImage(int y, int Image[][START_LOGO_X])
+void PrintImage::ConvertLogoImage(int y, int Image[][START_LOGO_X]) // 시작화면 로고 이미지 출력
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -32,7 +32,7 @@ void PrintImage::ConvertLogoImage(int y, int Image[][START_LOGO_X])
 	}
 }
 
-void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X])
+void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X]) // 전체 이미지(콘솔창 크기) 출력
 {
 	to->GoToXYPosition(0, 0);
 
@@ -56,7 +56,7 @@ void PrintImage::ConvertWholeImage(int y, int Image[][WHOLE_IMAGE_X])
 
 }
 
-void PrintImage::RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index, int HalfX)
+void PrintImage::RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index, int HalfX) // 이미지 루프출력
 {
 	for (int i = 0 + index; i < y + index; i++)
 	{
@@ -77,7 +77,7 @@ void PrintImage::RollingWholeImage(int y, int Image[][WHOLE_IMAGE_X], int index,
 	}
 }
 
-void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X], int OriginX, int OriginY)
+void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X], int OriginX, int OriginY) // 가로길이 6 이미지 출력
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -100,7 +100,7 @@ void PrintImage::ConvertSmallImage(int y, int Image[][SMALL_X], int OriginX, int
 	}
 }
 
-void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X], int OriginX, int OriginY)
+void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X], int OriginX, int OriginY) // 가로길이 10 이미지 출력
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -123,7 +123,7 @@ void PrintImage::ConvertMediumImage(int y, int Image[][MEDIUM_X], int OriginX, i
 	}
 }
 
-void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X], int OriginX, int OriginY)
+void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X], int OriginX, int OriginY) // 가로길이 16 이미지 출력
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -146,7 +146,7 @@ void PrintImage::ConvertLargeImage(int y, int Image[][LARGE_X], int OriginX, int
 	}
 }
 
-void PrintImage::ConvertMenuImage(int y, int Image[][MENU_IMAGE_X])
+void PrintImage::ConvertMenuImage(int y, int Image[][MENU_IMAGE_X]) // 인게임 메뉴 이미지 출력
 {
 
 	for (int i = 0; i < y; i++)
@@ -167,7 +167,7 @@ void PrintImage::ConvertMenuImage(int y, int Image[][MENU_IMAGE_X])
 	PrintMenuText();
 }
 
-void PrintImage::PrintMenuText()
+void PrintImage::PrintMenuText() // 인게임 메뉴 텍스트 출력
 {
 	char MenuText[4][10] =
 	{
@@ -190,7 +190,7 @@ void PrintImage::PrintMenuText()
 	printf("새로운 내일은 p버튼");
 }
 
-void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X])
+void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X]) // 시작화면 Press any button 출력
 {
 	for (int i = 0; i < PRESS_BUTTOM_Y; i++)
 	{
@@ -213,7 +213,7 @@ void PrintImage::ConvertPTAKImage(int y, int Image[][PRESS_BUTTOM_X])
 	}
 }
 
-void PrintImage::ConverDisapproveImage(int y, int Image[][DISAPPROVE_X])
+void PrintImage::ConverDisapproveImage(int y, int Image[][DISAPPROVE_X]) // 엔딩 로고 출력
 {
 	for (int i = 0; i < y; i++)
 	{
@@ -235,7 +235,7 @@ void PrintImage::ConverDisapproveImage(int y, int Image[][DISAPPROVE_X])
 	}
 }
 
-void PrintImage::PrintPre2Text()
+void PrintImage::PrintPre2Text() // preview 텍스트 출력
 {
 	to->PartClean(0, 0, WHOLE_IMAGE_X, PRIVIEW_Y);
 	char Line1[2][100] =
@@ -253,7 +253,7 @@ void PrintImage::PrintPre2Text()
 	}
 }
 
-void PrintImage::PrintPre3Text()
+void PrintImage::PrintPre3Text() // preview 텍스트 출력
 {
 	to->PartClean(0, 0, WHOLE_IMAGE_X, WHOLE_IMAGE_Y/2);
 	char Line1[2][100] =
@@ -271,7 +271,7 @@ void PrintImage::PrintPre3Text()
 	}
 }
 
-void PrintImage::PrintPre1Text()
+void PrintImage::PrintPre1Text() // preview 텍스트 출력
 {
 	to->PartClean(0, 0, WHOLE_IMAGE_X, PRIVIEW_Y);
 	char Line1[2][56] =
@@ -290,7 +290,7 @@ void PrintImage::PrintPre1Text()
 }
 
 
-int PrintImage::PrintSelectText()
+void PrintImage::PrintSelectText()
 {
 	char MenuText[3][10] =
 	{
@@ -305,54 +305,6 @@ int PrintImage::PrintSelectText()
 	{
 		to->GoToXYPosition(SELECT_POSITION_X, SELECT_POSITION_Y + yCoord);
 		printf("%s\n", MenuText[i]);
-	}
-
-	int CurY = 0;
-	while (1)
-	{
-		// Blink Point
-		to->SetColor(10);
-		to->GoToXYPosition(SELECT_POSITION_X - 5, SELECT_POSITION_Y + CurY);
-		printf("▶");
-		Sleep(300);
-		to->GoToXYPosition(SELECT_POSITION_X - 5, SELECT_POSITION_Y + CurY);
-		printf("  ");
-		Sleep(300);
-
-		if (_kbhit())
-		{
-			int nKey = _getch();
-			if (nKey == EKEYBOARD::SPACE)
-			{
-				music->PlayBigClick();
-				return CurY;
-			}
-			else if (nKey == EKEYBOARD::DIRECTION)
-			{
-				nKey = _getch();
-				if (nKey == EKEYBOARD::KEY_UP)
-				{
-					music->PlayMoveBeep();
-					CurY -= 7;
-					if (CurY < 0)
-					{
-						CurY = 14;
-					}
-
-				}
-				else if (nKey == EKEYBOARD::KEY_DOWN)
-				{
-					music->PlayMoveBeep();
-					CurY += 7;
-					if (CurY > 14)
-					{
-						CurY = 0;
-					}
-				}
-			}
-
-			to->CleanInputBuffer();
-		}
 	}
 }
 

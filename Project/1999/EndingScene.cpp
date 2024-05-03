@@ -14,8 +14,8 @@ EndingScene::~EndingScene()
 void EndingScene::CitizenEnding(InfoHandler* info)
 {
 	music->PlayMusicMazurka();
-	int NameSize = info->GetPresidentName().size();
-	int CountrySize = info->GetCountryName().size();
+	int NameSize = (int)info->GetPresidentName().size();
+	int CountrySize = (int)info->GetCountryName().size();
 
 	system("cls");
 	print->ConvertWholeImage(WHOLE_IMAGE_HALF_Y, print->GetCitizenEndingImage());
@@ -53,8 +53,8 @@ void EndingScene::CitizenEnding(InfoHandler* info)
 
 void EndingScene::ArmyEnding(InfoHandler* info)
 {
-	int NameSize = info->GetPresidentName().size();
-	int CountrySize = info->GetCountryName().size();
+	int NameSize = (int)info->GetPresidentName().size();
+	int CountrySize = (int)info->GetCountryName().size();
 	music->PlayMusicMazurka();
 
 	system("cls");
@@ -92,8 +92,8 @@ void EndingScene::ArmyEnding(InfoHandler* info)
 
 void EndingScene::ReligionEnding(InfoHandler* info)
 {
-	int NameSize = info->GetPresidentName().size();
-	int CountrySize = info->GetCountryName().size();
+	int NameSize = (int)info->GetPresidentName().size();
+	int CountrySize = (int)info->GetCountryName().size();
 	music->PlayMusicMazurka();
 
 	system("cls");
@@ -131,8 +131,8 @@ void EndingScene::ReligionEnding(InfoHandler* info)
 
 void EndingScene::AllDieEnding(InfoHandler* info)
 {
-	int NameSize = info->GetPresidentName().size();
-	int CountrySize = info->GetCountryName().size();
+	int NameSize = (int)info->GetPresidentName().size();
+	int CountrySize = (int)info->GetCountryName().size();
 	music->PlayMusicMazurka();
 
 	system("cls");
@@ -178,8 +178,8 @@ void EndingScene::AllDieEnding(InfoHandler* info)
 
 void EndingScene::PrintResult(InfoHandler* info)
 {
-	int NameSize = info->GetPresidentName().size();
-	int CountrySize = info->GetCountryName().size();
+	int NameSize = (int)info->GetPresidentName().size();
+	int CountrySize = (int)info->GetCountryName().size();
 
 	music->PlayMoveBeep();
 	to->SetColor(14);

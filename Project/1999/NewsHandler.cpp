@@ -10,6 +10,7 @@ NewsHandler::NewsHandler()
 NewsHandler::~NewsHandler()
 {
 	delete to;
+	delete music;
 }
 
 void NewsHandler::NewsInitializer()
@@ -21,7 +22,7 @@ void NewsHandler::NewsInitializer()
 void NewsHandler::ShowNewNews()
 {
 	to->PartClean(NEWS_POSITION_X+2, NEWS_POSITION_Y+4, 40, 15);
-	int Size = NewsQ.size();
+	int Size = (int)NewsQ.size();
 
 	int index = 0;
 	while (NewsQ.size())
@@ -41,7 +42,7 @@ void NewsHandler::ShowZombieNews()
 {
 	to->PartClean(NEWS_POSITION_X + 2, NEWS_POSITION_Y + 4, 40, 15);
 	to->SetColor(14);
-	int Size = NewsQ.size();
+	int Size = (int)NewsQ.size();
 
 	int index = 0;
 	while (NewsQ.size())

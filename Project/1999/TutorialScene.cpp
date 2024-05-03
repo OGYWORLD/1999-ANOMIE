@@ -64,7 +64,6 @@ TutorialScene::~TutorialScene()
 
 void TutorialScene::PlayTutorial()
 {
-	ReturnMenu = -1;
 	PrintIntro();
 	PrintMenuTutorial();
 }
@@ -115,14 +114,15 @@ void TutorialScene::PrintMenuTutorial()
 			to->GoToXYPosition(90, 25);
 			printf("1. 대통령 권한 안내");
 
-
-			if (SetAnnouncePosition(Announce, 10) == 1) { return; }
+			int EndCheck = SetAnnouncePosition(Announce, 10);
+			if (EndCheck == 1) { return; }
+			else if(EndCheck == 2) { ReturnMenu = -1; continue; }
 
 			PrintMenuInfo();
 
 			for (int i = 0; i < TUTORIAL_INTRODUCE_MENU_ANNOUNCE_NUM; i++)
 			{
-				int EndCheck = SetAnnouncePosition(Announce, 10);
+				EndCheck = SetAnnouncePosition(Announce, 10);
 				if (EndCheck == 1)
 				{
 					EndTutorial = 1;
@@ -153,13 +153,15 @@ void TutorialScene::PrintMenuTutorial()
 			to->GoToXYPosition(90, 25);
 			printf("2. 건물 건설 안내");
 
-			if (SetAnnouncePosition(Announce, 10) == 1) { return; }
+			int EndCheck = SetAnnouncePosition(Announce, 10);
+			if (EndCheck == 1) { return; }
+			else if (EndCheck == 2) { ReturnMenu = -1; continue; }
 
 			PrintConstructInfo();
 
 			for (int i = 0; i < TUTORIAL_INTRODUCE_CONSTRUCT_ANNOUNCE_NUM; i++)
 			{
-				int EndCheck = SetAnnouncePosition(Announce, 10);
+				EndCheck = SetAnnouncePosition(Announce, 10);
 				if (EndCheck == 1)
 				{
 					EndTutorial = 1;
@@ -189,13 +191,15 @@ void TutorialScene::PrintMenuTutorial()
 			to->GoToXYPosition(83, 25);
 			printf("3. 민심, 군사력, 종교 권위 안내");
 
-			if (SetAnnouncePosition(Announce, 10) == 1) { return; }
+			int EndCheck = SetAnnouncePosition(Announce, 10);
+			if (EndCheck == 1) { return; }
+			else if (EndCheck == 2) { ReturnMenu = -1; continue; }
 
 			PrintPowerInfo();
 
 			for (int i = 0; i < TUTORIAL_INTRODUCE_POWER_ANNOUNCE_NUM; i++)
 			{
-				int EndCheck = SetAnnouncePosition(Announce, 10);
+				EndCheck = SetAnnouncePosition(Announce, 10);
 				if (EndCheck == 1)
 				{
 					EndTutorial = 1;
@@ -457,7 +461,7 @@ int TutorialScene::SetAnnouncePosition(std::vector<const char*> s, int color)
 	to->PartClean(42, 39, 115, 1);
 	to->SetColor(color);
 
-	int size = strlen(s[index])/2;
+	int size = (int)(strlen(s[index])/2);
 
 	to->GoToXYPosition(TUTORIAL_ANNOUNCE_X - size, TUTORIAL_ANNOUNCE_Y);
 	std::cout << s[index];
@@ -466,7 +470,7 @@ int TutorialScene::SetAnnouncePosition(std::vector<const char*> s, int color)
 	if (index >= 1)
 	{
 		to->PartClean(42, 49, 115, 1);
-		int BackSize = strlen(s[index - 1])/2;
+		int BackSize = (int)(strlen(s[index - 1])/2);
 		to->GoToXYPosition(TUTORIAL_ANNOUNCE_X - BackSize, TUTORIAL_ANNOUNCE_Y + 10);
 
 		// Before Dialog

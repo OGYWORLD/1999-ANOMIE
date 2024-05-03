@@ -16,21 +16,20 @@ PlayGame::~PlayGame()
 
 void PlayGame::PlayGameMode()
 {
-	//Sleep(5000);
-	//pre->PlayPreviewScene(); // Preview Scene
-	//start->PlayStartScene(); // Start Scene
+	pre->PlayPreviewScene(); // Preview Scene
+	start->PlayStartScene(); // Start Scene
 
 	while (1)
 	{
 		int PlayerInput = select->PlaySelectScene();
 		if (PlayerInput == ESELECT_SCENE::NEW_GAME)
 		{
-			// GamePlay
+			// Game Scene
 			game->PlayInGame();
 		}
 		else if (PlayerInput == ESELECT_SCENE::TUTORIAL)
 		{
-			//tutorial Scenen
+			//tutorial Scene
 			tutorial->PlayTutorial();
 		}
 		else if (PlayerInput == ESELECT_SCENE::EXIT)
